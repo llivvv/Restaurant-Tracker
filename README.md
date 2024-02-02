@@ -1,9 +1,9 @@
 # My Personal Project - A Restaurant Tracker
 ## Proposal
 
-I plan to build a restaurant tracker. Using this tracker, the user will be able to have a place to store information
+I plan to build a restaurant tracker. Using this tracker, the user will be able to store information
 about restaurants they have been to. Sometimes, it is difficult to remember which restaurants were good and which were
-not, so this tracker can be something that the user refers back to often. They can choose whether or not they liked the
+not, so this tracker can be something that the user refers back to often. They can choose whether they liked the
 restaurant and write a list of items they liked with their prices, and a list of items they disliked.
 
 The application can be useful for anyone, but those who visit many different restaurants often, may find it more useful.
@@ -16,7 +16,8 @@ that may be useful.
 ## User Stories
 
 - As a user, I want to be able to add a new restaurant review to my liked or disliked restaurants.
-- As a user, I want to be able to see the name of each liked restaurant in list view, and each disliked restaurant.
+- As a user, I want to be able to see the restaurants in lists of liked and disliked restaurants.
 - As a user, I want to be able to select the title of a restaurant review and be able to edit the review.
-- As a user, I want to be able to have the option of sorting the reviews alphabetically (restaurant name) or by date of creation.
+- As a user, I want to be able to have the option of sorting the reviews alphabetically (restaurant name) or by date of 
+creation.
 - As a user, I want to be able to search up a review by the restaurant name or an item name.
