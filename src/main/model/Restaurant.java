@@ -35,8 +35,9 @@ public class Restaurant {
 
     // REQUIRES: item is in wishlist
     // MODIFIES: this
-    // EFFECTS: removes item from wishList and adds it to end of triedFoods
+    // EFFECTS: changes food to tried, removes item from wishList and adds it to end of triedFoods
     public void changeToTriedFoods(Food food) {
+        food.makeTried();
         if (!triedFoods.contains(food)) {
             wishList.remove(food);
             triedFoods.add(food);
@@ -87,6 +88,14 @@ public class Restaurant {
         }
         System.out.println("Food is not associated with this restaurant.");
         return null;
+    }
+
+    public int getNumTriedFoods() {
+        return triedFoods.size();
+    }
+
+    public int getNumWishList() {
+        return wishList.size();
     }
 
 }

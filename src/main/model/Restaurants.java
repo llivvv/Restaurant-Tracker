@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-//Represents a lists of restaurants
+//Represents 3 lists of restaurants: all, liked, disliked restaurants
 
 public class Restaurants {
 

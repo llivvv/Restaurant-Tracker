@@ -20,6 +20,7 @@ public class Food {
     public void setRating(double rating) {
         if (isTried) {
             this.rating = rating;
+            lowerRating();
         } else {
             this.rating = 0.0;
         }
