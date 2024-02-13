@@ -9,11 +9,20 @@ public class Food {
     private double rating;
     private boolean isTried;
 
-    public Food(String n, double p, double r, boolean t) {
-        name = n;
-        price = p;
-        rating = r;
-        isTried = t;
+    public Food(String name, double price, boolean isTried) {
+        this.name = name;
+        this.price = price;
+        this.isTried = isTried;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the food's rating if it has been tried, otherwise set rating to 0
+    public void setRating(double rating) {
+        if (isTried) {
+            this.rating = rating;
+        } else {
+            this.rating = 0.0;
+        }
     }
 
     // REQUIRES: rating !null
@@ -25,9 +34,22 @@ public class Food {
         }
     }
 
+    // REQUIRES: isTried == false
+    // MODIFIES: this
+    // EFFECTS: changes food's status to isTried
+    public void makeTried() {
+        isTried = true;
+    }
+
     public double getRating() {
         return rating;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
+
+    public boolean getisTried() {
+        return isTried;
+    }
 }
