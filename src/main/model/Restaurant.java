@@ -10,16 +10,16 @@ public class Restaurant {
     private boolean isLiked;
     private ArrayList<Food> triedFoods;
     private ArrayList<Food> wishList;
-    private int views;
     private double rating;
+    private int nextToTypeIndexName;
 
     // EFFECTS: creates a new restaurant review with no foods, initial 0 rating, 0 views
     public Restaurant(String name, boolean opinion) {
         this.name = name;
         this.isLiked = opinion;
-        this.views = 0;
         triedFoods = new ArrayList<Food>();
         wishList = new ArrayList<Food>();
+        this.nextToTypeIndexName = 0;
     }
 
     // REQUIRES: item is not already in triedFoods nor wishList

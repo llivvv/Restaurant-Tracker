@@ -35,6 +35,7 @@ public class Restaurants {
     }
 
     // REQUIRES: the restaurant exists in the allRestaurants list
+    // MODIFIES: this
     // EFFECTS: deletes the restaurant review
     // the user will be selecting the restaurant (not searching its name) to select it
     public void removeRestaurant(Restaurant restaurant) {
