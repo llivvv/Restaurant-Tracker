@@ -42,12 +42,24 @@ public class Food {
         isTried = true;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public double getRating() {
         return rating;
     }
 
     public String getName() {
         return name;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public boolean getisTried() {
