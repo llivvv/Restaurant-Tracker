@@ -91,8 +91,7 @@ public class RestaurantTrackerApp {
 
     public void reviewFood(Restaurant restaurant) {
         System.out.println("\nSelect: ");
-        System.out.println("\tr -> Review a food item");
-        System.out.println("\tw -> Add a wishlist item");
+        System.out.println("\tr -> add new food item");
         System.out.println("\td -> Exit out of this review");
         processOptionToReview(input.next().toLowerCase(), restaurant);
     }
@@ -108,9 +107,7 @@ public class RestaurantTrackerApp {
 
     public void processOptionToReview(String chooseReview, Restaurant restaurant) {
         if (chooseReview.equals("r")) {
-            writeFoodReview(restaurant);
-        } else if (chooseReview.equals("w")) {
-            writeWishListItem(restaurant);
+            addFoodItem(restaurant);
         } else if (chooseReview.equals("d")) {
             displayMenu();
         } else {
@@ -120,35 +117,28 @@ public class RestaurantTrackerApp {
     }
 
     // EFFECTS: consumes user input to add a new tried food item to the review for the restaurant
-    public void writeFoodReview(Restaurant restaurant) {
+    public void addFoodItem(Restaurant restaurant) {
 
-        System.out.println("\nEnter a food item to review");
+        System.out.println("\nEnter a food item to add");
         String foodName = input.next();
+        System.out.println("Select: ");
+        System.out.println("\tr -> is a tried food");
+        System.out.println("\tw -> is a wishList item");
+        String command = input.next().toLowerCase();
+        if (command.equals("r")) {
+            System.out.println("\nEnter its price: ");
+            Double price = Double.valueOf(input.next());
 
-        System.out.println("\nEnter its price: ");
-        Double price = Double.valueOf(input.next());
+            Food newFood = new Food(foodName, price, true);
+            restaurant.addFoodToFoodList(newFood);
 
-        Food newFood = new Food(foodName, price, true);
-        restaurant.addFoodToFoodList(newFood);
-
-        System.out.println("\nEnter a rating between 1 to 5");
-        newFood.setRating(Double.valueOf(input.next()));
-
-        System.out.println("\nItem added!");
-
-        reviewFood(restaurant);
-    }
-
-    public void writeWishListItem(Restaurant restaurant) {
-
-        System.out.println("\n Name of food to add to wishlist: ");
-        String foodName = input.next();
-
-        Food newFood = new Food(foodName, 0.0, false);
-        restaurant.addFoodToFoodList(newFood);
-
-        System.out.println("\nItem added!");
-
+            System.out.println("\nEnter a rating between 1 to 5");
+            newFood.setRating(Double.valueOf(input.next()));
+        } else {
+            Food newFood = new Food(foodName, 0.0, false);
+            restaurant.addFoodToFoodList(newFood);
+        }
+        System.out.println("Item successfully added!");
         reviewFood(restaurant);
     }
 
@@ -203,6 +193,7 @@ public class RestaurantTrackerApp {
         editOrDelete(allRestaurants.findRestaurant(chosenRestaurantName));
     }
 
+    // EFFECTS: gives options to operate on an existing restaurant review
     public void editOrDelete(Restaurant restaurant) {
         if (restaurant == null) {
             System.out.println("Restaurant not found.");
@@ -230,8 +221,7 @@ public class RestaurantTrackerApp {
         viewRestaurantReview(restaurant);
         System.out.println("\nSelect: ");
         System.out.println("\tn -> edit Restaurant name");
-        System.out.println("\tf -> edit triedFood list");
-        System.out.println("\tw -> edit wishList");
+        System.out.println("\tf -> edit a food list");
         System.out.println("\tu -> go back to home page");
         String command = input.next();
         processEditCommand(command, restaurant);
@@ -242,14 +232,58 @@ public class RestaurantTrackerApp {
         if (command.equals("n")) {
             nameInstructions(restaurant);
         } else if (command.equals("f")) {
-            TriedListInstructions(restaurant);
-        } else if (command.equals("w")) {
-            WishEditInstructions(restaurant);
+            foodListedIns(restaurant);
         } else if (command.equals("u")) {
             displayMenu();
         } else {
             System.out.println("Selection invalid.");
-            processEditCommand();
+            editRestaurant(restaurant);
+        }
+    }
+
+    // EFFECTS: gives command instructions for editing a food list
+    public void foodListedIns(Restaurant restaurant) {
+        System.out.println("\nSelect ");
+        System.out.println("\na -> add an item");
+        System.out.println("\ne -> remove/edit an item");
+        String command = input.next();
+        processFoodListEditCommand(command, restaurant);
+    }
+
+    public void processFoodListEditCommand(String command, Restaurant restaurant) {
+        if (command.equals("a")) {
+            addFoodItem(restaurant);
+        } else if (command.equals("e")) {
+            editDeleteFood(restaurant);
+        }
+    }
+
+    public void editDeleteFood(Restaurant restaurant) {
+        System.out.println("Enter name of item to edit or remove: ");
+        String enterName = input.next();
+        Food selected = restaurant.getFoodFromList(enterName);
+        chooseFoodOperation(selected, restaurant);
+    }
+
+    public void chooseFoodOperation(Food selected, Restaurant restaurant) {
+        if (selected == null) {
+            System.out.println("Item not found.");
+            foodListedIns(restaurant);
+        } else if  {
+            System.out.println("Select: ");
+            System.out.println("\tt -> add to tried foods");
+            System.out.println("\Edit name, price, or rating");
+            String command = input.next();
+            processFoodaddorEdit(command, selected, restaurant);
+        }
+    }
+
+    public void processFoodaddorEdit(String command, Food selected, Restaurant restaurant) {
+        if (command.equals("t")) {
+            restaurant.changeToTriedFoods(selected);
+            System.out.println("Item is now in tried foods list.");
+        } else {
+            editFood(selected, restaurant);
         }
     }
 
@@ -257,15 +291,15 @@ public class RestaurantTrackerApp {
     public void nameInstructions(Restaurant restaurant) {
         System.out.println("New name: ");
         String newName = input.next();
-        makeUniqueName(allRestaurants.checkNoDuplicateNames(newName), restaurant, newName);
+        makeUniqueName(allRestaurants.checkandSetNewRname(newName), restaurant);
     }
 
-    public void makeUniqueName(boolean unique, Restaurant restaurant, String newName) {
+    public void makeUniqueName(boolean unique, Restaurant restaurant) {
         if (!unique) {
             System.out.println("Please pick a unique review name: Enter here: ");
             nameInstructions(restaurant);
         } else {
-            restaurant.setRestaurantName(newName);
+
         }
     }
 

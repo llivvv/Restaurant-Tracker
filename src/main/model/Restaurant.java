@@ -86,7 +86,6 @@ public class Restaurant {
                 return f;
             }
         }
-        System.out.println("Food is not associated with this restaurant.");
         return null;
     }
 
