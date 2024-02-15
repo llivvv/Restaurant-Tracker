@@ -98,4 +98,7 @@ public class Restaurant {
         return wishList.size();
     }
 
+    public String getRestaurantName() {
+        return name;
+    }
 }

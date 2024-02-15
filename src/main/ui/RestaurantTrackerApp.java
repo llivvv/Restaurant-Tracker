@@ -29,8 +29,7 @@ public class RestaurantTrackerApp {
 
         while (keepGoing) {
             displayMenu();
-            command = input.next();
-            command = command.toLowerCase();
+            command = input.next().toLowerCase();
 
             if (command.equals("%")) {
                 keepGoing = false;
@@ -60,7 +59,7 @@ public class RestaurantTrackerApp {
 
     private void processCommand(String command) {
         if (command.equals("w")) {
-            writeReview();
+            makeNewReview();
         } else if (command.equals("v")) {
             viewRestaurants();
         } else {
@@ -68,17 +67,18 @@ public class RestaurantTrackerApp {
         }
     }
 
-    private void writeReview() {
+    private void makeNewReview() {
         System.out.println("Enter the name of the restaurant");
-        String restaurantName = input.nextLine();
+        String restaurantName = input.next();
         System.out.println("\nSelect:");
         System.out.println("\tl -> I like this restaurant");
         System.out.println("\td -> I dislike this restaurant");
-        String opinion = input.nextLine();
+        String opinion = input.next();
         boolean isLiked = processLikeOrDislike(opinion);
         Restaurant restaurant = new Restaurant(restaurantName, isLiked);
         addRestaurantToCorrectLists(restaurant);
         reviewFood(restaurant);
+        restaurant.createRating();
     }
 
     public boolean processLikeOrDislike(String opinion) {
@@ -90,17 +90,11 @@ public class RestaurantTrackerApp {
     }
 
     public void reviewFood(Restaurant restaurant) {
-        System.out.println("\nEnter a food item to review");
-        String foodName = input.nextLine();
-
-        System.out.println("\nEnter its price: ");
-        Double price = Double.valueOf(input.next());
-
-        Food newFood = new Food(foodName, price, true);
-        restaurant.addFoodToFoodList(newFood);
-
-        System.out.println("\nEnter a rating between 1 to 5");
-        newFood.setRating(Double.valueOf(input.nextLine()));
+        System.out.println("\nSelect: ");
+        System.out.println("\tr -> Review a food item");
+        System.out.println("\tw -> Add a wishlist item");
+        System.out.println("\td -> Exit out of this review");
+        processOptionToReview(input.next().toLowerCase(), restaurant);
     }
 
     public void addRestaurantToCorrectLists(Restaurant restaurant) {
@@ -112,11 +106,55 @@ public class RestaurantTrackerApp {
         }
     }
 
-
-    private void viewRestaurants() {
-
+    public void processOptionToReview(String chooseReview, Restaurant restaurant) {
+        if (chooseReview.equals("r")) {
+            writeFoodReview(restaurant);
+        } else if (chooseReview.equals("w")) {
+            writeWishListItem(restaurant);
+        } else if (chooseReview.equals("D")) {
+            displayMenu();
+        } else {
+            System.out.println("Selection not valid");
+            reviewFood(restaurant);
+        }
     }
 
+    // EFFECTS: consumes user input to add a new tried food item to the review for the restaurant
+    public void writeFoodReview(Restaurant restaurant) {
 
+        System.out.println("\nEnter a food item to review");
+        String foodName = input.next();
 
+        System.out.println("\nEnter its price: ");
+        Double price = Double.valueOf(input.next());
+
+        Food newFood = new Food(foodName, price, true);
+        restaurant.addFoodToFoodList(newFood);
+
+        System.out.println("\nEnter a rating between 1 to 5");
+        newFood.setRating(Double.valueOf(input.next()));
+
+        System.out.println("\nItem added!");
+
+        reviewFood(restaurant);
+    }
+
+    public void writeWishListItem(Restaurant restaurant) {
+
+        System.out.println("\n Name of food to add to wishlist: ");
+        String foodName = input.next();
+
+        Food newFood = new Food(foodName, 0.0, false);
+        restaurant.addFoodToFoodList(newFood);
+
+        System.out.println("\nItem added!");
+
+        reviewFood(restaurant);
+    }
+
+    private void viewRestaurants() {
+        for (Restaurant r : allRestaurants.getRestaurants()) {
+            System.out.println(r.getRestaurantName());
+        }
+    }
 }
