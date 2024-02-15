@@ -1,37 +1,23 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-//Represents 3 lists of restaurants: all, liked, disliked restaurants
+//Represents a list of restaurants which have been reviewed
 
 public class Restaurants {
 
-    private ArrayList<Restaurant> allRestaurants;
-    private ArrayList<Restaurant> likedRestaurants;
-    private ArrayList<Restaurant> dislikedRestaurants;
+    private ArrayList<Restaurant> restaurants;
 
     public Restaurants() {
-        allRestaurants = new ArrayList<Restaurant>();
-        likedRestaurants = new ArrayList<Restaurant>();
-        dislikedRestaurants = new ArrayList<Restaurant>();
+        restaurants = new ArrayList<Restaurant>();
     }
 
-    // Adds a restaurant entry to all restaurants and either Liked or Disliked Restaurants
+    // Adds a restaurant entry to the restaurants
     public void addRestaurant(Restaurant restaurant) {
-        allRestaurants.add(restaurant);
-        if (restaurant.getIsLiked()) {
-            addtoLikedRestaurants(restaurant);
-        } else {
-            addtoDislikedRestaurants(restaurant);
+        if (!restaurants.contains(restaurant)) {
+            restaurants.add(restaurant);
         }
-    }
-
-    public void addtoLikedRestaurants(Restaurant restaurant) {
-        likedRestaurants.add(restaurant);
-    }
-
-    public void addtoDislikedRestaurants(Restaurant restaurant) {
-        dislikedRestaurants.add(restaurant);
     }
 
     // REQUIRES: the restaurant exists in the allRestaurants list
@@ -39,24 +25,19 @@ public class Restaurants {
     // EFFECTS: deletes the restaurant review
     // the user will be selecting the restaurant (not searching its name) to select it
     public void removeRestaurant(Restaurant restaurant) {
-        allRestaurants.remove(restaurant);
-        if (restaurant.getIsLiked()) {
-            likedRestaurants.remove(restaurant);
-        } else {
-            dislikedRestaurants.remove(restaurant);
+        if (restaurants.contains(restaurant)) {
+            restaurants.remove(restaurant);
         }
     }
 
+    // sorts the restaurants in the list based on rating (ascending order)
+    public void sortByRating() {
+        Collections.sort(restaurants, new RestaurantRatingComparator());
+        System.out.println(restaurants);
+    }
+
     // getters
-    public ArrayList<Restaurant> getAllRestaurants() {
-        return allRestaurants;
-    }
-
-    public ArrayList<Restaurant> getLikedRestaurants() {
-        return likedRestaurants;
-    }
-
-    public ArrayList<Restaurant> getDislikedRestaurants() {
-        return dislikedRestaurants;
+    public ArrayList<Restaurant> getRestaurants() {
+        return restaurants;
     }
 }
