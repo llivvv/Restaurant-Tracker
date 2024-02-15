@@ -36,8 +36,29 @@ public class Restaurants {
         System.out.println(restaurants);
     }
 
+    public Restaurant findRestaurant(String restaurantName) {
+        for (Restaurant r : restaurants) {
+            if (restaurantName.equals(r.getRestaurantName())) {
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public boolean checkNoDuplicateNames(String restaurantName) {
+        if (findRestaurant(restaurantName) == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // getters
     public ArrayList<Restaurant> getRestaurants() {
         return restaurants;
+    }
+
+    public int getNumRestaurants() {
+        return restaurants.size();
     }
 }

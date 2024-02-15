@@ -90,6 +90,10 @@ public class Restaurant {
         return null;
     }
 
+    public void setRestaurantName(String name) {
+        this.name = name;
+    }
+
     public int getNumTriedFoods() {
         return triedFoods.size();
     }
