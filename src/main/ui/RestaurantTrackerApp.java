@@ -26,7 +26,7 @@ public class RestaurantTrackerApp {
         init();
 
         while (keepGoing) {
-            displayMenu();
+            homeScreen();
             command = input.next().toLowerCase();
 
             if (command.equals("%")) {
@@ -46,7 +46,7 @@ public class RestaurantTrackerApp {
         input.useDelimiter("\n");
     }
 
-    private void displayMenu() {
+    private void homeScreen() {
         System.out.println("\nWelcome! Select from");
         System.out.println("\tw -> write new review");
         System.out.println("\tv -> view all my reviews");
@@ -96,7 +96,7 @@ public class RestaurantTrackerApp {
         if (chooseReview.equals("r")) {
             addFoodItem(restaurant);
         } else if (chooseReview.equals("d")) {
-            displayMenu();
+            homeScreen();
         } else {
             System.out.println("Selection not valid");
             reviewFood(restaurant);
@@ -132,6 +132,7 @@ public class RestaurantTrackerApp {
 
     private void viewRestaurants() {
         if (restaurants.getNumRestaurants() != 0) {
+            System.out.println("\n Here are your list of reviews: ");
             for (Restaurant r : restaurants.getAllRestaurants()) {
                 System.out.println(r.getRestaurantName());
             }
@@ -142,7 +143,7 @@ public class RestaurantTrackerApp {
             if (input.next().equals("y")) {
                 makeNewReview();
             } else if (input.next().equals("n")) {
-                displayMenu();
+                homeScreen();
             } else {
                 System.out.println("Invalid selection.");
                 viewRestaurants();
@@ -161,7 +162,21 @@ public class RestaurantTrackerApp {
         for (Restaurant r : restaurants.getDislikedRestaurants()) {
             System.out.println(r.getRestaurantName());
         }
-        notEmptyRestaurantListCommands();
+        System.out.println("\nSelect: ");
+        System.out.println("\ts -> sort restaurants by rating");
+        System.out.println("\te -> exit view");
+        String command = input.next();
+        processRestaurantListCommand(command);
+    }
+
+    // EFFECTS: processes command after a list of restaurants has been viewed
+    public void processRestaurantListCommand(String command) {
+        if (command.equals("s")) {
+            restaurants.sortDislikedRestaurants();
+            viewDislikedRestaurants();
+        } else {
+            notEmptyRestaurantListCommands();
+        }
     }
 
     // when the user has viewed a list of restaurants, this tells the user what options they have next
@@ -221,7 +236,7 @@ public class RestaurantTrackerApp {
         } else if (command.equals("f")) {
             foodListedIns(restaurant);
         } else if (command.equals("u")) {
-            displayMenu();
+            homeScreen();
         } else {
             System.out.println("Selection invalid.");
             editRestaurant(restaurant);
@@ -307,7 +322,7 @@ public class RestaurantTrackerApp {
     public void nameInstructions(Restaurant restaurant) {
         System.out.println("New name: ");
         String newName = input.next();
-        makeUniqueName(restaurants.checkandSetNewRname(newName), restaurant);
+        makeUniqueName(restaurants.checkandSetNewRname(newName, restaurant), restaurant);
     }
 
     public void makeUniqueName(boolean unique, Restaurant restaurant) {
@@ -328,7 +343,7 @@ public class RestaurantTrackerApp {
         }
         System.out.println("\nWishList Foods: ");
         for (Food f : restaurant.getWishList()) {
-            System.out.println(f.getName());
+            System.out.println("\t" + f.getName());
         }
     }
 
@@ -346,9 +361,4 @@ public class RestaurantTrackerApp {
             notEmptyRestaurantListCommands();
         }
     }
-
-
-
-
-
 }

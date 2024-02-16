@@ -77,11 +77,11 @@ public class Restaurant {
     // getters: returns the food item when its name is entered
     public Food getFoodFromList(String name) {
         for (Food f : triedFoods) {
-            if (f.getName() == name) {
+            if (name.equals(f.getName())) {
                 return f;
             }
         }
-        for (Food f: wishList) {
+        for (Food f : wishList) {
             if (f.getName() == name) {
                 return f;
             }

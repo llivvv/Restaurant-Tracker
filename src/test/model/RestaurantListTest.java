@@ -52,7 +52,26 @@ public class RestaurantListTest {
     @Test
     public void remove1Restaurant() {
         testReviews.addRestaurant(liked1);
+        assertEquals(liked1, testReviews.removeRestaurant(liked1));
         testReviews.removeRestaurant(liked1);
         assertEquals(0, testReviews.getNumRestaurants());
+    }
+
+    @Test
+    public void remove2Restaurant() {
+        testReviews.addRestaurant(liked1);
+        testReviews.addRestaurant(disliked3);
+        assertEquals(disliked3, testReviews.removeRestaurant(disliked3));
+        testReviews.removeRestaurant(disliked3);
+        assertEquals(1, testReviews.getLikedRestaurants().size());
+        assertEquals(0, testReviews.getDislikedRestaurants().size());
+    }
+
+    @Test
+    public void checkandSetNameTest() {
+        testReviews.addRestaurant(liked1);
+        testReviews.addRestaurant(liked2);
+        testReviews.checkandSetNewRname("Review1", liked1);
+        assertEquals("Review1", liked1.getRestaurantName());
     }
 }

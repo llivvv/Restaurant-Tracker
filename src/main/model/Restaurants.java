@@ -34,10 +34,10 @@ public class Restaurants {
     // EFFECTS: deletes the restaurant review from the lists it is contained in
     // Removes the restaurant and returns it
     public Restaurant removeRestaurant(Restaurant restaurant) {
-        if (allRestaurants.contains(restaurant) || likedRestaurants.contains(restaurant)) {
+        if (allRestaurants.contains(restaurant) && likedRestaurants.contains(restaurant)) {
             likedRestaurants.remove(likedRestaurants.indexOf(restaurant));
             return allRestaurants.remove(allRestaurants.indexOf(restaurant));
-        } else if (allRestaurants.contains(restaurant) || dislikedRestaurants.contains(restaurant)) {
+        } else if (allRestaurants.contains(restaurant) && dislikedRestaurants.contains(restaurant)) {
             dislikedRestaurants.remove(dislikedRestaurants.indexOf(restaurant));
             return allRestaurants.remove(allRestaurants.indexOf(restaurant));
         } else {
@@ -48,19 +48,16 @@ public class Restaurants {
     // EFFECTS: sorts allRestaurants based on rating
     public void sortAllRestaurants() {
         Collections.sort(allRestaurants, new RestaurantRatingComparator());
-        System.out.println(allRestaurants);
     }
 
     // EFFECTS: sorts likedRestaurants based on rating
     public void sortLikedRestaurants() {
         Collections.sort(likedRestaurants, new RestaurantRatingComparator());
-        System.out.println(likedRestaurants);
     }
 
     // EFFECTS: sorts dislikedRestaurants based on rating
     public void sortDislikedRestaurants() {
         Collections.sort(dislikedRestaurants, new RestaurantRatingComparator());
-        System.out.println(dislikedRestaurants);
     }
 
     public Restaurant findRestaurant(String restaurantName) {
@@ -72,11 +69,9 @@ public class Restaurants {
         return null;
     }
 
-    public boolean checkandSetNewRname(String restaurantName) {
-        Restaurant selected = removeRestaurant(findRestaurant(restaurantName));
+    public boolean checkandSetNewRname(String restaurantName, Restaurant restaurant) {
         if (findRestaurant(restaurantName) == null) {
-            addRestaurant(selected);
-            selected.setRestaurantName(restaurantName);
+            restaurant.setRestaurantName(restaurantName);
             return true;
         } else {
             return false;
