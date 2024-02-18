@@ -23,11 +23,45 @@ public class RestaurantTest {
     }
 
     @Test
-    public void addFoodTest() {
+    public void addTriedFoodTest() {
         testrestaurant.addFoodToFoodList(drink);
         assertEquals(drink, testrestaurant.getFoodFromList("BubbleTea"));
         assertEquals(1, testrestaurant.getNumTriedFoods());
         assertEquals(0, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void addWishFoodTest() {
+        testrestaurant.addFoodToFoodList(side);
+        assertEquals(side, testrestaurant.getFoodFromList("Fries"));
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(1, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void addMultipleTriedFoodTest() {
+        testrestaurant.addFoodToFoodList(drink);
+        testrestaurant.addFoodToFoodList(dish);
+        assertEquals(2, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void add2Tried2WishTest() {
+        testrestaurant.addFoodToFoodList(side);
+        testrestaurant.addFoodToFoodList(drink);
+        testrestaurant.addFoodToFoodList(dessert);
+        testrestaurant.addFoodToFoodList(dish);
+        assertEquals(2, testrestaurant.getNumWishList());
+        assertEquals(2, testrestaurant.getNumTriedFoods());
+    }
+
+    @Test
+    public void addMultipleWishTest() {
+        testrestaurant.addFoodToFoodList(dessert);
+        testrestaurant.addFoodToFoodList(side);
+        assertEquals(2, testrestaurant.getNumWishList());
+        assertEquals(0, testrestaurant.getNumTriedFoods());
     }
 
     @Test

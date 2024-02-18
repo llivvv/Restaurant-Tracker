@@ -2,8 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-// Represents a restaurant with a name, liked/disliked, liked items, disliked items, wishlist items
-// and number of times its review has been viewed
+// Represents a restaurant with a name, liked/disliked, foods that have been tried wishlist items
+// foods to try, and a rating
 public class Restaurant {
 
     private String name;
@@ -13,7 +13,7 @@ public class Restaurant {
     private double rating;
     private int nextToTypeIndexName;
 
-    // EFFECTS: creates a new restaurant review with no foods, initial 0 rating, 0 views
+    // EFFECTS: creates a new restaurant review with no foods, initial 0 rating
     public Restaurant(String name, boolean opinion) {
         this.name = name;
         this.isLiked = opinion;
@@ -35,7 +35,7 @@ public class Restaurant {
 
     // REQUIRES: item is in wishlist
     // MODIFIES: this
-    // EFFECTS: changes food to tried, removes item from wishList and adds it to end of triedFoods
+    // EFFECTS: changes food to tried, removes item from wishList and adds it triedFoods
     public void changeToTriedFoods(Food food) {
         food.makeTried();
         if (!triedFoods.contains(food)) {
@@ -46,7 +46,7 @@ public class Restaurant {
 
     // REQUIRES: there is at least 1 item in triedFoods
     // MODIFIES: this
-    // EFFECTS: creates a rating for the restaurant by averaging out the food ratings
+    // EFFECTS: creates a rating for the restaurant by taking the average of the food ratings
     public void createRating() {
         double sumRating = 0;
         for (Food f : triedFoods) {
@@ -55,26 +55,38 @@ public class Restaurant {
         this.rating = sumRating / (triedFoods.size());
     }
 
-    // getter: returns whether restaurant is liked
+    // REQUIRES: food is in triedFoods or wishList
+    // MODIFIES: this
+    // EFFECTS: removes the food item from the restaurant review
+    public void removeFood(Food food) {
+        if (triedFoods.contains(food)) {
+            triedFoods.remove(food);
+        } else {
+            wishList.remove(food);
+        }
+    }
+
+    // EFFECTS: returns whether restaurant is liked
     public boolean getIsLiked() {
         return isLiked;
     }
 
-    // getter
+    // EFFECTS: returns the restaurant's rating
     public double getRating() {
         return rating;
     }
 
-    // getters: returns the lists of foods
+    // EFFECTS: returns the list of tried foods
     public ArrayList<Food> getTriedFoods() {
         return triedFoods;
     }
 
+    // EFFECTS: returns the list of wish list foods
     public ArrayList<Food> getWishList() {
         return wishList;
     }
 
-    // getters: returns the food item when its name is entered
+    // EFFECTS: if food with the same name is found, returns the food, otherwise returns null
     public Food getFoodFromList(String name) {
         for (Food f : triedFoods) {
             if (name.equals(f.getName())) {
@@ -89,18 +101,22 @@ public class Restaurant {
         return null;
     }
 
+    // EFFECTS: sets the restaurant's name
     public void setRestaurantName(String name) {
         this.name = name;
     }
 
+    // EFFECTS: returns the number of foods in the triedfoods list
     public int getNumTriedFoods() {
         return triedFoods.size();
     }
 
+    // EFFECTS: returns the number of foods in the wishlist
     public int getNumWishList() {
         return wishList.size();
     }
 
+    // EFFECTS: returns the restaurant name
     public String getRestaurantName() {
         return name;
     }

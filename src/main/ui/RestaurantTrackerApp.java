@@ -7,7 +7,7 @@ import model.Restaurants;
 import java.util.Scanner;
 
 // References methods from the TellerApp
-// Personal Restaurant Tracker application
+// This class represents a personal Restaurant Tracker application
 public class RestaurantTrackerApp {
     private Restaurants restaurants;
     private Scanner input;
@@ -40,12 +40,14 @@ public class RestaurantTrackerApp {
         System.out.println("\nBye!");
     }
 
+    // EFFECTS: constructs a new list of restaurants and scanner
     private void init() {
         restaurants = new Restaurants();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
 
+    // EFFECTS: when application is opened, this displays the initial options
     private void homeScreen() {
         System.out.println("\nWelcome! Select from");
         System.out.println("\tw -> write new review");
@@ -53,6 +55,7 @@ public class RestaurantTrackerApp {
         System.out.println("\t% -> quit application");
     }
 
+    // EFFECTS: processes the user's commands from the homeScreen
     private void processCommand(String command) {
         if (command.equals("w")) {
             makeNewReview();
@@ -63,28 +66,51 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows user to make a new review and adds it to the list of reviews
     private void makeNewReview() {
         System.out.println("Enter the name of the restaurant");
         String restaurantName = input.next();
-        System.out.println("\nSelect:");
-        System.out.println("\tl -> I like this restaurant");
-        System.out.println("\td -> I dislike this restaurant");
-        String opinion = input.next();
-        boolean isLiked = processLikeOrDislike(opinion);
-        Restaurant restaurant = new Restaurant(restaurantName, isLiked);
-        restaurants.addRestaurant(restaurant);
-        reviewFood(restaurant);
-        restaurant.createRating();
-    }
-
-    public boolean processLikeOrDislike(String opinion) {
-        if (opinion.equals("l")) {
-            return true;
+        if (!(restaurants.findRestaurant(restaurantName) == null)) {
+            ensureUniqueRName(restaurantName);
         } else {
-            return false;
+            System.out.println("\nSelect:");
+            System.out.println("\tl -> I like this restaurant");
+            System.out.println("\td -> I dislike this restaurant");
+            String opinion = input.next();
+            boolean isLiked = processLikeOrDislike(opinion);
+            Restaurant restaurant = new Restaurant(restaurantName, isLiked);
+            restaurants.addRestaurant(restaurant);
+            reviewFood(restaurant);
+            restaurant.createRating();
         }
     }
 
+    // EFFECTS: gives options to edit an existing review or choose a new name for the review
+    public void ensureUniqueRName(String restaurantName) {
+        System.out.println("A review with the same name already exists.");
+        System.out.println("\nSelect: ");
+        System.out.println("\te -> edit the existing review");
+        System.out.println("\tc -> choose a different name");
+        String command = input.next();
+        processExistingNameNewR(command, restaurantName);
+    }
+
+    // EFFECTS: processes command to edit an existing review or choose a different name for the new review
+    public void processExistingNameNewR(String command, String restaurantName) {
+        if (command.equals("e")) {
+            editRestaurant(restaurants.findRestaurant(restaurantName));
+        } else {
+            makeNewReview();
+        }
+    }
+
+    // EFFECTS: returns true if user likes the restaurant, false otherwise
+    public boolean processLikeOrDislike(String opinion) {
+        return (opinion.equals("l"));
+    }
+
+    // EFFECTS: gives user options to review a food item or exit the restaurant review
     public void reviewFood(Restaurant restaurant) {
         System.out.println("\nSelect: ");
         System.out.println("\tr -> add new food item");
@@ -92,14 +118,10 @@ public class RestaurantTrackerApp {
         processOptionToReview(input.next().toLowerCase(), restaurant);
     }
 
+    // EFFECTS: processes the user's command to review/add food or exit out of the review
     public void processOptionToReview(String chooseReview, Restaurant restaurant) {
         if (chooseReview.equals("r")) {
             addFoodItem(restaurant);
-        } else if (chooseReview.equals("d")) {
-            homeScreen();
-        } else {
-            System.out.println("Selection not valid");
-            reviewFood(restaurant);
         }
     }
 
@@ -130,6 +152,7 @@ public class RestaurantTrackerApp {
         reviewFood(restaurant);
     }
 
+    // EFFECTS: displays restaurant list and then presents user with options
     private void viewRestaurants() {
         if (restaurants.getNumRestaurants() != 0) {
             System.out.println("\n Here are your list of reviews: ");
@@ -151,13 +174,30 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // REQUIRES: a non-empty restaurant list
+    // EFFECTS: displays the liked restaurants and presents options
     public void viewLikedRestaurants() {
         for (Restaurant r : restaurants.getLikedRestaurants()) {
             System.out.println(r.getRestaurantName());
         }
-        notEmptyRestaurantListCommands();
+        System.out.println("\nSelect: ");
+        System.out.println("\ts -> sort restaurants by rating");
+        System.out.println("\te -> exit view");
+        String command = input.next();
+        processlikedRestaurantListCommand(command);
     }
 
+    // EFFECTS: processes command after a list of liked restaurants has been viewed
+    public void processlikedRestaurantListCommand(String command) {
+        if (command.equals("s")) {
+            restaurants.sortLikedRestaurants();
+            viewLikedRestaurants();
+        } else {
+            notEmptyRestaurantListCommands();
+        }
+    }
+
+    // EFFECTS: displays the disliked restaurants and presents options
     public void viewDislikedRestaurants() {
         for (Restaurant r : restaurants.getDislikedRestaurants()) {
             System.out.println(r.getRestaurantName());
@@ -166,11 +206,11 @@ public class RestaurantTrackerApp {
         System.out.println("\ts -> sort restaurants by rating");
         System.out.println("\te -> exit view");
         String command = input.next();
-        processRestaurantListCommand(command);
+        processDislikedRestaurantListCommand(command);
     }
 
     // EFFECTS: processes command after a list of restaurants has been viewed
-    public void processRestaurantListCommand(String command) {
+    public void processDislikedRestaurantListCommand(String command) {
         if (command.equals("s")) {
             restaurants.sortDislikedRestaurants();
             viewDislikedRestaurants();
@@ -179,17 +219,20 @@ public class RestaurantTrackerApp {
         }
     }
 
-    // when the user has viewed a list of restaurants, this tells the user what options they have next
+    // EFFECTS: offers options after user has viewed a list of restaurants
     public void notEmptyRestaurantListCommands() {
         System.out.println("\n select:");
+        System.out.println("\ts -> sort restaurants by rating");
         System.out.println("\tl -> view liked restaurants");
         System.out.println("\td -> view disliked restaurants");
         System.out.println("\te -> edit or delete a review");
         System.out.println("\tn -> add a new review");
+        System.out.println("\th -> return to home page");
         String command = input.next().toLowerCase();
         processNotEmptyRestaurantListCommand(command);
     }
 
+    // EFFECTS: offers option to search up a review name
     public void chooseReview() {
         System.out.println("\nEnter the name of the review you would like to edit or delete: ");
         String chosenRestaurantName = input.next();
@@ -206,7 +249,7 @@ public class RestaurantTrackerApp {
             System.out.println("Select: ");
             System.out.println("\te -> edit this review");
             System.out.println("\td -> delete restaurant review");
-            System.out.println("\tu -> unselect this review");
+            System.out.println("\tu -> exit this review");
             String command = input.next();
             if (command.equals("e")) {
                 editRestaurant(restaurant);
@@ -235,11 +278,6 @@ public class RestaurantTrackerApp {
             nameInstructions(restaurant);
         } else if (command.equals("f")) {
             foodListedIns(restaurant);
-        } else if (command.equals("u")) {
-            homeScreen();
-        } else {
-            System.out.println("Selection invalid.");
-            editRestaurant(restaurant);
         }
     }
 
@@ -252,6 +290,7 @@ public class RestaurantTrackerApp {
         processFoodListEditCommand(command, restaurant);
     }
 
+    // EFFECTS: processes command for editing a food list
     public void processFoodListEditCommand(String command, Restaurant restaurant) {
         if (command.equals("a")) {
             addFoodItem(restaurant);
@@ -260,6 +299,8 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // EFFECTS: asks user to input a name of a food item already existing
+    //          in the selected restaurant review
     public void editDeleteFood(Restaurant restaurant) {
         System.out.println("Enter name of item to edit or remove: ");
         String enterName = input.next();
@@ -267,6 +308,7 @@ public class RestaurantTrackerApp {
         chooseFoodOperation(selected, restaurant);
     }
 
+    // EFFECTS: processes command from user selecting a food item from an existing review
     public void chooseFoodOperation(Food selected, Restaurant restaurant) {
         if (selected == null) {
             System.out.println("Item not found.");
@@ -274,21 +316,27 @@ public class RestaurantTrackerApp {
         } else {
             System.out.println("Select: ");
             System.out.println("\tt -> add to tried foods");
-            System.out.println("\te ->Edit name, price, or rating");
+            System.out.println("\te -> edit name, price, or rating");
+            System.out.println("\td -> delete item");
             String command = input.next();
-            processFoodaddorEdit(command, selected, restaurant);
+            processFoodAddorEdit(command, selected, restaurant);
         }
     }
 
-    public void processFoodaddorEdit(String command, Food selected, Restaurant restaurant) {
+    // EFFECTS: processes command to add to triedList, edit or delete food item
+    public void processFoodAddorEdit(String command, Food selected, Restaurant restaurant) {
         if (command.equals("t")) {
             restaurant.changeToTriedFoods(selected);
             System.out.println("Item is now in tried foods list.");
+        } else if (command.equals("d")) {
+            restaurant.removeFood(selected);
         } else {
             editFood(selected, restaurant);
         }
     }
 
+    // MODIFIES: Food
+    // EFFECTS: options to edit food name, price or rating depending on if food is tried or not
     public void editFood(Food selected, Restaurant restaurant) {
         if (!selected.getisTried()) {
             System.out.println("Enter new name: ");
@@ -304,6 +352,8 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // MODIFIES: food
+    // EFFECTS: processes command to edit name, price or rating of a tried food item
     public void processTriedEdit(String command, Food selected, Restaurant restaurant) {
         if (command.equals("n")) {
             String newName = input.next();
@@ -318,13 +368,15 @@ public class RestaurantTrackerApp {
         }
     }
 
-    // EFFECTS: gives the user instructions to edit name
+    // MODIFIES: Restaurant
+    // EFFECTS: gives the user instructions to edit restaurant name, modifies the name if it is unique
     public void nameInstructions(Restaurant restaurant) {
         System.out.println("New name: ");
         String newName = input.next();
         makeUniqueName(restaurants.checkandSetNewRname(newName, restaurant), restaurant);
     }
 
+    // EFFECTS: tells user to choose a different restaurant name if name isn't unique
     public void makeUniqueName(boolean unique, Restaurant restaurant) {
         if (!unique) {
             System.out.println("Please pick a unique review name: Enter here: ");
@@ -334,6 +386,7 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // EFFECTS: displays a restaurant review
     public void viewRestaurantReview(Restaurant restaurant) {
         System.out.println("Name: " + restaurant.getRestaurantName());
         System.out.println("Rating: " + restaurant.getRating());
@@ -347,18 +400,19 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // EFFECTS: processes command following the restaurant list view
     public void processNotEmptyRestaurantListCommand(String command) {
         if (command.equals("l")) {
             viewLikedRestaurants();
+        } else if (command.equals("s")) {
+            restaurants.sortAllRestaurants();
+            viewRestaurants();
         } else if (command.equals("d")) {
             viewDislikedRestaurants();
         } else if (command.equals("e")) {
             chooseReview();
         } else if (command.equals("n")) {
             makeNewReview();
-        } else {
-            System.out.println("Selection invalid.");
-            notEmptyRestaurantListCommands();
         }
     }
 }
