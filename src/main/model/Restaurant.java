@@ -44,15 +44,19 @@ public class Restaurant {
         }
     }
 
-    // REQUIRES: there is at least 1 item in triedFoods
     // MODIFIES: this
     // EFFECTS: creates a rating for the restaurant by taking the average of the food ratings
+    //          creates a rating of 0 if no tried foods are in the review
     public void createRating() {
-        double sumRating = 0;
-        for (Food f : triedFoods) {
-            sumRating = f.getRating() + sumRating;
+        if (getNumTriedFoods() == 0) {
+            this.rating = 0;
+        } else {
+            double sumRating = 0;
+            for (Food f : triedFoods) {
+                sumRating = f.getRating() + sumRating;
+            }
+            this.rating = sumRating / (triedFoods.size());
         }
-        this.rating = sumRating / (triedFoods.size());
     }
 
     // REQUIRES: food is in triedFoods or wishList

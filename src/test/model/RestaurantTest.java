@@ -111,4 +111,87 @@ public class RestaurantTest {
         testrestaurant.createRating();
         assertEquals((4.5 + 5.0) / 2, testrestaurant.getRating());
     }
+
+    @Test
+    public void RestaurantRating0FoodTest() {
+        testrestaurant.createRating();
+        assertEquals(0, testrestaurant.getRating());
+    }
+
+    @Test
+    public void remove1TriedFoodTest() {
+        testrestaurant.addFoodToFoodList(drink);
+        assertEquals(1, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(drink);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void remove1WishFoodTest() {
+        testrestaurant.addFoodToFoodList(side);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(1, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(side);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void remove2TriedTest() {
+        testrestaurant.addFoodToFoodList(drink);
+        testrestaurant.addFoodToFoodList(dish);
+        assertEquals(2, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(dish);
+        assertEquals(1, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(drink);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void remove2WishListTest() {
+        testrestaurant.addFoodToFoodList(side);
+        testrestaurant.addFoodToFoodList(dessert);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(2, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(side);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(1, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(dessert);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void remove1Tried1WishListTest() {
+        testrestaurant.addFoodToFoodList(drink);
+        testrestaurant.addFoodToFoodList(side);
+        assertEquals(1, testrestaurant.getNumTriedFoods());
+        assertEquals(1, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(drink);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(1, testrestaurant.getNumWishList());
+        testrestaurant.removeFood(side);
+        assertEquals(0, testrestaurant.getNumTriedFoods());
+        assertEquals(0, testrestaurant.getNumWishList());
+    }
+
+    @Test
+    public void getFoodTest() {
+        testrestaurant.addFoodToFoodList(drink);
+        testrestaurant.addFoodToFoodList(dessert);
+        assertEquals(drink, testrestaurant.getFoodFromList("BubbleTea"));
+        assertEquals(null, testrestaurant.getFoodFromList("IceCream"));
+    }
+
+    @Test
+    public void setNameTest() {
+        assertEquals("Cafe", testrestaurant.getRestaurantName());
+        testrestaurant.setRestaurantName("Caf");
+        assertEquals("Caf", testrestaurant.getRestaurantName());
+    }
 }
