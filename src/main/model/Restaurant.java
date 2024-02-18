@@ -98,7 +98,7 @@ public class Restaurant {
             }
         }
         for (Food f : wishList) {
-            if (f.getName() == name) {
+            if (name.equals(f.getName())) {
                 return f;
             }
         }

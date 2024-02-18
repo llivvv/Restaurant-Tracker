@@ -82,7 +82,6 @@ public class RestaurantTrackerApp {
             Restaurant restaurant = new Restaurant(restaurantName, isLiked);
             restaurants.addRestaurant(restaurant);
             reviewFood(restaurant);
-            restaurant.createRating();
         }
     }
 
@@ -127,7 +126,6 @@ public class RestaurantTrackerApp {
 
     // EFFECTS: consumes user input to add a new tried food item to the review for the restaurant
     public void addFoodItem(Restaurant restaurant) {
-
         System.out.println("\nEnter a food item to add");
         String foodName = input.next();
         System.out.println("Select: ");
@@ -149,6 +147,7 @@ public class RestaurantTrackerApp {
             restaurant.addFoodToFoodList(newFood);
         }
         System.out.println("Item successfully added!");
+        restaurant.createRating();
         reviewFood(restaurant);
     }
 
@@ -328,6 +327,7 @@ public class RestaurantTrackerApp {
         if (command.equals("t")) {
             restaurant.changeToTriedFoods(selected);
             System.out.println("Item is now in tried foods list.");
+            editFood(selected, restaurant);
         } else if (command.equals("d")) {
             restaurant.removeFood(selected);
         } else {
@@ -345,8 +345,8 @@ public class RestaurantTrackerApp {
         } else {
             System.out.println("\nSelect: ");
             System.out.println("\tn -> edit name");
-            System.out.println("\tp -> change price");
-            System.out.println("\tr -> change rating");
+            System.out.println("\tp -> new price");
+            System.out.println("\tr -> new rating");
             String command = input.next();
             processTriedEdit(command, selected, restaurant);
         }
@@ -359,9 +359,11 @@ public class RestaurantTrackerApp {
             String newName = input.next();
             selected.setName(newName);
         } else if (command.equals("p")) {
+            System.out.println("Enter price: ");
             Double price = input.nextDouble();
             selected.setPrice(price);
         } else if (command.equals("r")) {
+            System.out.println("Enter rating: ");
             Double rating = input.nextDouble();
             selected.setRating(rating);
             restaurant.createRating();
