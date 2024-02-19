@@ -11,7 +11,7 @@ public class Restaurant {
     private ArrayList<Food> triedFoods;
     private ArrayList<Food> wishList;
     private double rating;
-    private int nextToTypeIndexName;
+    private int reviewNumber;
 
     // EFFECTS: creates a new restaurant review with no foods, initial 0 rating
     public Restaurant(String name, boolean opinion) {
@@ -19,7 +19,7 @@ public class Restaurant {
         this.isLiked = opinion;
         triedFoods = new ArrayList<Food>();
         wishList = new ArrayList<Food>();
-        this.nextToTypeIndexName = 0;
+        this.reviewNumber = 0;
     }
 
     // REQUIRES: item is not already in triedFoods nor wishList
@@ -110,6 +110,11 @@ public class Restaurant {
         this.name = name;
     }
 
+    // EFFECTS: sets the restaurant's review number
+    public void setReviewNumber(int number) {
+        this.reviewNumber = number;
+    }
+
     // EFFECTS: returns the number of foods in the tried foods list
     public int getNumTriedFoods() {
         return triedFoods.size();
@@ -123,5 +128,10 @@ public class Restaurant {
     // EFFECTS: returns the restaurant name
     public String getRestaurantName() {
         return name;
+    }
+
+    // EFFECTS: returns the restaurant's review number
+    public int getReviewNumber() {
+        return reviewNumber;
     }
 }

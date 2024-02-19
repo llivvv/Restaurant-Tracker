@@ -198,7 +198,7 @@ public class RestaurantTrackerApp {
     // EFFECTS: processes command after a list of liked restaurants has been viewed
     public void processlikedRestaurantListCommand(String command) {
         if (command.equals("s")) {
-            restaurants.sortLikedRestaurants();
+            restaurants.sortLikedRestaurantsRating();
             viewLikedRestaurants();
         } else {
             notEmptyRestaurantListCommands();
@@ -220,7 +220,7 @@ public class RestaurantTrackerApp {
     // EFFECTS: processes command after a list of restaurants has been viewed
     public void processDislikedRestaurantListCommand(String command) {
         if (command.equals("s")) {
-            restaurants.sortDislikedRestaurants();
+            restaurants.sortDislikedRestaurantsRating();
             viewDislikedRestaurants();
         } else {
             notEmptyRestaurantListCommands();
@@ -419,7 +419,7 @@ public class RestaurantTrackerApp {
         if (command.equals("l")) {
             viewLikedRestaurants();
         } else if (command.equals("s")) {
-            restaurants.sortAllRestaurants();
+            restaurants.sortAllRestaurantsRating();
             viewRestaurants();
         } else if (command.equals("d")) {
             viewDislikedRestaurants();

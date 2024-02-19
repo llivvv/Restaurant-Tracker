@@ -48,20 +48,41 @@ public class Restaurants {
 
     // MODIFIES: this
     // EFFECTS: sorts allRestaurants based on rating
-    public void sortAllRestaurants() {
+    public void sortAllRestaurantsRating() {
         Collections.sort(allRestaurants, new RestaurantRatingComparator());
     }
 
     // MODIFIES: this
     // EFFECTS: sorts likedRestaurants based on rating
-    public void sortLikedRestaurants() {
+    public void sortLikedRestaurantsRating() {
         Collections.sort(likedRestaurants, new RestaurantRatingComparator());
     }
 
     // MODIFIES: this
     // EFFECTS: sorts dislikedRestaurants based on rating
-    public void sortDislikedRestaurants() {
+    public void sortDislikedRestaurantsRating() {
         Collections.sort(dislikedRestaurants, new RestaurantRatingComparator());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sorts allRestaurants by descending review number
+    public void sortAllRestaurantsNumber() {
+        Collections.sort(allRestaurants, new RestaurantNumberComparator());
+        Collections.reverse(allRestaurants);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sorts likedRestaurants by descending review number
+    public void sortLikedRestaurantsNumber() {
+        Collections.sort(likedRestaurants, new RestaurantNumberComparator());
+        Collections.reverse(likedRestaurants);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sorts likedRestaurants by descending review number
+    public void sortDislikedRestaurantsNumber() {
+        Collections.sort(dislikedRestaurants, new RestaurantNumberComparator());
+        Collections.reverse(dislikedRestaurants);
     }
 
     // EFFECTS: finds and returns restaurant in the list of restaurant given its name, otherwise returns null
@@ -86,6 +107,16 @@ public class Restaurants {
         } else {
             return false;
         }
+    }
+
+    public void findSetRestaurantReviewNumber(Restaurant restaurant) {
+        int max = 0;
+        for (Restaurant r : allRestaurants) {
+            if (r.getReviewNumber() > max) {
+                max = r.getReviewNumber();
+            }
+        }
+        restaurant.setReviewNumber(max+1);
     }
 
     // EFFECTS: returns the list of all restaurants
