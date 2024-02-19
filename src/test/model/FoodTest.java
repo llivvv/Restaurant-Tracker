@@ -54,9 +54,9 @@ public class FoodTest {
 
     @Test
     public void makeTriedTest() {
-        assertFalse(testfoodwish.getisTried());
+        assertFalse(testfoodwish.getIsTried());
         testfoodwish.makeTried();
-        assertTrue(testfoodwish.getisTried());
+        assertTrue(testfoodwish.getIsTried());
     }
 
     @Test

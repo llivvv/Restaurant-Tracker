@@ -17,7 +17,7 @@ public class Food {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the food's rating if it has been tried, otherwise sets rating to 0
+    // EFFECTS: sets the food's rating to rating if it has been tried, otherwise sets rating to 0
     public void setRating(double rating) {
         if (isTried) {
             this.rating = rating;
@@ -70,7 +70,7 @@ public class Food {
     }
 
     // EFFECTS: returns whether the food is tried
-    public boolean getisTried() {
+    public boolean getIsTried() {
         return isTried;
     }
 }

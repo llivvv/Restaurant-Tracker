@@ -15,8 +15,9 @@ that may be useful.
 ## User Stories
 
 - As a user, I want to be able to add a new restaurant review to my liked or disliked restaurants.
+- As a user, I want to be able to delete a review from my list of reviews.
 - As a user, I want to be able to add tried foods and wishlist items to each review.
 - As a user, I want to be able to see the restaurants in lists of liked and disliked restaurants.
-- As a user, I want to be able to select the title of a restaurant review and be able to edit the review.
+- As a user, I want to be able to select the title of a restaurant review and be able to view and edit the review.
 - As a user, I want to be able to have the option of sorting the reviews by rating or by order of creation.
 - As a user, I want to be able to search up a review by the restaurant name or an item name.

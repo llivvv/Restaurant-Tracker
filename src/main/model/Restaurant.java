@@ -13,7 +13,7 @@ public class Restaurant {
     private double rating;
     private int reviewNumber;
 
-    // EFFECTS: creates a new restaurant review with no foods, initial 0 rating
+    // EFFECTS: creates a new restaurant review with no foods, initial 0 rating, and intial 0 reviewNumber
     public Restaurant(String name, boolean opinion) {
         this.name = name;
         this.isLiked = opinion;
@@ -22,11 +22,11 @@ public class Restaurant {
         this.reviewNumber = 0;
     }
 
-    // REQUIRES: item is not already in triedFoods nor wishList
+    // REQUIRES: Food is not already in triedFoods nor wishList
     // MODIFIES: this, Food
     // EFFECTS: if item isTried, adds item to triedFoods, otherwise adds it to wishList
     public void addFoodToFoodList(Food food) {
-        if (food.getisTried()) {
+        if (food.getIsTried()) {
             triedFoods.add(food);
         } else {
             wishList.add(food);
@@ -35,7 +35,7 @@ public class Restaurant {
 
     // REQUIRES: item is in wishlist
     // MODIFIES: this
-    // EFFECTS: changes food to tried, removes item from wishList and adds it triedFoods
+    // EFFECTS: changes food to tried, removes item from wishList and adds it to triedFoods
     public void changeToTriedFoods(Food food) {
         food.makeTried();
         if (!triedFoods.contains(food)) {
@@ -45,8 +45,8 @@ public class Restaurant {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates a rating for the restaurant by taking the average of the food ratings
-    //          creates a rating of 0 if no tried foods are in the review
+    // EFFECTS: creates a rating for the restaurant using the triedFood ratings
+    //          creates a rating of 0 if no triedFoods are in the review
     public void createRating() {
         if (getNumTriedFoods() == 0) {
             this.rating = 0;
@@ -115,7 +115,7 @@ public class Restaurant {
         this.reviewNumber = number;
     }
 
-    // EFFECTS: returns the number of foods in the tried foods list
+    // EFFECTS: returns the number of foods in the triedfoods list
     public int getNumTriedFoods() {
         return triedFoods.size();
     }

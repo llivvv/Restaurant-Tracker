@@ -41,7 +41,8 @@ public class RestaurantTrackerApp {
         System.out.println("\nBye!");
     }
 
-    // EFFECTS: constructs a new list of restaurants and scanner
+    // MODIFIES: this
+    // EFFECTS: initializes Restaurants and scanner
     private void init() {
         restaurants = new Restaurants();
         input = new Scanner(System.in);
@@ -56,6 +57,7 @@ public class RestaurantTrackerApp {
         System.out.println("\t% -> quit application");
     }
 
+    // MODIFIES: this
     // EFFECTS: processes the user's commands from the homeScreen
     private void processCommand(String command) {
         if (command.equals("w")) {
@@ -118,6 +120,7 @@ public class RestaurantTrackerApp {
         processOptionToReview(input.next().toLowerCase(), restaurant);
     }
 
+    // EFFECTS: Restaurant
     // EFFECTS: processes the user's command to review/add food or exit out of the review
     public void processOptionToReview(String chooseReview, Restaurant restaurant) {
         if (chooseReview.equals("r")) {
@@ -125,6 +128,7 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // MODIFIES: Restaurant, Food
     // EFFECTS: consumes user input to add a new tried food item to the review for the restaurant
     public void addFoodItem(Restaurant restaurant) {
         System.out.println("\nEnter a food item to add");
@@ -144,6 +148,7 @@ public class RestaurantTrackerApp {
     }
 
     // REQUIRES: !Food = isTried()
+    // MODIFIES: Food
     // EFFECTS: creates a new triedFood, setting its price and rating
     public void createTriedFood(Food newFood) {
         newFood.makeTried();
@@ -152,7 +157,7 @@ public class RestaurantTrackerApp {
         Double price = input.nextDouble();
         newFood.setPrice(price);
 
-        System.out.println("\nEnter a rating between 1 to 5");
+        System.out.println("\nEnter a rating between 0 and 5");
         Double rating = input.nextDouble();
         newFood.setRating(rating);
     }
@@ -298,6 +303,7 @@ public class RestaurantTrackerApp {
         processFoodListEditCommand(command, restaurant);
     }
 
+    // MODIFIES: Restaurant
     // EFFECTS: processes command for editing a food list
     public void processFoodListEditCommand(String command, Restaurant restaurant) {
         if (command.equals("a")) {
@@ -331,6 +337,7 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // MODIFIES: Restaurant, Food
     // EFFECTS: processes command to add to triedList, edit or delete food item
     public void processFoodAddorEdit(String command, Food selected, Restaurant restaurant) {
         if (command.equals("t")) {
@@ -346,10 +353,9 @@ public class RestaurantTrackerApp {
         }
     }
 
-    // MODIFIES: Food
     // EFFECTS: options to edit food name, price or rating depending on if food is tried or not
     public void editFood(Food selected, Restaurant restaurant) {
-        if (!selected.getisTried()) {
+        if (!selected.getIsTried()) {
             System.out.println("Enter new name: ");
             String command = input.next();
             selected.setName(command);
@@ -363,7 +369,8 @@ public class RestaurantTrackerApp {
         }
     }
 
-    // MODIFIES: food
+    // REQUIRES: inputted name is not identical to any food item from this restaurant review
+    // MODIFIES: Food, Restaurant
     // EFFECTS: processes command to edit name, price or rating of a tried food item
     public void processTriedEdit(String command, Food selected, Restaurant restaurant) {
         if (command.equals("n")) {
@@ -375,7 +382,7 @@ public class RestaurantTrackerApp {
             Double price = input.nextDouble();
             selected.setPrice(price);
         } else if (command.equals("r")) {
-            System.out.println("Enter rating: ");
+            System.out.println("Enter a rating between 0 and 5: ");
             Double rating = input.nextDouble();
             selected.setRating(rating);
             restaurant.createRating();
@@ -406,7 +413,8 @@ public class RestaurantTrackerApp {
         System.out.println("Rating: " + restaurant.getRating());
         System.out.println("\nTried Foods: ");
         for (Food f : restaurant.getTriedFoods()) {
-            System.out.println("\t" + f.getName() + "  \tPrice: " + f.getPrice() + "    \tRating: " + f.getRating());
+            System.out.println("\t" + f.getName() + "  \tPrice: " + f.getPrice() + "    "
+                    + "\tRating: " + f.getRating() + "/5.0");
         }
         System.out.println("\nWishList Foods: ");
         for (Food f : restaurant.getWishList()) {
