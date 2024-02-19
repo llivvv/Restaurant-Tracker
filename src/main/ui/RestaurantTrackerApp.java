@@ -4,6 +4,7 @@ import model.Food;
 import model.Restaurant;
 import model.Restaurants;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 // References methods from the TellerApp
@@ -329,27 +330,38 @@ public class RestaurantTrackerApp {
             foodListedIns(restaurant);
         } else {
             System.out.println("Select: ");
-            System.out.println("\tt -> add to tried foods");
             System.out.println("\te -> edit name, price, or rating");
             System.out.println("\td -> delete item");
-            String command = input.next();
-            processFoodAddorEdit(command, selected, restaurant);
+            if (selected.getIsTried()) {
+                String command = input.next();
+                processFoodEditorDelete(command, selected, restaurant);
+            } else {
+                System.out.println("\tt -> add to tried foods");
+                String command = input.next();
+                processWishFoodEditorDelete(command, selected, restaurant);
+            }
         }
     }
 
     // MODIFIES: Restaurant, Food
     // EFFECTS: processes command to add to triedList, edit or delete food item
-    public void processFoodAddorEdit(String command, Food selected, Restaurant restaurant) {
+    public void processFoodEditorDelete(String command, Food selected, Restaurant restaurant) {
+        if (command.equals("d")) {
+            restaurant.removeFood(selected);
+            restaurant.createRating();
+        } else {
+            editFood(selected, restaurant);
+        }
+    }
+
+    public void processWishFoodEditorDelete(String command, Food selected, Restaurant restaurant) {
         if (command.equals("t")) {
             restaurant.changeToTriedFoods(selected);
             System.out.println("Item is now in tried foods list.");
             createTriedFood(selected);
             restaurant.createRating();
-        } else if (command.equals("d")) {
-            restaurant.removeFood(selected);
-            restaurant.createRating();
         } else {
-            editFood(selected, restaurant);
+            processFoodEditorDelete(command, selected, restaurant);
         }
     }
 
