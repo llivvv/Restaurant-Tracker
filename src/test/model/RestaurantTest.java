@@ -199,6 +199,12 @@ public class RestaurantTest {
     }
 
     @Test
+    public void setNumberTest() {
+        testrestaurant.setReviewNumber(2);
+        assertEquals(2, testrestaurant.getReviewNumber());
+    }
+
+    @Test
     public void getTriedFoodsTest() {
         testrestaurant.addFoodToFoodList(drink);
         ArrayList<Food> expected = new ArrayList<Food>(Arrays.asList(drink));

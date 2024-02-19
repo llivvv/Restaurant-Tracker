@@ -21,6 +21,7 @@ public class Restaurants {
     // EFFECTS: Adds a restaurant review to the entire restaurant list and liked or disliked restaurants
     //          if it hasn't already been added
     public void addRestaurant(Restaurant restaurant) {
+        findSetRestaurantReviewNumber(restaurant);
         if (!allRestaurants.contains(restaurant)) {
             allRestaurants.add(restaurant);
             if (restaurant.getIsLiked()) {
@@ -116,7 +117,7 @@ public class Restaurants {
                 max = r.getReviewNumber();
             }
         }
-        restaurant.setReviewNumber(max+1);
+        restaurant.setReviewNumber(max + 1);
     }
 
     // EFFECTS: returns the list of all restaurants

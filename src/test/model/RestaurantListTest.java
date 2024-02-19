@@ -227,4 +227,58 @@ public class RestaurantListTest {
         assertEquals(1, testReviews.getLikedRestaurants().indexOf(liked1));
         assertEquals(0, testReviews.getAllRestaurants().indexOf(liked1));
     }
+
+    @Test
+    public void sortRestaurantNumberTest() {
+        testReviews.addRestaurant(liked1);
+        testReviews.addRestaurant(liked2);
+        testReviews.addRestaurant(disliked3);
+        assertEquals(2, testReviews.getAllRestaurants().indexOf(disliked3));
+        testReviews.sortAllRestaurantsNumber();
+        assertEquals(0, testReviews.getAllRestaurants().indexOf(disliked3));
+    }
+
+    @Test
+    public void sortLikedNumberTest() {
+        testReviews.addRestaurant(liked1);
+        testReviews.addRestaurant(liked2);
+        assertEquals(0, testReviews.getLikedRestaurants().indexOf(liked1));
+        testReviews.sortLikedRestaurantsNumber();
+        assertEquals(1, testReviews.getLikedRestaurants().indexOf(liked1));
+    }
+
+    @Test
+    public void sortDislikedNumberTest() {
+        testReviews.addRestaurant(disliked5);
+        testReviews.addRestaurant(liked1);
+        testReviews.addRestaurant(disliked4);
+        testReviews.addRestaurant(disliked3);
+        assertEquals(2, testReviews.getDislikedRestaurants().indexOf(disliked3));
+        testReviews.sortDislikedRestaurantsNumber();
+        assertEquals(0, testReviews.getDislikedRestaurants().indexOf(disliked3));
+    }
+
+    @Test
+    public void sortByOrderAfterRating() {
+        testReviews.addRestaurant(liked1);
+        liked1.addFoodToFoodList(triedFood1);
+        triedFood1.setRating(3.0);
+        liked1.createRating();
+        testReviews.addRestaurant(disliked3);
+        disliked3.addFoodToFoodList(triedFood4);
+        triedFood4.setRating(2);
+        disliked3.createRating();
+        testReviews.addRestaurant(liked2);
+        liked2.addFoodToFoodList(triedFood2);
+        triedFood2.setRating(5);
+        liked2.createRating();
+        testReviews.addRestaurant(disliked4);
+        disliked4.addFoodToFoodList(triedFood3);
+        triedFood3.setRating(2.4);
+        disliked4.createRating();
+        testReviews.sortAllRestaurantsRating();
+        assertEquals(3, testReviews.getAllRestaurants().indexOf(liked2));
+        testReviews.sortAllRestaurantsNumber();
+        assertEquals(3, testReviews.getAllRestaurants().indexOf(liked1));
+    }
 }
