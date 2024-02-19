@@ -25,6 +25,7 @@ public class RestaurantTrackerApp {
 
         init();
 
+        System.out.println("Welcome! ");
         while (keepGoing) {
             homeScreen();
             command = input.next().toLowerCase();
@@ -49,7 +50,7 @@ public class RestaurantTrackerApp {
 
     // EFFECTS: when application is opened, this displays the initial options
     private void homeScreen() {
-        System.out.println("\nWelcome! Select from");
+        System.out.println("\nSelect from: ");
         System.out.println("\tw -> write new review");
         System.out.println("\tv -> view all my reviews");
         System.out.println("\t% -> quit application");
@@ -132,23 +133,28 @@ public class RestaurantTrackerApp {
         System.out.println("\tr -> is a tried food");
         System.out.println("\tw -> is a wishList item");
         String command = input.next().toLowerCase();
+        Food newFood = new Food(foodName, 0, false);
         if (command.equals("r")) {
-            System.out.println("\nEnter its price: ");
-            Double price = input.nextDouble();
-
-            Food newFood = new Food(foodName, price, true);
-            restaurant.addFoodToFoodList(newFood);
-
-            System.out.println("\nEnter a rating between 1 to 5");
-            Double rating = input.nextDouble();
-            newFood.setRating(rating);
-        } else {
-            Food newFood = new Food(foodName, 0.0, false);
-            restaurant.addFoodToFoodList(newFood);
+            createTriedFood(newFood);
         }
+        restaurant.addFoodToFoodList(newFood);
         System.out.println("Item successfully added!");
         restaurant.createRating();
         reviewFood(restaurant);
+    }
+
+    // REQUIRES: !Food = isTried()
+    // EFFECTS: creates a new triedFood, setting its price and rating
+    public void createTriedFood(Food newFood) {
+        newFood.makeTried();
+
+        System.out.println("\nEnter its price: ");
+        Double price = input.nextDouble();
+        newFood.setPrice(price);
+
+        System.out.println("\nEnter a rating between 1 to 5");
+        Double rating = input.nextDouble();
+        newFood.setRating(rating);
     }
 
     // EFFECTS: displays restaurant list and then presents user with options
@@ -162,6 +168,9 @@ public class RestaurantTrackerApp {
         } else {
             System.out.println("No restaurants have been added yet.");
             System.out.println("Would you like to add a new review?");
+            System.out.println("\nSelect: ");
+            System.out.println("\ty -> add a new review");
+            System.out.println("\tn -> return to home screen");
             if (input.next().equals("y")) {
                 makeNewReview();
             } else if (input.next().equals("n")) {
@@ -327,9 +336,11 @@ public class RestaurantTrackerApp {
         if (command.equals("t")) {
             restaurant.changeToTriedFoods(selected);
             System.out.println("Item is now in tried foods list.");
-            editFood(selected, restaurant);
+            createTriedFood(selected);
+            restaurant.createRating();
         } else if (command.equals("d")) {
             restaurant.removeFood(selected);
+            restaurant.createRating();
         } else {
             editFood(selected, restaurant);
         }
@@ -356,6 +367,7 @@ public class RestaurantTrackerApp {
     // EFFECTS: processes command to edit name, price or rating of a tried food item
     public void processTriedEdit(String command, Food selected, Restaurant restaurant) {
         if (command.equals("n")) {
+            System.out.println("Enter name: ");
             String newName = input.next();
             selected.setName(newName);
         } else if (command.equals("p")) {

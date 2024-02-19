@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RestaurantTest {
@@ -193,5 +196,19 @@ public class RestaurantTest {
         assertEquals("Cafe", testrestaurant.getRestaurantName());
         testrestaurant.setRestaurantName("Caf");
         assertEquals("Caf", testrestaurant.getRestaurantName());
+    }
+
+    @Test
+    public void getTriedFoodsTest() {
+        testrestaurant.addFoodToFoodList(drink);
+        ArrayList<Food> expected = new ArrayList<Food>(Arrays.asList(drink));
+        assertEquals(expected, testrestaurant.getTriedFoods());
+    }
+
+    @Test
+    public void getWishListTest() {
+        testrestaurant.addFoodToFoodList(side);
+        ArrayList<Food> expected = new ArrayList<Food>(Arrays.asList(side));
+        assertEquals(expected, testrestaurant.getWishList());
     }
 }

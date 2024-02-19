@@ -110,7 +110,7 @@ public class Restaurant {
         this.name = name;
     }
 
-    // EFFECTS: returns the number of foods in the triedfoods list
+    // EFFECTS: returns the number of foods in the tried foods list
     public int getNumTriedFoods() {
         return triedFoods.size();
     }

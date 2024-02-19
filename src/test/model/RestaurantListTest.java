@@ -66,10 +66,18 @@ public class RestaurantListTest {
     }
 
     @Test
-    public void remove1Restaurant() {
+    public void remove1LikedRestaurant() {
         testReviews.addRestaurant(liked1);
         assertEquals(liked1, testReviews.removeRestaurant(liked1));
         testReviews.removeRestaurant(liked1);
+        assertEquals(0, testReviews.getNumRestaurants());
+    }
+
+    @Test
+    public void remove1DislikedRestaurant() {
+        testReviews.addRestaurant(disliked5);
+        assertEquals(disliked5, testReviews.removeRestaurant(disliked5));
+        testReviews.removeRestaurant(disliked5);
         assertEquals(0, testReviews.getNumRestaurants());
     }
 
