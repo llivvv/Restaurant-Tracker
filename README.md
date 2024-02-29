@@ -21,3 +21,5 @@ that may be useful.
 - As a user, I want to be able to select the title of a restaurant review and be able to view and edit the review.
 - As a user, I want to be able to have the option of sorting the reviews by rating or by order of creation.
 - As a user, I want to be able to search up a review by the restaurant name or an item name.
+- As a user, I want to be able to save my reviews to my file (if I so choose).
+- As a user, I want to be able to load my reviews from my file (if I so choose). 
