@@ -10,7 +10,7 @@ public class Restaurant {
     private boolean isLiked;
     private ArrayList<Food> triedFoods;
     private ArrayList<Food> wishList;
-    private double rating;
+    private int rating;
     private int reviewNumber;
 
     // EFFECTS: creates a new restaurant review with no foods, initial 0 rating, and intial 0 reviewNumber
@@ -55,7 +55,7 @@ public class Restaurant {
             for (Food f : triedFoods) {
                 sumRating = f.getRating() + sumRating;
             }
-            this.rating = sumRating / (triedFoods.size());
+            this.rating = (int) Math.round(sumRating / (triedFoods.size()));
         }
     }
 
@@ -76,7 +76,7 @@ public class Restaurant {
     }
 
     // EFFECTS: returns the restaurant's rating
-    public double getRating() {
+    public int getRating() {
         return rating;
     }
 

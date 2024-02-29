@@ -101,7 +101,7 @@ public class RestaurantTest {
         assertEquals(0.0, testrestaurant.getRating());
         drink.setRating(4.5);
         testrestaurant.createRating();
-        assertEquals(4.5, testrestaurant.getRating());
+        assertEquals(5, testrestaurant.getRating());
     }
 
     @Test
@@ -112,7 +112,7 @@ public class RestaurantTest {
         drink.setRating(4.5);
         dish.setRating(6.0);
         testrestaurant.createRating();
-        assertEquals((4.5 + 5.0) / 2, testrestaurant.getRating());
+        assertEquals(5.0, testrestaurant.getRating());
     }
 
     @Test

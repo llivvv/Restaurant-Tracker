@@ -422,7 +422,7 @@ public class RestaurantTrackerApp {
     // EFFECTS: displays a restaurant review
     public void viewRestaurantReview(Restaurant restaurant) {
         System.out.println("Name: " + restaurant.getRestaurantName());
-        System.out.println("Rating: " + restaurant.getRating());
+        System.out.println("Rating: ~" + restaurant.getRating());
         System.out.println("\nTried Foods: ");
         for (Food f : restaurant.getTriedFoods()) {
             System.out.println("\t" + f.getName() + "  \tPrice: " + f.getPrice() + "    "
