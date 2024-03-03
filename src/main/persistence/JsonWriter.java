@@ -6,7 +6,8 @@ import org.json.JSONObject;
 
 import java.io.*;
 // Referenced JsonSerializationDemo
-// Represents a writer that writes JSON representation of Restaurants to file
+// Represents a writer that writes JSON representation of Reviews to file
+
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
