@@ -2,15 +2,14 @@ package ui;
 
 import model.Food;
 import model.Restaurant;
-import model.Restaurants;
+import model.Reviews;
 
-import javax.swing.*;
 import java.util.Scanner;
 
 // References methods from the TellerApp
 // This class represents a personal Restaurant Tracker application
 public class RestaurantTrackerApp {
-    private Restaurants restaurants;
+    private Reviews restaurants;
     private Scanner input;
 
     // EFFECTS: runs the restaurant tracker application
@@ -45,7 +44,7 @@ public class RestaurantTrackerApp {
     // MODIFIES: this
     // EFFECTS: initializes Restaurants and scanner
     private void init() {
-        restaurants = new Restaurants();
+        restaurants = new Reviews();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -167,7 +166,7 @@ public class RestaurantTrackerApp {
     private void viewRestaurants() {
         if (restaurants.getNumRestaurants() != 0) {
             System.out.println("\n Here are your list of reviews: ");
-            for (Restaurant r : restaurants.getAllRestaurants()) {
+            for (Restaurant r : restaurants.getAllReviews()) {
                 System.out.println(r.getRestaurantName());
             }
             notEmptyRestaurantListCommands();
@@ -191,7 +190,7 @@ public class RestaurantTrackerApp {
     // REQUIRES: a non-empty restaurant list
     // EFFECTS: displays the liked restaurants and presents options
     public void viewLikedRestaurants() {
-        for (Restaurant r : restaurants.getLikedRestaurants()) {
+        for (Restaurant r : restaurants.getLikedReviews()) {
             System.out.println(r.getRestaurantName());
         }
         System.out.println("\nSelect: ");
@@ -213,7 +212,7 @@ public class RestaurantTrackerApp {
 
     // EFFECTS: displays the disliked restaurants and presents options
     public void viewDislikedRestaurants() {
-        for (Restaurant r : restaurants.getDislikedRestaurants()) {
+        for (Restaurant r : restaurants.getDislikedReviews()) {
             System.out.println(r.getRestaurantName());
         }
         System.out.println("\nSelect: ");

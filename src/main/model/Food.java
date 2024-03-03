@@ -4,9 +4,9 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 // Represents a food item with a status of tried or not tried, name, price, and rating
+// References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
 public class Food implements Writable {
 
-    private static final double MAX_RATING = 5.0;
     private String name;
     private double price;
     private double rating;
@@ -33,7 +33,7 @@ public class Food implements Writable {
     // MODIFIES: this
     // EFFECTS: lowers rating to 5 if rating was above 5 (maximum), or raises it to 0 if rating < 0
     public void fixRating() {
-        if (rating > MAX_RATING) {
+        if (rating > 5) {
             this.rating = 5.0;
         } else if (rating < 0) {
             this.rating = 0;
@@ -81,8 +81,7 @@ public class Food implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("MAXRATING", MAX_RATING);
-        json.put("name", name);
+        json.put("FoodName", name);
         json.put("price", price);
         json.put("foodRating", rating);
         json.put("isTried", isTried);

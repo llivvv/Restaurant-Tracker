@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RestaurantListTest {
 
-    private Restaurants testReviews;
+    private Reviews testReviews;
     private Restaurant liked1;
     private Restaurant liked2;
     private Restaurant disliked3;
@@ -20,7 +20,7 @@ public class RestaurantListTest {
 
     @BeforeEach
     public void runBefore() {
-        testReviews = new Restaurants();
+        testReviews = new Reviews();
         liked1 = new Restaurant("Restaurant1", true);
         liked2 = new Restaurant("Restaurant2", true);
         disliked3 = new Restaurant("Restaurant3", false);
@@ -35,16 +35,16 @@ public class RestaurantListTest {
     @Test
     public void addLikedRestaurantTest() {
         testReviews.addRestaurant(liked1);
-        assertEquals(1, testReviews.getLikedRestaurants().size());
-        assertEquals(0, testReviews.getDislikedRestaurants().size());
+        assertEquals(1, testReviews.getLikedReviews().size());
+        assertEquals(0, testReviews.getDislikedReviews().size());
         assertEquals(1, testReviews.getNumRestaurants());
     }
 
     @Test
     public void addDislikedRestaurantTest() {
         testReviews.addRestaurant(disliked3);
-        assertEquals(0, testReviews.getLikedRestaurants().size());
-        assertEquals(1, testReviews.getDislikedRestaurants().size());
+        assertEquals(0, testReviews.getLikedReviews().size());
+        assertEquals(1, testReviews.getDislikedReviews().size());
         assertEquals(1, testReviews.getNumRestaurants());
     }
 
@@ -52,7 +52,7 @@ public class RestaurantListTest {
     public void add2LikedRestaurantsTest() {
         testReviews.addRestaurant(liked1);
         testReviews.addRestaurant(liked2);
-        assertEquals(2, testReviews.getLikedRestaurants().size());
+        assertEquals(2, testReviews.getLikedReviews().size());
         assertEquals(2, testReviews.getNumRestaurants());
     }
 
@@ -88,8 +88,8 @@ public class RestaurantListTest {
         assertEquals(disliked3, testReviews.removeRestaurant(disliked3));
         testReviews.removeRestaurant(disliked3);
         assertEquals(null, testReviews.findRestaurant("Restaurant3"));
-        assertEquals(1, testReviews.getLikedRestaurants().size());
-        assertEquals(0, testReviews.getDislikedRestaurants().size());
+        assertEquals(1, testReviews.getLikedReviews().size());
+        assertEquals(0, testReviews.getDislikedReviews().size());
         assertEquals(1, testReviews.getNumRestaurants());
     }
 
@@ -161,10 +161,10 @@ public class RestaurantListTest {
         liked2.addFoodToFoodList(triedFood3);
         liked2.addFoodToFoodList(triedFood4);
         liked2.createRating();
-        assertEquals(0, testReviews.getAllRestaurants().indexOf(liked1));
-        assertEquals(1, testReviews.getAllRestaurants().indexOf(liked2));
+        assertEquals(0, testReviews.getAllReviews().indexOf(liked1));
+        assertEquals(1, testReviews.getAllReviews().indexOf(liked2));
         testReviews.sortAllRestaurantsRating();
-        assertEquals(1, testReviews.getAllRestaurants().indexOf(liked1));
+        assertEquals(1, testReviews.getAllReviews().indexOf(liked1));
     }
 
     @Test
@@ -181,10 +181,10 @@ public class RestaurantListTest {
         liked1.addFoodToFoodList(triedFood1);
         liked1.addFoodToFoodList(triedFood2);
         liked1.createRating();
-        assertEquals(1, testReviews.getAllRestaurants().indexOf(liked1));
-        assertEquals(0, testReviews.getAllRestaurants().indexOf(liked2));
+        assertEquals(1, testReviews.getAllReviews().indexOf(liked1));
+        assertEquals(0, testReviews.getAllReviews().indexOf(liked2));
         testReviews.sortAllRestaurantsRating();
-        assertEquals(1, testReviews.getAllRestaurants().indexOf(liked1));
+        assertEquals(1, testReviews.getAllReviews().indexOf(liked1));
     }
 
     @Test
@@ -201,10 +201,10 @@ public class RestaurantListTest {
         disliked4.addFoodToFoodList(triedFood3);
         disliked4.addFoodToFoodList(triedFood4);
         disliked4.createRating();
-        assertEquals(0, testReviews.getDislikedRestaurants().indexOf(disliked3));
-        assertEquals(1, testReviews.getDislikedRestaurants().indexOf(disliked4));
+        assertEquals(0, testReviews.getDislikedReviews().indexOf(disliked3));
+        assertEquals(1, testReviews.getDislikedReviews().indexOf(disliked4));
         testReviews.sortDislikedRestaurantsRating();
-        assertEquals(0, testReviews.getDislikedRestaurants().indexOf(disliked4));
+        assertEquals(0, testReviews.getDislikedReviews().indexOf(disliked4));
     }
 
     @Test
@@ -221,11 +221,11 @@ public class RestaurantListTest {
         liked2.addFoodToFoodList(triedFood3);
         liked2.addFoodToFoodList(triedFood4);
         liked2.createRating();
-        assertEquals(0, testReviews.getAllRestaurants().indexOf(liked1));
-        assertEquals(1, testReviews.getAllRestaurants().indexOf(liked2));
+        assertEquals(0, testReviews.getAllReviews().indexOf(liked1));
+        assertEquals(1, testReviews.getAllReviews().indexOf(liked2));
         testReviews.sortLikedRestaurantsRating();
-        assertEquals(1, testReviews.getLikedRestaurants().indexOf(liked1));
-        assertEquals(0, testReviews.getAllRestaurants().indexOf(liked1));
+        assertEquals(1, testReviews.getLikedReviews().indexOf(liked1));
+        assertEquals(0, testReviews.getAllReviews().indexOf(liked1));
     }
 
     @Test
@@ -233,18 +233,18 @@ public class RestaurantListTest {
         testReviews.addRestaurant(liked1);
         testReviews.addRestaurant(liked2);
         testReviews.addRestaurant(disliked3);
-        assertEquals(2, testReviews.getAllRestaurants().indexOf(disliked3));
+        assertEquals(2, testReviews.getAllReviews().indexOf(disliked3));
         testReviews.sortAllRestaurantsNumber();
-        assertEquals(0, testReviews.getAllRestaurants().indexOf(disliked3));
+        assertEquals(0, testReviews.getAllReviews().indexOf(disliked3));
     }
 
     @Test
     public void sortLikedNumberTest() {
         testReviews.addRestaurant(liked1);
         testReviews.addRestaurant(liked2);
-        assertEquals(0, testReviews.getLikedRestaurants().indexOf(liked1));
+        assertEquals(0, testReviews.getLikedReviews().indexOf(liked1));
         testReviews.sortLikedRestaurantsNumber();
-        assertEquals(1, testReviews.getLikedRestaurants().indexOf(liked1));
+        assertEquals(1, testReviews.getLikedReviews().indexOf(liked1));
     }
 
     @Test
@@ -253,9 +253,9 @@ public class RestaurantListTest {
         testReviews.addRestaurant(liked1);
         testReviews.addRestaurant(disliked4);
         testReviews.addRestaurant(disliked3);
-        assertEquals(2, testReviews.getDislikedRestaurants().indexOf(disliked3));
+        assertEquals(2, testReviews.getDislikedReviews().indexOf(disliked3));
         testReviews.sortDislikedRestaurantsNumber();
-        assertEquals(0, testReviews.getDislikedRestaurants().indexOf(disliked3));
+        assertEquals(0, testReviews.getDislikedReviews().indexOf(disliked3));
     }
 
     @Test
@@ -277,8 +277,8 @@ public class RestaurantListTest {
         triedFood3.setRating(2.4);
         disliked4.createRating();
         testReviews.sortAllRestaurantsRating();
-        assertEquals(3, testReviews.getAllRestaurants().indexOf(liked2));
+        assertEquals(3, testReviews.getAllReviews().indexOf(liked2));
         testReviews.sortAllRestaurantsNumber();
-        assertEquals(3, testReviews.getAllRestaurants().indexOf(liked1));
+        assertEquals(3, testReviews.getAllReviews().indexOf(liked1));
     }
 }

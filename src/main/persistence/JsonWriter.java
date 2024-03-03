@@ -1,6 +1,6 @@
 package persistence;
 
-import model.Restaurants;
+import model.Reviews;
 import org.json.JSONObject;
 
 
@@ -26,7 +26,7 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of workroom to file
-    public void write(Restaurants rs) {
+    public void write(Reviews rs) {
         JSONObject json = rs.toJson();
         saveToFile(json.toString(TAB));
     }

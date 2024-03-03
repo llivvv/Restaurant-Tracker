@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-// Represents a restaurant with a name, liked/disliked, foods that have been tried wishlist items
-// foods to try, and a rating
+// Represents a restaurant with a name, liked/disliked, tried foods, foods to try (wishlist),
+// rating, and a review number
 // References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
 public class Restaurant implements Writable {
 
@@ -62,6 +62,12 @@ public class Restaurant implements Writable {
             }
             this.rating = (int) Math.round(sumRating / (triedFoods.size()));
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the restaurant's rating to rating
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     // REQUIRES: food is in triedFoods or wishList
@@ -144,7 +150,7 @@ public class Restaurant implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name", name);
+        json.put("restaurantName", name);
         json.put("isLiked", isLiked);
         json.put("triedFoods", triedFoodsToJson());
         json.put("wishList", wishListToJson());

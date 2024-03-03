@@ -1,8 +1,8 @@
 package persistence;
 
-import model.Category;
-import model.Thingy;
-import model.WorkRoom;
+import model.Reviews;
+import model.Restaurant;
+import model.Food;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import org.json.*;
 
 // Represents a reader that reads workroom from JSON data stored in file
+// References JsonSerializationDemo's JsonReader class
 public class JsonReader {
     private String source;
 
@@ -21,12 +22,12 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads Restaurants from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public WorkRoom read() throws IOException {
+    public Reviews read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkRoom(jsonObject);
+        return parseReviews(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -40,31 +41,84 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
-    private WorkRoom parseWorkRoom(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        WorkRoom wr = new WorkRoom(name);
-        addThingies(wr, jsonObject);
-        return wr;
+    // EFFECTS: parses reviews from JSON object and returns it
+    private Reviews parseReviews(JSONObject jsonObject) {
+        Reviews reviews = new Reviews();
+        addAllRestaurants(reviews, jsonObject);
+        addLikedRestaurants(reviews, jsonObject);
+        addDislikedRestaurants(reviews, jsonObject);
+        return reviews;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
-    private void addThingies(WorkRoom wr, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("thingies");
+    // MODIFIES: reviews
+    // EFFECTS: parses all restaurants from JSON object and adds them to Reviews
+    private void addAllRestaurants(Reviews reviews, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("allRestaurants");
         for (Object json : jsonArray) {
-            JSONObject nextThingy = (JSONObject) json;
-            addThingy(wr, nextThingy);
+            JSONObject nextRestaurant = (JSONObject) json;
+            addRestaurant(reviews, nextRestaurant);
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
-    private void addThingy(WorkRoom wr, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Category category = Category.valueOf(jsonObject.getString("category"));
-        Thingy thingy = new Thingy(name, category);
-        wr.addThingy(thingy);
+    // MODIFIES: reviews
+    // EFFECTS: parses liked restaurants from JSON object and adds them to Reviews
+    private void addLikedRestaurants(Reviews reviews, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("likedRestaurants");
+        for (Object json : jsonArray) {
+            JSONObject nextRestaurant = (JSONObject) json;
+            addRestaurant(reviews, nextRestaurant);
+        }
+    }
+
+    // MODIFIES: reviews
+    // EFFECTS: parses disliked restaurants from JSON object and adds them to Reviews
+    private void addDislikedRestaurants(Reviews reviews, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("dislikedRestaurants");
+        for (Object json : jsonArray) {
+            JSONObject nextRestaurant = (JSONObject) json;
+            addRestaurant(reviews, nextRestaurant);
+        }
+    }
+
+    // MODIFIES: reviews
+    // EFFECTS: parses restaurant from JSON object and adds it to Reviews
+    private void addRestaurant(Reviews reviews, JSONObject jsonObject) {
+        String name = jsonObject.getString("restaurantName");
+        Boolean isLiked = jsonObject.getBoolean("isLiked");
+        Restaurant restaurant = new Restaurant(name, isLiked);
+        addTriedFoods(restaurant, jsonObject);
+        addWishListFoods(restaurant, jsonObject);
+        int restaurantRating = jsonObject.getInt("restaurantRating");
+        int reviewNumber = jsonObject.getInt("reviewNumber");
+        restaurant.setReviewNumber(reviewNumber);
+        restaurant.setRating(restaurantRating);
+        reviews.addRestaurant(restaurant);
+    }
+
+    private void addTriedFoods(Restaurant restaurant, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("triedFoods");
+        for (Object json : jsonArray) {
+            JSONObject nextFood = (JSONObject) json;
+            addFood(restaurant, nextFood);
+        }
+    }
+
+    private void addWishListFoods(Restaurant restaurant, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("wishList");
+        for (Object json : jsonArray) {
+            JSONObject nextFood = (JSONObject) json;
+            addFood(restaurant, nextFood);
+        }
+    }
+
+    private void addFood(Restaurant restaurant, JSONObject jsonObject) {
+        String name = jsonObject.getString("FoodName");
+        double price = jsonObject.getDouble("price");
+        double rating = jsonObject.getDouble("foodRating");
+        Boolean isTried = jsonObject.getBoolean("isTried");
+        Food food = new Food(name, price, isTried);
+        food.setRating(rating);
+        restaurant.addFoodToFoodList(food);
     }
 }
 
