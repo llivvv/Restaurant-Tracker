@@ -1,10 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 // Represents 3 lists of restaurants: all restaurants, liked restaurants, disliked restaurants
-public class Restaurants {
+// References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
+public class Restaurants implements Writable {
 
     private ArrayList<Restaurant> allRestaurants;
     private ArrayList<Restaurant> likedRestaurants;
@@ -143,5 +148,48 @@ public class Restaurants {
     // EFFECTS: returns size of allRestaurants list
     public int getNumRestaurants() {
         return allRestaurants.size();
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.toJson()
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("allRestaurants", allRestaurantsToJson());
+        json.put("likedRestaurants", likedRestaurantsToJson());
+        json.put("dislikedRestaurants", dislikedRestaurantsToJson());
+        return json;
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.thingiesToJson()
+    // EFFECTS: returns all restaurants in this Restaurants as a JSON array
+    private JSONArray allRestaurantsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Restaurant r : allRestaurants) {
+            jsonArray.put(r.toJson());
+        }
+        return jsonArray;
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.thingiesToJson()
+    // EFFECTS: returns liked restaurants in this Restaurants as a JSON array
+    private JSONArray likedRestaurantsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Restaurant r : likedRestaurants) {
+            jsonArray.put(r.toJson());
+        }
+        return jsonArray;
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.thingiesToJson()
+    // EFFECTS: returns disliked restaurants in this Restaurants as a JSON array
+    private JSONArray dislikedRestaurantsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Restaurant r : dislikedRestaurants) {
+            jsonArray.put(r.toJson());
+        }
+        return jsonArray;
     }
 }

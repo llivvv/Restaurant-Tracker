@@ -2,9 +2,14 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a restaurant with a name, liked/disliked, foods that have been tried wishlist items
 // foods to try, and a rating
-public class Restaurant {
+// References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
+public class Restaurant implements Writable {
 
     private String name;
     private boolean isLiked;
@@ -133,5 +138,40 @@ public class Restaurant {
     // EFFECTS: returns the restaurant's review number
     public int getReviewNumber() {
         return reviewNumber;
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.toJson()
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("isLiked", isLiked);
+        json.put("triedFoods", triedFoodsToJson());
+        json.put("wishList", wishListToJson());
+        json.put("restaurantRating", rating);
+        json.put("reviewNumber", reviewNumber);
+        return json;
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.thingiesToJson()
+    // EFFECTS: returns all triedFoods in this Restaurant as a JSON array
+    private JSONArray triedFoodsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Food f : triedFoods) {
+            jsonArray.put(f.toJson());
+        }
+        return jsonArray;
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.thingiesToJson()
+    // EFFECTS: returns all wishList items in this Restaurant as a JSON array
+    private JSONArray wishListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Food f : wishList) {
+            jsonArray.put(f.toJson());
+        }
+        return jsonArray;
     }
 }

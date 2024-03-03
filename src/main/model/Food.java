@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a food item with a status of tried or not tried, name, price, and rating
-public class Food {
+public class Food implements Writable {
 
     private static final double MAX_RATING = 5.0;
     private String name;
@@ -72,5 +75,17 @@ public class Food {
     // EFFECTS: returns whether the food is tried
     public boolean getIsTried() {
         return isTried;
+    }
+
+    // referenced JsonSerializationDemo.WorkRoom.toJson()
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("MAXRATING", MAX_RATING);
+        json.put("name", name);
+        json.put("price", price);
+        json.put("foodRating", rating);
+        json.put("isTried", isTried);
+        return json;
     }
 }
