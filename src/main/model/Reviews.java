@@ -146,7 +146,7 @@ public class Reviews implements Writable {
         return dislikedReviews;
     }
 
-    // EFFECTS: returns size of allRestaurants list
+    // EFFECTS: returns size of allReviews list
     public int getNumRestaurants() {
         return allReviews.size();
     }

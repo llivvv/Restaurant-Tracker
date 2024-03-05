@@ -1,0 +1,114 @@
+{
+  "allRestaurants": [
+    {
+      "restaurantName": "cafffe",
+      "isLiked": true,
+      "triedFoods": [
+      ],
+      "wishList": [
+      ],
+      "restaurantRating": 0,
+      "reviewNumber": 1
+    },
+    {
+      "restaurantName": "ShinyTea",
+      "isLiked": false,
+      "triedFoods": [
+        {
+          "FoodName": "Roasted Milk Tea",
+          "price": 6.5,
+          "isTried": true,
+          "foodRating": 0.2
+        },
+        {
+          "FoodName": "Milk Tea",
+          "price": 1,
+          "isTried": true,
+          "foodRating": 4.0
+        }
+      ],
+      "wishList": [
+        {
+          "FoodName": "Fruit Tea",
+          "price": 0,
+          "isTried": false,
+          "foodRating": 0.0
+        }
+      ],
+      "restaurantRating": 2,
+      "reviewNumber": 2
+    },
+    {
+      "restaurantName": "fghijk",
+      "isLiked": false,
+      "triedFoods": [
+        {
+          "FoodName": "melonBitter",
+          "price": 22,
+          "isTried": true,
+          "foodRating": 1.1
+        }
+      ],
+      "wishList": [],
+      "restaurantRating": 1,
+      "reviewNumber": 3
+    }
+  ],
+  "likedRestaurants": [
+    {
+      "restaurantName": "cafffe",
+      "isLiked": true,
+      "triedFoods": [
+      ],
+      "wishList": [
+      ],
+      "restaurantRating": 0,
+      "reviewNumber": 1
+    }
+  ],
+  "dislikedRestaurants": [
+    {
+      "restaurantName": "ShinyTea",
+      "isLiked": false,
+      "triedFoods": [
+        {
+          "FoodName": "Roasted Milk Tea",
+          "price": 6.5,
+          "isTried": true,
+          "foodRating": 0.2
+        },
+        {
+          "FoodName": "Milk Tea",
+          "price": 1,
+          "isTried": true,
+          "foodRating": 4.0
+        }
+      ],
+      "wishList": [
+        {
+          "FoodName": "Fruit Tea",
+          "price": 0,
+          "isTried": false,
+          "foodRating": 0.0
+        }
+      ],
+      "restaurantRating": 2,
+      "reviewNumber": 2
+    },
+    {
+      "restaurantName": "fghijk",
+      "isLiked": false,
+      "triedFoods": [
+        {
+          "FoodName": "melonBitter",
+          "price": 22,
+          "isTried": true,
+          "foodRating": 1.1
+        }
+      ],
+      "wishList": [],
+      "restaurantRating": 1,
+      "reviewNumber": 3
+    }
+  ]
+}
