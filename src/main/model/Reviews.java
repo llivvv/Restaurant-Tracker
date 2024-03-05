@@ -32,11 +32,7 @@ public class Reviews implements Writable {
         findSetRestaurantReviewNumber(restaurant);
         if (!allReviews.contains(restaurant)) {
             allReviews.add(restaurant);
-            if (restaurant.getIsLiked()) {
-                likedReviews.add(restaurant);
-            } else {
-                dislikedReviews.add(restaurant);
-            }
+            addToLikedDisliked(restaurant);
         }
     }
 
@@ -55,43 +51,19 @@ public class Reviews implements Writable {
         }
     }
 
+    // REQUIRES: rs is one of Review's fields
     // MODIFIES: this
-    // EFFECTS: sorts allRestaurants based on rating (ascending order)
-    public void sortAllRestaurantsRating() {
-        Collections.sort(allReviews, new RestaurantRatingComparator());
+    // EFFECTS sorts allReviews, likedReviews or dislikedReviews based on rating (ascending order)
+    public void sortRating(List<Restaurant> rs) {
+        Collections.sort(rs, new RestaurantRatingComparator());
     }
 
+    // REQUIRES: rs is one of Review's fields
     // MODIFIES: this
-    // EFFECTS: sorts likedRestaurants based on rating (ascending order)
-    public void sortLikedRestaurantsRating() {
-        Collections.sort(likedReviews, new RestaurantRatingComparator());
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sorts dislikedRestaurants based on rating (ascending order)
-    public void sortDislikedRestaurantsRating() {
-        Collections.sort(dislikedReviews, new RestaurantRatingComparator());
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sorts allRestaurants by descending review number
-    public void sortAllRestaurantsNumber() {
-        Collections.sort(allReviews, new RestaurantNumberComparator());
-        Collections.reverse(allReviews);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sorts likedRestaurants by descending review number
-    public void sortLikedRestaurantsNumber() {
-        Collections.sort(likedReviews, new RestaurantNumberComparator());
-        Collections.reverse(likedReviews);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sorts likedRestaurants by descending review number
-    public void sortDislikedRestaurantsNumber() {
-        Collections.sort(dislikedReviews, new RestaurantNumberComparator());
-        Collections.reverse(dislikedReviews);
+    // EFFECTS: sorts allReviews, likedReviews or dislikedReviews based on rating (descending order)
+    public void sortReviewNumber(List<Restaurant> rs) {
+        Collections.sort(rs, new RestaurantNumberComparator());
+        Collections.reverse(rs);
     }
 
     // EFFECTS: finds and returns a restaurant review with the corresponding name, otherwise returns null
@@ -211,3 +183,44 @@ public class Reviews implements Writable {
         return jsonArray;
     }
 }
+
+
+//
+//    // MODIFIES: this
+//    // EFFECTS: sorts allRestaurants based on rating (ascending order)
+//    public void sortAllRestaurantsRating() {
+//        Collections.sort(allReviews, new RestaurantRatingComparator());
+//    }
+//
+//    // MODIFIES: this
+//    // EFFECTS: sorts likedRestaurants based on rating (ascending order)
+//    public void sortLikedRestaurantsRating() {
+//        Collections.sort(likedReviews, new RestaurantRatingComparator());
+//    }
+//
+//    // MODIFIES: this
+//    // EFFECTS: sorts dislikedRestaurants based on rating (ascending order)
+//    public void sortDislikedRestaurantsRating() {
+//        Collections.sort(dislikedReviews, new RestaurantRatingComparator());
+//    }
+
+//    // MODIFIES: this
+//    // EFFECTS: sorts allRestaurants by descending review number
+//    public void sortAllRestaurantsNumber() {
+//        Collections.sort(allReviews, new RestaurantNumberComparator());
+//        Collections.reverse(allReviews);
+//    }
+//
+//    // MODIFIES: this
+//    // EFFECTS: sorts likedRestaurants by descending review number
+//    public void sortLikedRestaurantsNumber() {
+//        Collections.sort(likedReviews, new RestaurantNumberComparator());
+//        Collections.reverse(likedReviews);
+//    }
+//
+//    // MODIFIES: this
+//    // EFFECTS: sorts likedRestaurants by descending review number
+//    public void sortDislikedRestaurantsNumber() {
+//        Collections.sort(dislikedReviews, new RestaurantNumberComparator());
+//        Collections.reverse(dislikedReviews);
+//    }
