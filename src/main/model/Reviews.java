@@ -6,14 +6,15 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 // Represents 3 lists of restaurants: all restaurants, liked restaurants, disliked restaurants
 // References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
 public class Reviews implements Writable {
 
-    private ArrayList<Restaurant> allReviews;
-    private ArrayList<Restaurant> likedReviews;
-    private ArrayList<Restaurant> dislikedReviews;
+    private List<Restaurant> allReviews;
+    private List<Restaurant> likedReviews;
+    private List<Restaurant> dislikedReviews;
 
     // EFFECTS: constructs 3 lists: all restaurants, liked restaurants and disliked restaurants
     public Reviews() {
@@ -131,17 +132,17 @@ public class Reviews implements Writable {
     }
 
     // EFFECTS: returns the list of all restaurants
-    public ArrayList<Restaurant> getAllReviews() {
+    public List<Restaurant> getAllReviews() {
         return allReviews;
     }
 
     // EFFECTS: returns the list of liked restaurants
-    public ArrayList<Restaurant> getLikedReviews() {
+    public List<Restaurant> getLikedReviews() {
         return likedReviews;
     }
 
     // EFFECTS: returns the list of disliked restaurants
-    public ArrayList<Restaurant> getDislikedReviews() {
+    public List<Restaurant> getDislikedReviews() {
         return dislikedReviews;
     }
 
@@ -149,6 +150,23 @@ public class Reviews implements Writable {
     public int getNumRestaurants() {
         return allReviews.size();
     }
+
+    // MODIFIES: this
+    // EFFECTS: add restaurant to allReviews (for JsonReader)
+    public void addToAll(Restaurant restaurant) {
+        allReviews.add(restaurant);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds restaurant to liked or disliked list (for JsonReader)
+    public boolean addToLikedDisliked(Restaurant restaurant) {
+        if (restaurant.getIsLiked()) {
+            return likedReviews.add(restaurant);
+        } else {
+            return dislikedReviews.add(restaurant);
+        }
+    }
+
 
     // referenced JsonSerializationDemo.WorkRoom.toJson()
     @Override

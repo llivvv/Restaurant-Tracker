@@ -66,7 +66,7 @@ public class JsonReader {
         JSONArray jsonArray = jsonObject.getJSONArray("likedRestaurants");
         for (Object json : jsonArray) {
             JSONObject nextRestaurant = (JSONObject) json;
-            addRestaurant(reviews, nextRestaurant);
+            copyToLikedDisliked(reviews, nextRestaurant);
         }
     }
 
@@ -76,7 +76,7 @@ public class JsonReader {
         JSONArray jsonArray = jsonObject.getJSONArray("dislikedRestaurants");
         for (Object json : jsonArray) {
             JSONObject nextRestaurant = (JSONObject) json;
-            addRestaurant(reviews, nextRestaurant);
+            copyToLikedDisliked(reviews, nextRestaurant);
         }
     }
 
@@ -92,7 +92,19 @@ public class JsonReader {
         int reviewNumber = jsonObject.getInt("reviewNumber");
         restaurant.setReviewNumber(reviewNumber);
         restaurant.setRating(restaurantRating);
-        reviews.addRestaurant(restaurant);
+        reviews.addToAll(restaurant);
+    }
+
+    // MODIFIES: reviews
+    // EFFECTS: finds restaurant from all reviews and adds to liked or disliked reviews
+    private boolean copyToLikedDisliked(Reviews reviews, JSONObject jsonObject) {
+        int reviewNumber = jsonObject.getInt("reviewNumber");
+        for (Restaurant r : reviews.getAllReviews()) {
+            if (r.getReviewNumber() == reviewNumber) {
+                return reviews.addToLikedDisliked(r);
+            }
+        }
+        return false;
     }
 
     private void addTriedFoods(Restaurant restaurant, JSONObject jsonObject) {

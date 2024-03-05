@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,8 +14,8 @@ public class Restaurant implements Writable {
 
     private String name;
     private boolean isLiked;
-    private ArrayList<Food> triedFoods;
-    private ArrayList<Food> wishList;
+    private List<Food> triedFoods;
+    private List<Food> wishList;
     private int rating;
     private int reviewNumber;
 
@@ -92,12 +93,12 @@ public class Restaurant implements Writable {
     }
 
     // EFFECTS: returns the list of tried foods
-    public ArrayList<Food> getTriedFoods() {
+    public List<Food> getTriedFoods() {
         return triedFoods;
     }
 
     // EFFECTS: returns the list of wish list foods
-    public ArrayList<Food> getWishList() {
+    public List<Food> getWishList() {
         return wishList;
     }
 
