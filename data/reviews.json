@@ -1,5 +1,74 @@
 {
-  "likedRestaurants": [],
-  "dislikedRestaurants": [],
-  "allRestaurants": []
+    "likedRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "bafe",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 2,
+            "triedFoods": [{
+                "foodRating": 4,
+                "isTried": true,
+                "price": 7.8,
+                "FoodName": "bubble"
+            }]
+        },
+        {
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "tree"
+            }],
+            "restaurantName": "asdf",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 3,
+            "triedFoods": []
+        }
+    ],
+    "dislikedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "cafe",
+        "restaurantRating": 0,
+        "isLiked": false,
+        "reviewNumber": 1,
+        "triedFoods": []
+    }],
+    "allRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "cafe",
+            "restaurantRating": 0,
+            "isLiked": false,
+            "reviewNumber": 1,
+            "triedFoods": []
+        },
+        {
+            "wishList": [],
+            "restaurantName": "bafe",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 2,
+            "triedFoods": [{
+                "foodRating": 4,
+                "isTried": true,
+                "price": 7.8,
+                "FoodName": "bubble"
+            }]
+        },
+        {
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "tree"
+            }],
+            "restaurantName": "asdf",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 3,
+            "triedFoods": []
+        }
+    ]
 }

@@ -47,7 +47,6 @@ public class RestaurantTrackerApp {
             }
 
         }
-
         System.out.println("\nBye!");
     }
 
@@ -55,8 +54,9 @@ public class RestaurantTrackerApp {
     private void homeScreen() {
         System.out.println("\nSelect from: ");
         System.out.println("\tw -> write new review");
-        System.out.println("\tl -> load all my reviews");
-        System.out.println("\tv -> view all my reviews");
+        System.out.println("\tl -> load all my reviews from file");
+        System.out.println("\ts -> save my reviews to file");
+        System.out.println("\tv -> view reviews");
         System.out.println("\t% -> quit application");
     }
 
@@ -67,21 +67,12 @@ public class RestaurantTrackerApp {
             makeNewReview();
         } else if (command.equals("l")) {
             loadReviews();
+        } else if (command.equals("s")) {
+            saveReviews();
         } else if (command.equals("v")) {
             viewRestaurants();
         } else {
             System.out.println("Selection not valid.");
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: loads workroom from file
-    private void loadReviews() {
-        try {
-            reviews = jsonReader.read();
-            System.out.println("Loaded reviews from " + JSON_STORE);
-        } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
@@ -474,6 +465,28 @@ public class RestaurantTrackerApp {
             chooseReview();
         } else if (command.equals("n")) {
             makeNewReview();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads Reviews from file
+    private void loadReviews() {
+        try {
+            reviews = jsonReader.read();
+            System.out.println("Loaded reviews from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    private void saveReviews() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(reviews);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 }
