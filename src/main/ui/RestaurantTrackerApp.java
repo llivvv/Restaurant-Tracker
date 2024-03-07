@@ -183,13 +183,14 @@ public class RestaurantTrackerApp {
             System.out.println("\nSelect: ");
             System.out.println("\ty -> add a new review");
             System.out.println("\tn -> return to home screen");
-            if (input.next().equals("y")) {
+            String command = input.next();
+            if (command.equals("y")) {
                 makeNewReview();
-            } else if (input.next().equals("n")) {
-                homeScreen();
-            } else {
-                System.out.println("Invalid selection.");
-                viewRestaurants();
+//            } else if (command.equals("n")) {
+//                homeScreen();
+//            } else {
+//                System.out.println("Invalid selection.");
+//                viewRestaurants();
             }
         }
     }

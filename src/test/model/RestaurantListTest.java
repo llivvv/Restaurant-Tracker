@@ -138,6 +138,28 @@ public class RestaurantListTest {
         assertEquals("New1", liked1.getRestaurantName());
     }
 
+    // mainly for Json
+    @Test
+    public void addAllTest() {
+        testReviews.addToAll(liked1);
+        assertEquals(1, testReviews.getAllReviews().size());
+    }
+
+    // mainly for Json
+    @Test
+    public void addToLikedTest() {
+        testReviews.addToLikedDisliked(liked1);
+        assertEquals(1, testReviews.getLikedReviews().size());
+        assertEquals(0, testReviews.getDislikedReviews().size());
+    }
+
+    @Test
+    public void addToDislikedTest() {
+        testReviews.addToLikedDisliked(disliked3);
+        assertEquals(0, testReviews.getLikedReviews().size());
+        assertEquals(1, testReviews.getDislikedReviews().size());
+    }
+
     @Test
     public void notUniqueRestaurantNameTest() {
         testReviews.addRestaurant(liked1);
