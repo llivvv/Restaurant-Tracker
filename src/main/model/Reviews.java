@@ -40,16 +40,28 @@ public class Reviews implements Writable {
     // EFFECTS: deletes the restaurant review from the lists it is contained in
     //          returns the review if it existed in a list, otherwise returns null
     public Restaurant removeRestaurant(Restaurant restaurant) {
-        if (allReviews.contains(restaurant) && likedReviews.contains(restaurant)) {
-            likedReviews.remove(likedReviews.indexOf(restaurant));
-            return allReviews.remove(allReviews.indexOf(restaurant));
-        } else if (allReviews.contains(restaurant) && dislikedReviews.contains(restaurant)) {
-            dislikedReviews.remove(dislikedReviews.indexOf(restaurant));
+        if (allReviews.contains(restaurant)) {
+            if (likedReviews.contains(restaurant)) {
+                likedReviews.remove(restaurant);
+            } else {
+                dislikedReviews.remove(restaurant);
+            }
             return allReviews.remove(allReviews.indexOf(restaurant));
         } else {
             return null;
         }
     }
+//
+//        if (allReviews.contains(restaurant) && likedReviews.contains(restaurant)) {
+//            likedReviews.remove(likedReviews.indexOf(restaurant));
+//            return allReviews.remove(allReviews.indexOf(restaurant));
+//        } else if (allReviews.contains(restaurant) && dislikedReviews.contains(restaurant)) {
+//            dislikedReviews.remove(dislikedReviews.indexOf(restaurant));
+//            return allReviews.remove(allReviews.indexOf(restaurant));
+//        } else {
+//            return null;
+//        }
+//    }
 
     // REQUIRES: rs is one of Review's fields
     // MODIFIES: this
@@ -183,44 +195,3 @@ public class Reviews implements Writable {
         return jsonArray;
     }
 }
-
-
-//
-//    // MODIFIES: this
-//    // EFFECTS: sorts allRestaurants based on rating (ascending order)
-//    public void sortAllRestaurantsRating() {
-//        Collections.sort(allReviews, new RestaurantRatingComparator());
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: sorts likedRestaurants based on rating (ascending order)
-//    public void sortLikedRestaurantsRating() {
-//        Collections.sort(likedReviews, new RestaurantRatingComparator());
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: sorts dislikedRestaurants based on rating (ascending order)
-//    public void sortDislikedRestaurantsRating() {
-//        Collections.sort(dislikedReviews, new RestaurantRatingComparator());
-//    }
-
-//    // MODIFIES: this
-//    // EFFECTS: sorts allRestaurants by descending review number
-//    public void sortAllRestaurantsNumber() {
-//        Collections.sort(allReviews, new RestaurantNumberComparator());
-//        Collections.reverse(allReviews);
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: sorts likedRestaurants by descending review number
-//    public void sortLikedRestaurantsNumber() {
-//        Collections.sort(likedReviews, new RestaurantNumberComparator());
-//        Collections.reverse(likedReviews);
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: sorts likedRestaurants by descending review number
-//    public void sortDislikedRestaurantsNumber() {
-//        Collections.sort(dislikedReviews, new RestaurantNumberComparator());
-//        Collections.reverse(dislikedReviews);
-//    }

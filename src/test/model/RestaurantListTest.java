@@ -303,4 +303,19 @@ public class RestaurantListTest {
         testReviews.sortReviewNumber(testReviews.getAllReviews());
         assertEquals(3, testReviews.getAllReviews().indexOf(liked1));
     }
+
+    @Test
+    public void sortRatingThenAddTest() {
+        testReviews.addRestaurant(liked1);
+        triedFood1.setRating(3);
+        liked1.addFoodToFoodList(triedFood1);
+        liked1.createRating();
+        testReviews.addRestaurant(liked2);
+        triedFood2.setRating(5);
+        liked2.addFoodToFoodList(triedFood2);
+        liked2.createRating();
+        testReviews.sortRating(testReviews.getAllReviews());
+        testReviews.addRestaurant(disliked3);
+        assertEquals(3, testReviews.getAllReviews().get(2).getReviewNumber());
+    }
 }

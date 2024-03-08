@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads Reviews from JSON data stored in file
 // References JsonSerializationDemo's JsonReader class
 public class JsonReader {
     private String source;
@@ -97,14 +97,14 @@ public class JsonReader {
 
     // MODIFIES: reviews
     // EFFECTS: finds restaurant from all reviews and adds to liked or disliked reviews
-    private boolean copyToLikedDisliked(Reviews reviews, JSONObject jsonObject) {
+    private void copyToLikedDisliked(Reviews reviews, JSONObject jsonObject) {
         int reviewNumber = jsonObject.getInt("reviewNumber");
         for (Restaurant r : reviews.getAllReviews()) {
             if (r.getReviewNumber() == reviewNumber) {
-                return reviews.addToLikedDisliked(r);
+                reviews.addToLikedDisliked(r);
+                break;
             }
         }
-        return false;
     }
 
     private void addTriedFoods(Restaurant restaurant, JSONObject jsonObject) {

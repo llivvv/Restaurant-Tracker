@@ -1,12 +1,7 @@
 {
     "likedRestaurants": [{
-        "wishList": [{
-            "foodRating": 0,
-            "isTried": false,
-            "price": 0,
-            "FoodName": "asdf"
-        }],
-        "restaurantName": "asdf",
+        "wishList": [],
+        "restaurantName": "lkj",
         "restaurantRating": 0,
         "isLiked": true,
         "reviewNumber": 1,
@@ -14,13 +9,8 @@
     }],
     "dislikedRestaurants": [],
     "allRestaurants": [{
-        "wishList": [{
-            "foodRating": 0,
-            "isTried": false,
-            "price": 0,
-            "FoodName": "asdf"
-        }],
-        "restaurantName": "asdf",
+        "wishList": [],
+        "restaurantName": "lkj",
         "restaurantRating": 0,
         "isLiked": true,
         "reviewNumber": 1,
