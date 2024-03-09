@@ -12,6 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 // References JsonSerializationDemo
+// references https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 class JsonWriterTest extends JsonTest {
 
     private Restaurant r1;

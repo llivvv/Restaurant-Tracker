@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.*;
 // Referenced JsonSerializationDemo
 // Represents a writer that writes JSON representation of Reviews to file
+// References https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 public class JsonWriter {
     private static final int TAB = 4;

@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 // References methods from the TellerApp
 // This class represents a personal Restaurant Tracker application
+// references https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 public class RestaurantTrackerApp {
     private static final String JSON_STORE = "./data/reviews.json";
     private Reviews reviews;
@@ -186,11 +188,6 @@ public class RestaurantTrackerApp {
             String command = input.next();
             if (command.equals("y")) {
                 makeNewReview();
-//            } else if (command.equals("n")) {
-//                homeScreen();
-//            } else {
-//                System.out.println("Invalid selection.");
-//                viewRestaurants();
             }
         }
     }
@@ -370,6 +367,8 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // MODIFIES: restaurant
+    // EFFECTS: processes command to edit or delete a wishlist item
     public void processWishFoodEditorDelete(String command, Food selected, Restaurant restaurant) {
         if (command.equals("t")) {
             restaurant.changeToTriedFoods(selected);
@@ -480,6 +479,7 @@ public class RestaurantTrackerApp {
         }
     }
 
+    // EFFECTS: saves entire state of application to JSON
     private void saveReviews() {
         try {
             jsonWriter.open();

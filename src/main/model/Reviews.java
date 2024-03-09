@@ -10,6 +10,8 @@ import java.util.List;
 
 // Represents 3 lists of restaurants: all restaurants, liked restaurants, disliked restaurants
 // References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
+// References https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 public class Reviews implements Writable {
 
     private List<Restaurant> allReviews;
@@ -51,17 +53,6 @@ public class Reviews implements Writable {
             return null;
         }
     }
-//
-//        if (allReviews.contains(restaurant) && likedReviews.contains(restaurant)) {
-//            likedReviews.remove(likedReviews.indexOf(restaurant));
-//            return allReviews.remove(allReviews.indexOf(restaurant));
-//        } else if (allReviews.contains(restaurant) && dislikedReviews.contains(restaurant)) {
-//            dislikedReviews.remove(dislikedReviews.indexOf(restaurant));
-//            return allReviews.remove(allReviews.indexOf(restaurant));
-//        } else {
-//            return null;
-//        }
-//    }
 
     // REQUIRES: rs is one of Review's fields
     // MODIFIES: this
@@ -153,6 +144,7 @@ public class Reviews implements Writable {
 
 
     // referenced JsonSerializationDemo.WorkRoom.toJson()
+    // EFFECTS: converts this class to a json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

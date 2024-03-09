@@ -5,6 +5,8 @@ import persistence.Writable;
 
 // Represents a food item with a status of tried or not tried, name, price, and rating
 // References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
+// References https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 public class Food implements Writable {
 
     private String name;
@@ -78,6 +80,7 @@ public class Food implements Writable {
     }
 
     // referenced JsonSerializationDemo.WorkRoom.toJson()
+    // EFFECTS: adds this to a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

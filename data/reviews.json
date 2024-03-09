@@ -1,19 +1,39 @@
 {
-    "likedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "lkj",
-        "restaurantRating": 0,
-        "isLiked": true,
-        "reviewNumber": 1,
-        "triedFoods": []
-    }],
+    "likedRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "asdf",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": []
+        },
+        {
+            "wishList": [],
+            "restaurantName": "ert",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 2,
+            "triedFoods": []
+        }
+    ],
     "dislikedRestaurants": [],
-    "allRestaurants": [{
-        "wishList": [],
-        "restaurantName": "lkj",
-        "restaurantRating": 0,
-        "isLiked": true,
-        "reviewNumber": 1,
-        "triedFoods": []
-    }]
+    "allRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "asdf",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": []
+        },
+        {
+            "wishList": [],
+            "restaurantName": "ert",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 2,
+            "triedFoods": []
+        }
+    ]
 }

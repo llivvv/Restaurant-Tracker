@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// references https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonTest {
     // numT represents number of tried foods
     // numW represents number of wishList items

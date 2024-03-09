@@ -14,6 +14,8 @@ import org.json.*;
 
 // Represents a reader that reads Reviews from JSON data stored in file
 // References JsonSerializationDemo's JsonReader class
+// References https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 public class JsonReader {
     private String source;
 
@@ -107,6 +109,7 @@ public class JsonReader {
         }
     }
 
+    // EFFECTS: adds tried foods to the given restaurant's list of tried foods
     private void addTriedFoods(Restaurant restaurant, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("triedFoods");
         for (Object json : jsonArray) {
@@ -115,6 +118,7 @@ public class JsonReader {
         }
     }
 
+    // EFFECTS: adds wish list foods to the given restaurant's list of wishlist items
     private void addWishListFoods(Restaurant restaurant, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("wishList");
         for (Object json : jsonArray) {
@@ -123,6 +127,7 @@ public class JsonReader {
         }
     }
 
+    // EFFECTS: parses food from json object and adds it to one of restaurant's food lists
     private void addFood(Restaurant restaurant, JSONObject jsonObject) {
         String name = jsonObject.getString("FoodName");
         double price = jsonObject.getDouble("price");
