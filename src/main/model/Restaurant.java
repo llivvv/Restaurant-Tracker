@@ -149,6 +149,13 @@ public class Restaurant implements Writable {
         return reviewNumber;
     }
 
+    @Override
+    // EFFECTS: returns restaurant's string
+    public String toString() {
+        return this.name + "   " + String.valueOf(this.rating);
+    }
+
+
     // referenced JsonSerializationDemo.WorkRoom.toJson()
     // EFFECTS: turns this to a JSONObject
     @Override

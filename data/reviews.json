@@ -1,39 +1,5 @@
 {
-    "likedRestaurants": [
-        {
-            "wishList": [],
-            "restaurantName": "asdf",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 1,
-            "triedFoods": []
-        },
-        {
-            "wishList": [],
-            "restaurantName": "ert",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 2,
-            "triedFoods": []
-        }
-    ],
+    "likedRestaurants": [],
     "dislikedRestaurants": [],
-    "allRestaurants": [
-        {
-            "wishList": [],
-            "restaurantName": "asdf",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 1,
-            "triedFoods": []
-        },
-        {
-            "wishList": [],
-            "restaurantName": "ert",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 2,
-            "triedFoods": []
-        }
-    ]
+    "allRestaurants": []
 }
