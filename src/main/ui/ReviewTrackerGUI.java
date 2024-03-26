@@ -4,12 +4,9 @@ import model.Restaurant;
 import model.Reviews;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.Panels.*;
+import ui.panels.*;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +19,7 @@ import java.util.Scanner;
 // References: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters (SmartHome)
 //             https://stackoverflow.com/questions/6084039/create-custom-operation-for-setdefaultcloseoperation
 //             https://youtu.be/OI-TFbHQhtA?si=_ZUwX9mAbhoBNQu0 (processing button clicks)
+//             https://stackoverflow.com/questions/13334198/java-custom-buttons-in-showinputdialog
 
 public class ReviewTrackerGUI extends JFrame implements ActionListener {
 
@@ -37,7 +35,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private DislikedList listDisliked;
     private ListPanel listPanel;
     private EditandViewPanel editAdd;
-    private TabPanel diffPages;
+    private TabPanel tabs;
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 500;
@@ -128,6 +126,10 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if ((e.getSource() == (homePage.getNewStartButton())) || (e.getSource() == (homePage.getLoadStartButton()))) {
             leaveHomePage(e);
+        } else if (e.getSource() == tabs.getBtnCreate()) {
+            makeNewReview();
+        } else if (e.getSource() == tabs.getBtnHome()) {
+            returnHomePage();
         }
     }
 
@@ -138,11 +140,76 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
             loadReviews();
         }
         homePage.setVisible(false);
+        customizeListPanel();
+        customizeTabPanel();
+//        listPanel = new ListPanel(this, reviews.getAllReviews());
+//        //add(listAll, BorderLayout.WEST);
+//        listPanel.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
+//        getContentPane().add(listPanel, BorderLayout.WEST);
+//        listPanel.setVisible(true);
+    }
+
+    // TODO
+    // MODIFIES: this
+    // EFFECTS: sets all panels to invisible except for homepage
+    public void returnHomePage() {
+        //
+    }
+
+    public void makeNewReview() {
+        String name = JOptionPane.showInputDialog("Please enter a unique review name: ");
+        if (reviews.findRestaurant(name) != null) {
+            fixDuplicateName(reviews.findRestaurant(name));
+        } else {
+            initRestaurant(name);
+        }
+    }
+
+    // EFFECTS: asks user about like vs dislike and creates a new review
+    public void initRestaurant(String name) {
+        Object[] options = { "Liked", "Disliked", "cancel review"};
+        int choice = JOptionPane.showOptionDialog(null, "Is " + name + " liked or disliked?",
+                "Liked or Disliked", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options,
+                options[2]);
+
+        if (choice != 2) {
+            if (choice == 0) {
+                Restaurant created = new Restaurant(name, true);
+                reviews.addRestaurant(created);
+            } else {
+                Restaurant created = new Restaurant(name, false);
+                reviews.addRestaurant(created);
+            }
+            // TODO
+        }
+    }
+
+    public void fixDuplicateName(Restaurant restaurant) {
+        Object[] options = { "Choose a different name", "Edit existing review", "cancel" };
+        int choice = JOptionPane.showOptionDialog(null, "A review with the same name already exists.",
+                "Duplicate name", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options,
+                options[2]);
+
+        if (choice == 0) {
+            makeNewReview();
+        } else if (choice == 1) {
+            /// TODO
+        }
+    }
+
+    public void customizeListPanel() {
         listPanel = new ListPanel(this, reviews.getAllReviews());
         //add(listAll, BorderLayout.WEST);
         listPanel.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
         getContentPane().add(listPanel, BorderLayout.WEST);
         listPanel.setVisible(true);
+    }
+
+    public void customizeTabPanel() {
+        tabs = new TabPanel(this);
+        tabs.setSize(new Dimension(75, HEIGHT));
+        getContentPane().add(tabs, BorderLayout.EAST);
+        tabs.setVisible(true);
     }
 
     // EFFECTS: displays the information of the selected restaurant
@@ -172,8 +239,9 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         return reviews;
     }
 
-    public void setEditInvisible() {
+    public void deleteRestaurant(Restaurant restaurant) {
         editAdd.setVisible(false);
+        customizeListPanel();
     }
 //    // EFFECTS: returns dimensions of this frame
 //    public Dimension getDimensions() {

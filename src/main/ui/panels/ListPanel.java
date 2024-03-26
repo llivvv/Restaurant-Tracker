@@ -1,4 +1,4 @@
-package ui.Panels;
+package ui.panels;
 
 import model.Restaurant;
 import ui.ReviewTrackerGUI;

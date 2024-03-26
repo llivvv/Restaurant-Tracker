@@ -1,4 +1,4 @@
-package ui.Panels;
+package ui.panels;
 
 import model.Food;
 import model.Restaurant;
@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static java.lang.String.valueOf;
+
+// References: https://youtu.be/dcdlqhMluC0?si=F1YXBkSInsHDDP4L
 
 public class EditandViewPanel extends JPanel implements ActionListener {
 
@@ -53,6 +55,10 @@ public class EditandViewPanel extends JPanel implements ActionListener {
 
     // TODO
     public void customizeEditable() {
+        JLabel restaurantName = new JLabel("Restaurant Name");
+        JTextField nameField = new JTextField();
+
+
         // stub
     }
 
@@ -82,7 +88,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             //viewOnly.add(deleteButton);
             //viewOnly.setLayout(new GridLayout(3, 1, 5, 40));
             //viewOnly.setSize(new Dimension((int)0.4 * app.getWidth(), (int) 0.9 * app.getHeight()));
-            viewOnly.setBackground(new Color(200, 100, 157));
+            viewOnly.setBackground(new Color(179, 215, 250));
 
 //            viewOnly.add(nameRating);
 //            nameRating.setVisible(true);
@@ -98,14 +104,14 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     public void displayNameNRating(JPanel nameRating) {
         JLabel resName = new JLabel(restaurant.getRestaurantName());
         resName.setFont(new Font("Impact", Font.BOLD, 30));
-        JLabel resRating = new JLabel(valueOf(restaurant.getRating()) + " stars");
+        JLabel resRating = new JLabel("~" + valueOf(restaurant.getRating()) + " stars");
         resName.setFont(new Font("Impact", Font.ITALIC, 20));
-        nameRating.setPreferredSize(new Dimension(300, 60));
+        nameRating.setPreferredSize(new Dimension(400, 60));
         nameRating.add(resName);
         nameRating.add(resRating);
         nameRating.setLayout(new GridLayout(1, 2, 10, 10));
         nameRating.setOpaque(false);
-        nameRating.setSize(new Dimension((int)0.4 * app.getWidth(), 35));
+        //nameRating.setSize(new Dimension((int)0.4 * app.getWidth(), 35));
     }
 
     public void displayTriedFoods(JPanel allTried) {
@@ -136,7 +142,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         }
         allTried.setLayout(new GridLayout(0, 1, 30, 0));
         allTried.setOpaque(false);
-        allTried.setBackground(new Color(139, 87, 159));
+        allTried.setBackground(new Color(151, 245, 253));
     }
 
     // TODO
@@ -170,7 +176,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         wish.add(foodNames);
         //wish.setOpaque(false);
         wish.setLayout(new GridLayout(0, 1, 0, 0));
-        wish.setBackground(new Color(241, 109, 17));
+        wish.setBackground(new Color(164, 236, 245));
         System.out.println("bruh");
     }
 
@@ -202,8 +208,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             customizeEditable();
             editView();
         } else {
-            app.getReviews().removeRestaurant(restaurant);
-            app.setEditInvisible();
+            app.deleteRestaurant(restaurant);
+            viewOnly.setVisible(false);
         }
     }
 }
