@@ -1,5 +1,46 @@
 {
-    "likedRestaurants": [],
-    "dislikedRestaurants": [],
-    "allRestaurants": []
+    "likedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "cafe",
+        "restaurantRating": 0,
+        "isLiked": true,
+        "reviewNumber": 1,
+        "triedFoods": []
+    }],
+    "dislikedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "abc",
+        "restaurantRating": 1,
+        "isLiked": false,
+        "reviewNumber": 3,
+        "triedFoods": [{
+            "foodRating": 1,
+            "isTried": true,
+            "price": 19,
+            "FoodName": "bitterMelon"
+        }]
+    }],
+    "allRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "cafe",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": []
+        },
+        {
+            "wishList": [],
+            "restaurantName": "abc",
+            "restaurantRating": 1,
+            "isLiked": false,
+            "reviewNumber": 3,
+            "triedFoods": [{
+                "foodRating": 1,
+                "isTried": true,
+                "price": 19,
+                "FoodName": "bitterMelon"
+            }]
+        }
+    ]
 }

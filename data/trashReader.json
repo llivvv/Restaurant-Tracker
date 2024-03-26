@@ -1,0 +1,120 @@
+{
+  "allRestaurants": [
+    {
+      "restaurantName": "cafe",
+      "isLiked": true,
+      "triedFoods": [
+      ],
+      "wishList": [
+      ],
+      "restaurantRating": 0,
+      "reviewNumber": 1
+    },
+    {
+      "restaurantName": "ChaTime",
+      "isLiked": true,
+      "triedFoods": [
+        {
+          "FoodName": "Peach QQ",
+          "price": 6.5,
+          "isTried": true,
+          "foodRating": 5
+        },
+        {
+          "FoodName": "Milk Tea",
+          "price": 1,
+          "isTried": true,
+          "foodRating": 4.5
+        }
+      ],
+      "wishList": [
+        {
+          "FoodName": "Fruit Tea",
+          "price": 0,
+          "isTried": false,
+          "foodRating": 0.0
+        },
+        {
+          "FoodName": "GUI",
+          "price": 0,
+          "isTried": false,
+          "foodRating": 0.0
+        }
+      ],
+      "restaurantRating": 5,
+      "reviewNumber": 2
+    },
+    {
+      "restaurantName": "abc",
+      "isLiked": false,
+      "triedFoods": [
+        {
+          "FoodName": "bitterMelon",
+          "price": 19,
+          "isTried": true,
+          "foodRating": 1
+        }
+      ],
+      "wishList": [],
+      "restaurantRating": 1,
+      "reviewNumber": 3
+    }
+  ],
+  "likedRestaurants": [
+    {
+      "restaurantName": "cafe",
+      "isLiked": true,
+      "triedFoods": [
+      ],
+      "wishList": [
+      ],
+      "restaurantRating": 0,
+      "reviewNumber": 1
+    },
+    {
+      "restaurantName": "ChaTime",
+      "isLiked": true,
+      "triedFoods": [
+        {
+          "FoodName": "Peach QQ",
+          "price": 6.5,
+          "isTried": true,
+          "foodRating": 5
+        },
+        {
+          "FoodName": "Milk Tea",
+          "price": 1,
+          "isTried": true,
+          "foodRating": 4.5
+        }
+      ],
+      "wishList": [
+        {
+          "FoodName": "Fruit Tea",
+          "price": 0,
+          "isTried": false,
+          "foodRating": 0.0
+        }
+      ],
+      "restaurantRating": 5,
+      "reviewNumber": 2
+    }
+  ],
+  "dislikedRestaurants": [
+    {
+      "restaurantName": "abc",
+      "isLiked": false,
+      "triedFoods": [
+        {
+          "FoodName": "bitterMelon",
+          "price": 19,
+          "isTried": true,
+          "foodRating": 1
+        }
+      ],
+      "wishList": [],
+      "restaurantRating": 1,
+      "reviewNumber": 3
+    }
+  ]
+}

@@ -152,7 +152,7 @@ public class Restaurant implements Writable {
     @Override
     // EFFECTS: returns restaurant's string
     public String toString() {
-        return this.name + "   " + String.valueOf(this.rating);
+        return this.name;
     }
 
 

@@ -1,6 +1,7 @@
 package ui.Panels;
 
 import model.Restaurant;
+import ui.ReviewTrackerGUI;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,15 +13,17 @@ import java.util.List;
 
 public class ListPanel extends JPanel implements ListSelectionListener {
 
-    private JList listDisplay;
+    private JList<Restaurant> listDisplay;
     private DefaultListModel listModel;
+    private ReviewTrackerGUI app;
 
     // MODIFIES: this
     // EFFECTS: constructs and customizes JList
-    public ListPanel(List<Restaurant> reviews) {
-
+    public ListPanel(ReviewTrackerGUI app, List<Restaurant> reviews) {
+        this.app = app;
         listModel = new DefaultListModel();
         for (Restaurant r : reviews) {
+            System.out.println(r);
             listModel.addElement(r);
         }
 
@@ -59,6 +62,11 @@ public class ListPanel extends JPanel implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        //
+        if (listDisplay.getSelectedIndex() != -1) {
+            app.displayResInfo(listDisplay.getSelectedValue());
+        }
+//        Restaurant selected = listDisplay.getSelectedValue();
+//        System.out.println(selected);
+//        Restaurant selected = (Restaurant) listDisplay.getSelectedValue();
     }
 }

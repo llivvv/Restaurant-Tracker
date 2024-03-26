@@ -1,11 +1,15 @@
 package ui;
 
+import model.Restaurant;
 import model.Reviews;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.Panels.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +26,7 @@ import java.util.Scanner;
 public class ReviewTrackerGUI extends JFrame implements ActionListener {
 
     private static final String JSON_STORE = "./data/reviews.json";
-    private static final String JSON_DUMMY = "./data/testReaderGeneralReviews.json";
+    private static final String JSON_DUMMY = "./data/trashReader.json";
     private Reviews reviews;
     private Scanner input;
     private JsonReader jsonReader;
@@ -32,7 +36,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private LikedList listLiked;
     private DislikedList listDisliked;
     private ListPanel listPanel;
-    private EditAddPanel editAdd;
+    private EditandViewPanel editAdd;
     private TabPanel diffPages;
 
     private static final int WIDTH = 800;
@@ -43,6 +47,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     public ReviewTrackerGUI() throws FileNotFoundException {
         super("Review Tracker");
         setSize(WIDTH, HEIGHT);
+        setResizable(false);
         getContentPane().setBackground(new Color(205, 233, 243));
 
         reviews = new Reviews();
@@ -60,7 +65,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         });
 
         loadPanels();
-
         setVisible(true);
     }
 
@@ -69,6 +73,9 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         homePage = new HomePanel(this);
         homePage.setVisible(true);
         getContentPane().add(homePage, BorderLayout.CENTER);
+        //editAdd = new EditandViewPanel(null);
+        //getContentPane().add(editAdd);
+        //editAdd.setVisible(false);
 //        listPanel = new ListPanel(reviews.getAllReviews());
 //        //add(listAll, BorderLayout.WEST);
 //        listPanel.setPreferredSize(new Dimension((int) (0.5 * WIDTH), HEIGHT));
@@ -131,15 +138,57 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
             loadReviews();
         }
         homePage.setVisible(false);
-        listPanel = new ListPanel(reviews.getAllReviews());
+        listPanel = new ListPanel(this, reviews.getAllReviews());
         //add(listAll, BorderLayout.WEST);
-        listPanel.setPreferredSize(new Dimension((int) (0.5 * WIDTH), HEIGHT));
+        listPanel.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
         getContentPane().add(listPanel, BorderLayout.WEST);
         listPanel.setVisible(true);
     }
 
-    // EFFECTS: returns dimensions of this frame
-    public Dimension getDimensions() {
-        return new Dimension(WIDTH, HEIGHT);
+    // EFFECTS: displays the information of the selected restaurant
+    public void displayResInfo(Restaurant restaurant) {
+        if (editAdd != null) {
+            if (editAdd.isVisible()) {
+                editAdd.setVisible(false);
+            }
+        }
+        editAdd = new EditandViewPanel(this, restaurant);
+        editAdd.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
+        getContentPane().add(editAdd, BorderLayout.EAST);
+        //setLayout(new GridLayout(1, 2));
+        editAdd.setVisible(true);
+        System.out.println("why isn't the panel visible");
     }
+
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    public int getHeight() {
+        return HEIGHT;
+    }
+
+    public Reviews getReviews() {
+        return reviews;
+    }
+
+    public void setEditInvisible() {
+        editAdd.setVisible(false);
+    }
+//    // EFFECTS: returns dimensions of this frame
+//    public Dimension getDimensions() {
+//        return new Dimension(WIDTH, HEIGHT);
+//    }
+
+    //    // EFFECTS: processes the selection of a list element
+//    @Override
+//    public void valueChanged(ListSelectionEvent e) {
+//        if (listPanel.selectedRestaurant() != null) {
+//            Restaurant selected = listPanel.selectedRestaurant();
+//            editAdd = new EditandViewPanel(listPanel.selectedRestaurant());
+//            editAdd.setPreferredSize(new Dimension((int) (0.5 * WIDTH), HEIGHT));
+//            getContentPane().add(editAdd, BorderLayout.EAST);
+//            editAdd.setVisible(true);
+//        }
+//    }
 }
