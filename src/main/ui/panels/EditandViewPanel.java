@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import static java.lang.String.valueOf;
 
 // References: https://youtu.be/dcdlqhMluC0?si=F1YXBkSInsHDDP4L
+//             https://youtu.be/AD0GQxYOI_Y?si=V8ZBU5P7FzDFLCi1
 
 public class EditandViewPanel extends JPanel implements ActionListener {
 
@@ -62,6 +63,9 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         editable.setBackground(new Color(80, 107, 134));
         JLabel triedFoodLabel = new JLabel("Tried/Reviewed Foods: ");
         System.out.println("is this method being called");
+        editable.add(triedFoodLabel);
+        FoodTable triedFoodTable = new FoodTable(restaurant.getTriedFoods());
+        editable.add(triedFoodTable);
         // stub
     }
 
@@ -139,7 +143,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         resName.setFont(new Font("Impact", Font.BOLD, 30));
         JLabel resRating = new JLabel("~" + valueOf(restaurant.getRating()) + " stars");
         resName.setFont(new Font("Impact", Font.ITALIC, 20));
-        nameRating.setPreferredSize(new Dimension(400, 60));
+        nameRating.setPreferredSize(new Dimension(300, 60));
         nameRating.add(resName);
         nameRating.add(resRating);
         nameRating.setLayout(new GridLayout(1, 2, 10, 10));
@@ -186,7 +190,9 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         JLabel wishTitle = new JLabel("WishList: ");
         wishTitle.setFont(new Font("Impact", Font.PLAIN, 20));
         JLabel name1 = new JLabel("Name");
+        name1.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 13));
         JLabel name2 = new JLabel("Name");
+        name2.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 13));
         JPanel wishFieldTitle = new JPanel();
         wishFieldTitle.add(name1);
         wishFieldTitle.add(name2);

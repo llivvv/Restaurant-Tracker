@@ -31,8 +31,8 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private JsonWriter jsonWriter;
 
     private HomePanel homePage;
-    private LikedList listLiked;
-    private DislikedList listDisliked;
+    //private LikedList listLiked;
+    //private DislikedList listDisliked;
     private ListPanel listPanel;
     private EditandViewPanel editAdd;
     private TabPanel tabs;

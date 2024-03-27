@@ -43,29 +43,19 @@
             ]
         }
     ],
-    "dislikedRestaurants": [
-        {
-            "wishList": [],
-            "restaurantName": "abc",
-            "restaurantRating": 1,
-            "isLiked": false,
-            "reviewNumber": 3,
-            "triedFoods": [{
-                "foodRating": 1,
-                "isTried": true,
-                "price": 19,
-                "FoodName": "bitterMelon"
-            }]
-        },
-        {
-            "wishList": [],
-            "restaurantName": "hi",
-            "restaurantRating": 0,
-            "isLiked": false,
-            "reviewNumber": 4,
-            "triedFoods": []
-        }
-    ],
+    "dislikedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "abc",
+        "restaurantRating": 1,
+        "isLiked": false,
+        "reviewNumber": 3,
+        "triedFoods": [{
+            "foodRating": 1,
+            "isTried": true,
+            "price": 19,
+            "FoodName": "bitterMelon"
+        }]
+    }],
     "allRestaurants": [
         {
             "wishList": [],
@@ -121,14 +111,6 @@
                 "price": 19,
                 "FoodName": "bitterMelon"
             }]
-        },
-        {
-            "wishList": [],
-            "restaurantName": "hi",
-            "restaurantRating": 0,
-            "isLiked": false,
-            "reviewNumber": 4,
-            "triedFoods": []
         }
     ]
 }
