@@ -10,7 +10,7 @@ import persistence.Writable;
 // Represents a restaurant with a name, liked/disliked, tried foods, foods to try (wishlist),
 // rating, and a review number
 // References JsonSerializationDemo (WorkRoom.toJson(), WorkRoom.thingiesToJson())
-// references https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+// References https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 public class Restaurant implements Writable {
 

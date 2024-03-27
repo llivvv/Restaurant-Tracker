@@ -10,6 +10,7 @@ import java.awt.*;
 import java.util.List;
 
 // References: https://youtu.be/c41tND6HJeY?si=TogCOtPYSgk6oMYh
+//             https://youtu.be/w7xiY0fc6cs?si=Z2hfMyfmPku6z17f
 
 public class ListPanel extends JPanel implements ListSelectionListener {
 
@@ -59,6 +60,20 @@ public class ListPanel extends JPanel implements ListSelectionListener {
     public Restaurant selectedRestaurant() {
         return (Restaurant) listDisplay.getSelectedValue();
     }
+
+    public void deleteFromJList() {
+        int index = listDisplay.getSelectedIndex();
+        listModel.removeElementAt(index);
+    }
+
+    public void addToJList(Restaurant restaurant) {
+        listModel.addElement(restaurant);
+    }
+
+//    public void updateListDisplay(List<Restaurant> reviews) {
+//        updateListModel(reviews);
+//        listDisplay.ensureIndexIsVisible(listModel.getSize());
+//    }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {

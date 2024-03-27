@@ -1,25 +1,71 @@
 {
-    "likedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "cafe",
-        "restaurantRating": 0,
-        "isLiked": true,
-        "reviewNumber": 1,
-        "triedFoods": []
-    }],
-    "dislikedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "abc",
-        "restaurantRating": 1,
-        "isLiked": false,
-        "reviewNumber": 3,
-        "triedFoods": [{
-            "foodRating": 1,
-            "isTried": true,
-            "price": 19,
-            "FoodName": "bitterMelon"
-        }]
-    }],
+    "likedRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "cafe",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": []
+        },
+        {
+            "wishList": [
+                {
+                    "foodRating": 0,
+                    "isTried": false,
+                    "price": 0,
+                    "FoodName": "Fruit Tea"
+                },
+                {
+                    "foodRating": 0,
+                    "isTried": false,
+                    "price": 0,
+                    "FoodName": "GUI"
+                }
+            ],
+            "restaurantName": "ChaTime",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 2,
+            "triedFoods": [
+                {
+                    "foodRating": 5,
+                    "isTried": true,
+                    "price": 6.5,
+                    "FoodName": "Peach QQ"
+                },
+                {
+                    "foodRating": 4.5,
+                    "isTried": true,
+                    "price": 1,
+                    "FoodName": "Milk Tea"
+                }
+            ]
+        }
+    ],
+    "dislikedRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "abc",
+            "restaurantRating": 1,
+            "isLiked": false,
+            "reviewNumber": 3,
+            "triedFoods": [{
+                "foodRating": 1,
+                "isTried": true,
+                "price": 19,
+                "FoodName": "bitterMelon"
+            }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "hi",
+            "restaurantRating": 0,
+            "isLiked": false,
+            "reviewNumber": 4,
+            "triedFoods": []
+        }
+    ],
     "allRestaurants": [
         {
             "wishList": [],
@@ -28,6 +74,40 @@
             "isLiked": true,
             "reviewNumber": 1,
             "triedFoods": []
+        },
+        {
+            "wishList": [
+                {
+                    "foodRating": 0,
+                    "isTried": false,
+                    "price": 0,
+                    "FoodName": "Fruit Tea"
+                },
+                {
+                    "foodRating": 0,
+                    "isTried": false,
+                    "price": 0,
+                    "FoodName": "GUI"
+                }
+            ],
+            "restaurantName": "ChaTime",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 2,
+            "triedFoods": [
+                {
+                    "foodRating": 5,
+                    "isTried": true,
+                    "price": 6.5,
+                    "FoodName": "Peach QQ"
+                },
+                {
+                    "foodRating": 4.5,
+                    "isTried": true,
+                    "price": 1,
+                    "FoodName": "Milk Tea"
+                }
+            ]
         },
         {
             "wishList": [],
@@ -41,6 +121,14 @@
                 "price": 19,
                 "FoodName": "bitterMelon"
             }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "hi",
+            "restaurantRating": 0,
+            "isLiked": false,
+            "reviewNumber": 4,
+            "triedFoods": []
         }
     ]
 }

@@ -173,13 +173,14 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
                 options[2]);
 
         if (choice != 2) {
+            Restaurant created;
             if (choice == 0) {
-                Restaurant created = new Restaurant(name, true);
-                reviews.addRestaurant(created);
+                created = new Restaurant(name, true);
             } else {
-                Restaurant created = new Restaurant(name, false);
-                reviews.addRestaurant(created);
+                created = new Restaurant(name, false);
             }
+            reviews.addRestaurant(created);
+            listPanel.addToJList(created);
             // TODO
         }
     }
@@ -221,7 +222,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         }
         editAdd = new EditandViewPanel(this, restaurant);
         editAdd.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
-        getContentPane().add(editAdd, BorderLayout.EAST);
+        getContentPane().add(editAdd, BorderLayout.CENTER);
         //setLayout(new GridLayout(1, 2));
         editAdd.setVisible(true);
         System.out.println("why isn't the panel visible");
@@ -240,8 +241,9 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     }
 
     public void deleteRestaurant(Restaurant restaurant) {
+        reviews.removeRestaurant(restaurant);
         editAdd.setVisible(false);
-        customizeListPanel();
+        listPanel.deleteFromJList();
     }
 //    // EFFECTS: returns dimensions of this frame
 //    public Dimension getDimensions() {

@@ -47,7 +47,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     }
 
     public void setRestaurant() {
-        customizeEditable();
+        //customizeEditable();
         customizeViewOnly();
 
         System.out.println("displaying: " + restaurant.getRestaurantName());
@@ -55,11 +55,44 @@ public class EditandViewPanel extends JPanel implements ActionListener {
 
     // TODO
     public void customizeEditable() {
-        JLabel restaurantName = new JLabel("Restaurant Name");
-        JTextField nameField = new JTextField();
-
-
+        editable.setLayout(new BoxLayout(editable, BoxLayout.Y_AXIS));
+        JPanel nameLabelText = new JPanel();
+        displayEditName(nameLabelText);
+        editable.add(nameLabelText);
+        editable.setBackground(new Color(80, 107, 134));
+        JLabel triedFoodLabel = new JLabel("Tried/Reviewed Foods: ");
+        System.out.println("is this method being called");
         // stub
+    }
+
+
+    // EFFECTS: displays label and text field for editing restaurant name
+    public void displayEditName(JPanel nameLabelText) {
+        JLabel restaurantName = new JLabel("Restaurant Name");
+        JTextField nameField = new JTextField(15);
+        nameField.setText(restaurant.getRestaurantName());
+        nameField.setAlignmentX(CENTER_ALIGNMENT);
+        nameField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //restaurant.setRestaurantName(nameField.getText());
+                nameField.setText(nameField.getText());
+                setNewRestaurantName(nameField.getText());
+            }
+        });
+        JLabel restaurantRating = new JLabel("~" + restaurant.getRating() + " stars");
+        nameLabelText.add(restaurantName);
+        nameLabelText.add(nameField);
+        nameLabelText.add(restaurantRating);
+    }
+
+    public void setNewRestaurantName(String name) {
+        System.out.println(" this works ");
+        if (!app.getReviews().checkandSetNewRname(name, restaurant)) {
+            JOptionPane.showMessageDialog(null,
+                    ("A review exists with the same name." + " Please choose a new name"));
+            System.out.println("bad name");
+        }
     }
 
     // MODIFIES: this
@@ -207,7 +240,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         if (e.getSource() == editButton) {
             customizeEditable();
             editView();
-        } else {
+        } else if (e.getSource() == deleteButton) {
             app.deleteRestaurant(restaurant);
             viewOnly.setVisible(false);
         }
