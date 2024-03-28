@@ -66,6 +66,15 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         listModel.removeElementAt(index);
     }
 
+    public void changeReview(List<Restaurant> reviews) {
+        listModel = new DefaultListModel();
+        for (Restaurant r : reviews) {
+            System.out.println(r);
+            listModel.addElement(r);
+        }
+        listDisplay.setModel(listModel);
+    }
+
     public void addToJList(Restaurant restaurant) {
         listModel.addElement(restaurant);
     }

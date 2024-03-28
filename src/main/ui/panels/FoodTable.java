@@ -100,24 +100,24 @@ public class FoodTable extends JPanel {
         editTriedFields.add(foodPrice);
         editTriedFields.add(foodRating);
         editTriedFields.add(btnDone);
-//        foodName.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                foodName.setText(foodName.getText());
-//            }
-//        });
-//        foodPrice.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                foodPrice.setText(foodPrice.getText());
-//            }
-//        });
-//        foodRating.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                foodRating.setText(foodRating.getText());
-//            }
-//        });
+        foodName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                foodName.setText(foodName.getText());
+            }
+        });
+        foodPrice.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                foodPrice.setText(foodPrice.getText());
+            }
+        });
+        foodRating.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                foodRating.setText(foodRating.getText());
+            }
+        });
 
         btnDone.addActionListener(new ActionListener() {
             @Override

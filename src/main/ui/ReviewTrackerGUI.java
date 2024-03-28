@@ -36,6 +36,8 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private ListPanel listPanel;
     private EditandViewPanel editAdd;
     private TabPanel tabs;
+    private JLabel bgImage;
+    private SortFilterPanel sfPanel;
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 500;
@@ -68,8 +70,13 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
 
     // EFFECTS:
     public void loadPanels() {
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/home.png"));
+        bgImage = new JLabel(imageIcon);
+        bgImage.setVisible(true);
+        bgImage.setSize(WIDTH, HEIGHT);
         homePage = new HomePanel(this);
         homePage.setVisible(true);
+        getContentPane().add(bgImage);
         getContentPane().add(homePage, BorderLayout.CENTER);
         //editAdd = new EditandViewPanel(null);
         //getContentPane().add(editAdd);
@@ -114,9 +121,9 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private void loadReviews() {
         try {
             reviews = jsonReader.read();
-            System.out.println("Loaded reviews from " + JSON_DUMMY);
+            System.out.println("Loaded reviews from " + JSON_STORE);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_DUMMY);
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
@@ -139,9 +146,11 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         if (e.getSource() == homePage.getLoadStartButton()) {
             loadReviews();
         }
+        bgImage.setVisible(false);
         homePage.setVisible(false);
         repaint();
         customizeListPanel();
+        customizeSortPanel(this, listPanel);
         customizeTabPanel();
 //        listPanel = new ListPanel(this, reviews.getAllReviews());
 //        //add(listAll, BorderLayout.WEST);
@@ -199,10 +208,17 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         }
     }
 
+    public void customizeSortPanel(ReviewTrackerGUI app, ListPanel listPanel) {
+        sfPanel = new SortFilterPanel(this, listPanel);
+        sfPanel.setSize(new Dimension(400, 75));
+        getContentPane().add(sfPanel, BorderLayout.NORTH);
+        sfPanel.setVisible(true);
+    }
+
     public void customizeListPanel() {
         listPanel = new ListPanel(this, reviews.getAllReviews());
         //add(listAll, BorderLayout.WEST);
-        listPanel.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
+        listPanel.setSize(new Dimension(400, HEIGHT - 75)); // 0.5 * WIDTH
         getContentPane().add(listPanel, BorderLayout.WEST);
         listPanel.setVisible(true);
     }

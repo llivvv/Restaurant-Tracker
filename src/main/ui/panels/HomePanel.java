@@ -14,7 +14,8 @@ public class HomePanel extends JPanel {
     private ReviewTrackerGUI app;
 
     public HomePanel(ReviewTrackerGUI app) {
-        setLayout(new GridLayout(2, 1, 0, 10));
+        //setLayout(new GridLayout(2, 1, 0, 10));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.app = app;
         welcomeText = new JLabel("Welcome!");
         //ImageIcon img = new ImageIcon("home.png");
@@ -28,7 +29,8 @@ public class HomePanel extends JPanel {
 
 
 
-        setBackground(new Color(240, 232, 250));
+        setOpaque(false);
+        //setBackground(new Color(240, 232, 250));
     }
 
     public void customizeImage() {
@@ -39,17 +41,18 @@ public class HomePanel extends JPanel {
     public void customizeWelcome() {
         welcomeText.setFont(new Font("Impact", Font.BOLD, 30));
         welcomeText.setForeground(new Color(41, 24, 66));
+        welcomeText.setPreferredSize(new Dimension(300, 60));
         add(welcomeText);
     }
 
     public void customizeButtons() {
         newStart.setFont(new Font("Arial", Font.ITALIC, 20));
-        newStart.setBackground(new Color(164, 236, 245));
+        newStart.setBackground(new Color(164, 236, 245, 255));
         newStart.setPreferredSize(new Dimension(300, 60));
         newStart.addActionListener(app);
         add(newStart);
         loadStart.setFont(new Font("Arial", Font.ITALIC, 20));
-        loadStart.setBackground(new Color(164, 236, 245));
+        loadStart.setBackground(new Color(164, 236, 245, 255));
         loadStart.setPreferredSize(new Dimension(300, 60));
         loadStart.addActionListener(app);
         add(loadStart);
