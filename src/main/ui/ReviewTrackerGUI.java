@@ -54,7 +54,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
         jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        jsonReader = new JsonReader(JSON_DUMMY);
 
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {

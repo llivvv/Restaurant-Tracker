@@ -26,9 +26,10 @@ public class FoodTable extends JPanel {
 
     public FoodTable(List<Food> foodList, JPanel parent) {
         this.parent = parent;
-        AbstractTableModel foodModel = new TriedModel(foodList);
+        foodModel = new TriedModel(foodList);
         foodTable = new JTable();
         foodTable.setModel(foodModel);
+        foodModel.addTableModelListener(foodTable);
         //scroller = new JScrollPane();
         //scroller.setViewportView(foodTable);
         //add(scroller);
@@ -89,6 +90,8 @@ public class FoodTable extends JPanel {
 //            add(headings);
 //        }
 
+
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void addEditFields(List<Food> foodList) {
         JPanel editTriedFields = new JPanel();
         editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
@@ -96,6 +99,7 @@ public class FoodTable extends JPanel {
         JTextField foodPrice = new JTextField(3);
         JTextField foodRating = new JTextField(3);
         JButton btnDone = new JButton("Done");
+        JButton btnAdd = new JButton("Add Food");
         editTriedFields.add(foodName);
         editTriedFields.add(foodPrice);
         editTriedFields.add(foodRating);
@@ -124,15 +128,23 @@ public class FoodTable extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (foodTable.getSelectedRow() != -1) {
                     int i = foodTable.getSelectedRow();
+                    //foodModel.isCellEditable(i, 0);
                     foodModel.setValueAt(foodName.getText(), i, 0);
                     foodModel.setValueAt(foodPrice.getText(), i, 1);
                     foodModel.setValueAt(foodRating.getText(), i, 2);
                     foodList.get(i).setName(foodName.getText());
                     foodList.get(i).setPrice(Double.parseDouble(foodPrice.getText()));
-                    foodList.get(i).setRating(Double.parseDouble(foodPrice.getText()));
+                    foodList.get(i).setRating(Double.parseDouble(foodRating.getText()));
+                    foodName.setText(" ");
+                    foodPrice.setText(" ");
+                    foodRating.setText(" ");
+                    foodModel.fireTableCellUpdated(i, 0);
+                    foodModel.fireTableCellUpdated(i, 1);
+                    foodModel.fireTableCellUpdated(i, 2);
                 }
             }
         });
+
         add(editTriedFields);
         foodTable.addMouseListener(new MouseAdapter() {
             @Override
@@ -144,8 +156,5 @@ public class FoodTable extends JPanel {
             }
         });
     }
-
-
-
 
 }

@@ -26,6 +26,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     private JTextField foodName;
     private JTextField foodPrice;
     private JTextField foodRating;
+    private FoodTable triedFoodTable;
+    private JButton btnAdd;
 
     public EditandViewPanel(ReviewTrackerGUI app, Restaurant restaurant) {
 
@@ -67,7 +69,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         JLabel triedFoodLabel = new JLabel("Tried/Reviewed Foods: ");
         System.out.println("is this method being called");
         editable.add(triedFoodLabel);
-        FoodTable triedFoodTable = new FoodTable(restaurant.getTriedFoods(), this);
+        triedFoodTable = new FoodTable(restaurant.getTriedFoods(), this);
         editable.add(triedFoodTable);
         JPanel editTriedFields = new JPanel();
         editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
@@ -181,6 +183,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         //nameRating.setSize(new Dimension((int)0.4 * app.getWidth(), 35));
     }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void displayTriedFoods(JPanel allTried) {
         JLabel triedFoodTitle = new JLabel("ReviewedFoods: ");
         triedFoodTitle.setFont(new Font("Impact", Font.PLAIN, 20));
@@ -213,6 +216,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     }
 
     // TODO
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void displayWishList(JPanel wish) {
         JLabel empty = new JLabel(" ");
         empty.setOpaque(false);
@@ -274,6 +278,9 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == editButton) {
+            // nvm just dialog box ? easier
+            // YES NO CANCEL option
+            // 1. edit name 2. edit triedfoods 3. edit reviewed foods
             customizeEditable();
             editView();
         } else if (e.getSource() == deleteButton) {
