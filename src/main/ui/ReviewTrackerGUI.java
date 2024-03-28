@@ -140,6 +140,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
             loadReviews();
         }
         homePage.setVisible(false);
+        repaint();
         customizeListPanel();
         customizeTabPanel();
 //        listPanel = new ListPanel(this, reviews.getAllReviews());

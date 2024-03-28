@@ -23,6 +23,9 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     private JButton doneButton;
     private ReviewTrackerGUI app;
     private Restaurant restaurant;
+    private JTextField foodName;
+    private JTextField foodPrice;
+    private JTextField foodRating;
 
     public EditandViewPanel(ReviewTrackerGUI app, Restaurant restaurant) {
 
@@ -64,10 +67,37 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         JLabel triedFoodLabel = new JLabel("Tried/Reviewed Foods: ");
         System.out.println("is this method being called");
         editable.add(triedFoodLabel);
-        FoodTable triedFoodTable = new FoodTable(restaurant.getTriedFoods());
+        FoodTable triedFoodTable = new FoodTable(restaurant.getTriedFoods(), this);
         editable.add(triedFoodTable);
+        JPanel editTriedFields = new JPanel();
+        editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
+        addTriedField(editTriedFields);
+        editable.add(editTriedFields);
         // stub
     }
+
+    // EFFECTS: creates a panel with text fields for a tried food's name, price and rating
+    public void addTriedField(JPanel etf) {
+        JTextField foodName = new JTextField(8);
+        JTextField foodPrice = new JTextField(3);
+        JTextField foodRating = new JTextField(3);
+        etf.add(foodName);
+        etf.add(foodPrice);
+        etf.add(foodRating);
+    }
+
+    public void setFoodNameField(int i) {
+        foodName.setText(restaurant.getTriedFoods().get(i).getName());
+    }
+
+    public void setFoodPriceField(int i) {
+        foodPrice.setText(valueOf(restaurant.getTriedFoods().get(i).getPrice()));
+    }
+
+    public void setFoodRatingField(int i) {
+        foodRating.setText(valueOf(restaurant.getTriedFoods().get(i).getRating()));
+    }
+
 
 
     // EFFECTS: displays label and text field for editing restaurant name
