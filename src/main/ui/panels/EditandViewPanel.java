@@ -14,6 +14,7 @@ import static java.lang.String.valueOf;
 // References: https://youtu.be/dcdlqhMluC0?si=F1YXBkSInsHDDP4L
 //             https://youtu.be/AD0GQxYOI_Y?si=V8ZBU5P7FzDFLCi1
 
+// Represents the panel in centre allowing user to see info about restaurant or edit the review
 public class EditandViewPanel extends JPanel implements ActionListener {
 
     private JPanel editable;
@@ -23,15 +24,14 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     private JButton doneButton;
     private ReviewTrackerGUI app;
     private Restaurant restaurant;
-    private JTextField foodName;
-    private JTextField foodPrice;
-    private JTextField foodRating;
     private FoodTable triedFoodTable;
     private JButton btnAdd;
     private JTextField wishEdit;
     private JButton btnWishMove;
     private JButton btnWishAdd;
 
+    // MODIFIES: this
+    // EFFECTS: constructs the panel with buttons, a viewOnly and editable panel
     public EditandViewPanel(ReviewTrackerGUI app, Restaurant restaurant) {
 
         this.restaurant = restaurant;
@@ -53,17 +53,17 @@ public class EditandViewPanel extends JPanel implements ActionListener {
 
         //setOpaque(true);
         setBackground(new Color(252, 240, 176));
-        System.out.println("yo ");
     }
 
+    // MODIFIES: this
+    // EFFECTS: opens the viewOnly view of the restaurant when the restaurant is first selected
     public void setRestaurant() {
         //customizeEditable();
         customizeViewOnly();
-
-        System.out.println("displaying: " + restaurant.getRestaurantName());
     }
 
-    // TODO
+    // MODIFIES: this
+    // EFFECTS: adds components to the editable view of the restaurant
     public void customizeEditable() {
         //editable = new JPanel();
         editable.setLayout(new BoxLayout(editable, BoxLayout.PAGE_AXIS));
@@ -93,6 +93,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         // stub
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays text field and buttons to add or move (to tried) a wishlist food item
     public void editWishItem(JPanel editWish) {
         wishEdit = new JTextField(15);
         wishEdit.addActionListener(this);
@@ -106,20 +108,6 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         editWish.add(btnWishAdd);
 
     }
-
-    public void setFoodNameField(int i) {
-        foodName.setText(restaurant.getTriedFoods().get(i).getName());
-    }
-
-    public void setFoodPriceField(int i) {
-        foodPrice.setText(valueOf(restaurant.getTriedFoods().get(i).getPrice()));
-    }
-
-    public void setFoodRatingField(int i) {
-        foodRating.setText(valueOf(restaurant.getTriedFoods().get(i).getRating()));
-    }
-
-
 
     // EFFECTS: displays label and text field for editing restaurant name
     public void displayEditName(JPanel nameLabelText) {
@@ -141,12 +129,12 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         //nameLabelText.add(restaurantRating);
     }
 
+    // MODIFIES: restaurant
+    // EFFECTS: sets the restaurant's new name or shows message if name already exists
     public void setNewRestaurantName(String name) {
-        System.out.println(" this works ");
         if (!app.getReviews().checkandSetNewRname(name, restaurant)) {
             JOptionPane.showMessageDialog(null,
                     ("A review exists with the same name." + " Please choose a new name"));
-            System.out.println("bad name");
         }
     }
 
@@ -189,6 +177,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays the restaurant name and rating on the viewOnly panel
     public void displayNameNRating(JPanel nameRating) {
         JLabel resName = new JLabel(restaurant.getRestaurantName());
         resName.setFont(new Font("Impact", Font.BOLD, 30));
@@ -202,7 +192,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         //nameRating.setSize(new Dimension((int)0.4 * app.getWidth(), 35));
     }
 
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    // EFFECTS: displays tried foods with heading, "table heading" and each food
     public void displayTriedFoods(JPanel allTried) {
         JLabel triedFoodTitle = new JLabel("ReviewedFoods: ");
         triedFoodTitle.setFont(new Font("Impact", Font.PLAIN, 20));
@@ -218,40 +208,48 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         allTried.add(triedFieldTitle);
         for (Food f : restaurant.getTriedFoods()) {
             // System.out.println(f.getName());
-            JPanel foodInfo = new JPanel();
-            foodInfo.setOpaque(false);
-            JLabel foodName = new JLabel(f.getName());
-            JLabel foodPrice = new JLabel(valueOf(f.getPrice()));
-            JLabel foodRating = new JLabel(valueOf(f.getRating()));
-            foodInfo.add(foodName);
-            foodInfo.add(foodPrice);
-            foodInfo.add(foodRating);
-            foodInfo.setLayout(new GridLayout(1, 3, 0, 0));
-            allTried.add(foodInfo);
+            labelPerTriedFood(f, allTried);
+//            JPanel foodInfo = new JPanel();
+//            foodInfo.setOpaque(false);
+//            JLabel foodName = new JLabel(f.getName());
+//            JLabel foodPrice = new JLabel(valueOf(f.getPrice()));
+//            JLabel foodRating = new JLabel(valueOf(f.getRating()));
+//            foodInfo.add(foodName);
+//            foodInfo.add(foodPrice);
+//            foodInfo.add(foodRating);
+//            foodInfo.setLayout(new GridLayout(1, 3, 0, 0));
+//            allTried.add(foodInfo);
         }
         allTried.setLayout(new GridLayout(0, 1, 30, 0));
         allTried.setOpaque(false);
         allTried.setBackground(new Color(151, 245, 253));
     }
 
-    // TODO
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    // EFFECTS: creates label for food; with name, price, rating, then adds it to a panel
+    public void labelPerTriedFood(Food f, JPanel allTried) {
+        JPanel foodInfo = new JPanel();
+        foodInfo.setOpaque(false);
+        JLabel foodName = new JLabel(f.getName());
+        JLabel foodPrice = new JLabel(valueOf(f.getPrice()));
+        JLabel foodRating = new JLabel(valueOf(f.getRating()));
+        foodInfo.add(foodName);
+        foodInfo.add(foodPrice);
+        foodInfo.add(foodRating);
+        foodInfo.setLayout(new GridLayout(1, 3, 0, 0));
+        allTried.add(foodInfo);
+    }
+
+    // EFFECTS: displays wishlist items with heading, "table headers", and food names
     public void displayWishList(JPanel wish) {
         JLabel empty = new JLabel(" ");
         empty.setSize(10, 5);
         empty.setOpaque(false);
         empty.setFont(new Font("Arial", Font.BOLD, 13));
-        JLabel wishTitle = new JLabel("WishList:           ");
+        JLabel wishTitle = new JLabel("WishList:  ");
         wishTitle.setHorizontalAlignment(SwingConstants.LEFT);
         wishTitle.setFont(new Font("Impact", Font.PLAIN, 20));
-        JLabel name1 = new JLabel("Name");
-        name1.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 13));
-        JLabel name2 = new JLabel("Name");
-        name2.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 13));
         JPanel wishFieldTitle = new JPanel();
-        wishFieldTitle.add(name1);
-        wishFieldTitle.add(name2);
-        wishFieldTitle.setLayout(new GridLayout(1, 2, 0, 0));
+        createWishFieldTitle(wishFieldTitle);
 
         wish.add(empty);
         wish.add(wishTitle);
@@ -259,23 +257,28 @@ public class EditandViewPanel extends JPanel implements ActionListener {
 
         JPanel foodNames = new JPanel();
         for (Food f : restaurant.getWishList()) {
-            //JPanel namePanel = new JPanel();
-            //namePanel.setOpaque(false);
             JLabel foodName = new JLabel(f.getName());
-            //namePanel.add(foodName);
-            //foodNames.add(namePanel);
             foodNames.add(foodName);
         }
         wish.setLayout(new BoxLayout(wish, BoxLayout.Y_AXIS));
-        //wish.setLayout(new GridLayout(0, 1, 0, 0));
         foodNames.setLayout(new GridLayout(0, 2, 0, 0));
         wish.add(foodNames);
-        //wish.setOpaque(false);
-
         wish.setBackground(new Color(164, 236, 245));
         System.out.println("bruh");
     }
 
+    // EFFECTS: creates the headers for 2 columns of wishlist food names
+    public void createWishFieldTitle(JPanel wishFieldTitle) {
+        JLabel name1 = new JLabel("Name");
+        name1.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 13));
+        JLabel name2 = new JLabel("Name");
+        name2.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 13));
+        wishFieldTitle.add(name1);
+        wishFieldTitle.add(name2);
+        wishFieldTitle.setLayout(new GridLayout(1, 2, 0, 0));
+    }
+
+    // EFFECTS: displays buttons which are on the viewOnly panel (edit and delete)
     public void displayViewButtons(JPanel viewButtons) {
         viewButtons.add(editButton);
         viewButtons.add(deleteButton);
@@ -303,16 +306,20 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         editable.setVisible(true);
     }
 
+    // EFFECTS: returns the current set restaurant
     public Restaurant getRestaurant() {
         return restaurant;
     }
 
+    // EFFECTS: refreshes the editable panel
     public void repaintEditable() {
         doneButton.revalidate();
         editable.revalidate();
         editable.repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles different buttons being pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == editButton) {
@@ -325,18 +332,19 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             wishEdit.setText(wishEdit.getText());
         } else if (e.getSource() == btnWishMove) {
             String nameFind = wishEdit.getText();
-            if (!nameFind.isEmpty() && (restaurant.getFoodFromList(nameFind) != null)) {
-                Food target = restaurant.getFoodFromList(nameFind);
-                restaurant.getWishList().remove(target);
-                target.makeTried();
-                wishEdit.setText(" ");
-                editable.revalidate();
-                addTriedInfo(target);
-                restaurant.getTriedFoods().add(target);
-                restaurant.createRating();
-                //resetEditView();
-                //editView();
-            }
+            changeFoodToTriedDisplay(nameFind);
+//            if (!nameFind.isEmpty() && (restaurant.getFoodFromList(nameFind) != null)) {
+//                Food target = restaurant.getFoodFromList(nameFind);
+//                restaurant.getWishList().remove(target);
+//                target.makeTried();
+//                wishEdit.setText(" ");
+//                editable.revalidate();
+//                addTriedInfo(target);
+//                restaurant.getTriedFoods().add(target);
+//                restaurant.createRating();
+//                //resetEditView();
+//                //editView();
+//            }
         } else if (e.getSource() == btnWishAdd) {
             String newWishName = wishEdit.getText();
             Food newWishFood = new Food(newWishName, 0, false);
@@ -349,6 +357,23 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: moves food item from wishList to triedFoods and displays it
+    public void changeFoodToTriedDisplay(String nameFind) {
+        if (!nameFind.isEmpty() && (restaurant.getFoodFromList(nameFind) != null)) {
+            Food target = restaurant.getFoodFromList(nameFind);
+            restaurant.getWishList().remove(target);
+            target.makeTried();
+            wishEdit.setText(" ");
+            editable.revalidate();
+            addTriedInfo(target);
+            restaurant.getTriedFoods().add(target);
+            restaurant.createRating();
+        }
+    }
+
+    // MODIFIES: food
+    // EFFECTS: prompt user to enter food rating and price when it is made tried
     public void addTriedInfo(Food target) {
         String strPrice = JOptionPane.showInputDialog("Please enter a price ($): ");
         Double price = Double.parseDouble(strPrice);
