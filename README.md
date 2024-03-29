@@ -17,7 +17,7 @@ that may be useful.
 - As a user, I want to be able to add a new restaurant review to my liked or disliked restaurants.
 - As a user, I want to be able to delete a review from my list of reviews.
 - As a user, I want to be able to add tried foods and wishlist items to each review.
-- As a user, I want to be able to see the restaurants in lists of liked and disliked restaurants.
+- As a user, I want to be able to see the restaurants in lists of liked or disliked restaurants.
 - As a user, I want to be able to select the title of a restaurant review and be able to view and edit the review.
 - As a user, I want to be able to have the option of sorting the reviews by rating or by order of creation.
 - As a user, I want to be able to save my reviews to my file (if I so choose).
@@ -27,13 +27,13 @@ that may be useful.
 
 - You can generate the first required action related to the user story "adding multiply reviews to a list of reviews" 
 by clicking on the " + " button in the top right corner of the screen after leaving the home page.
-- You can generate the second required action related to the user story of sorting the reviews, by leaving the
-home page and selecting an item from the combo box located in the centre top of the screen.
+- You can generate the second required action related to the user story of viewing a filtered list of reviews, by 
+leaving the home page and selecting an item from the combo box located in the centre top of the screen.
 - You can locate my visual component when you first open the application. An image is displayed on the home page 
 behind the two buttons. 
-- You can save the state of my application after clicking X to close the application window. A dialog box will ask you 
+- You can save the application state after clicking X to close the application window. A dialog box will ask you 
 whether you would like to save your progress.
-- You can choose to load existing reviews on the home page when you first open the application. Clicking 
+- You can choose to load existing reviews on the home page when you first open the application by clicking 
 on the "Load and add to my existing reviews" button. If you would like to write a new set of reviews, you can click the
 "New Set of Reviews" button instead. 
 

@@ -1,74 +1,19 @@
 {
-    "likedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "chaTime",
-        "restaurantRating": 3,
-        "isLiked": true,
-        "reviewNumber": 1,
-        "triedFoods": [
-            {
-                "foodRating": 4,
-                "isTried": true,
-                "price": 7,
-                "FoodName": "peachQQ"
-            },
-            {
-                "foodRating": 3,
-                "isTried": true,
-                "price": 7.5,
-                "FoodName": " GrassJelly"
-            },
-            {
-                "foodRating": 2,
-                "isTried": true,
-                "price": 135,
-                "FoodName": "passionfruit"
-            }
-        ]
-    }],
+    "likedRestaurants": [],
     "dislikedRestaurants": [{
         "wishList": [],
-        "restaurantName": "skdgjsldkgjdfslk",
+        "restaurantName": "asfasdf",
         "restaurantRating": 0,
         "isLiked": false,
-        "reviewNumber": 3,
+        "reviewNumber": 1,
         "triedFoods": []
     }],
-    "allRestaurants": [
-        {
-            "wishList": [],
-            "restaurantName": "skdgjsldkgjdfslk",
-            "restaurantRating": 0,
-            "isLiked": false,
-            "reviewNumber": 3,
-            "triedFoods": []
-        },
-        {
-            "wishList": [],
-            "restaurantName": "chaTime",
-            "restaurantRating": 3,
-            "isLiked": true,
-            "reviewNumber": 1,
-            "triedFoods": [
-                {
-                    "foodRating": 4,
-                    "isTried": true,
-                    "price": 7,
-                    "FoodName": "peachQQ"
-                },
-                {
-                    "foodRating": 3,
-                    "isTried": true,
-                    "price": 7.5,
-                    "FoodName": " GrassJelly"
-                },
-                {
-                    "foodRating": 2,
-                    "isTried": true,
-                    "price": 135,
-                    "FoodName": "passionfruit"
-                }
-            ]
-        }
-    ]
+    "allRestaurants": [{
+        "wishList": [],
+        "restaurantName": "asfasdf",
+        "restaurantRating": 0,
+        "isLiked": false,
+        "reviewNumber": 1,
+        "triedFoods": []
+    }]
 }
