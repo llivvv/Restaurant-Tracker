@@ -184,7 +184,11 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         if (choice == 0) {
             makeNewReview();
         } else if (choice == 1) {
+            reviews.sortReviewNumber(reviews.getAllReviews());
+            sfPanel.resetBox();
             listPanel.setListSelection(restaurant);
+            editAdd.revalidate();
+            editAdd.repaint();
         }
     }
 

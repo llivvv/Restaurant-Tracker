@@ -38,6 +38,11 @@ public class SortFilterPanel extends JPanel implements ActionListener {
         return str;
     }
 
+    // EFFECTS: sets the selected box to Sort All By Most Recently Created
+    public void resetBox() {
+        sortBox.setSelectedItem("Sort All By Most Recently Created");
+    }
+
     // MODIFIES: ListPanel
     // EFFECTS: changes the list view based on the combo box's selected option
     @Override

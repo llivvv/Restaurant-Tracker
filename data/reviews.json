@@ -1,29 +1,71 @@
 {
     "likedRestaurants": [],
     "dislikedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "lkjjl",
-        "restaurantRating": 1,
+        "wishList": [
+            {
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "asdf"
+            },
+            {
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": " sdf"
+            }
+        ],
+        "restaurantName": "abcde",
+        "restaurantRating": 4,
         "isLiked": false,
-        "reviewNumber": 2,
-        "triedFoods": [{
-            "foodRating": 1,
-            "isTried": true,
-            "price": 3,
-            "FoodName": "hjk"
-        }]
+        "reviewNumber": 1,
+        "triedFoods": [
+            {
+                "foodRating": 2,
+                "isTried": true,
+                "price": 1,
+                "FoodName": "fghijk"
+            },
+            {
+                "foodRating": 5,
+                "isTried": true,
+                "price": 1,
+                "FoodName": "we"
+            }
+        ]
     }],
     "allRestaurants": [{
-        "wishList": [],
-        "restaurantName": "lkjjl",
-        "restaurantRating": 1,
+        "wishList": [
+            {
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "asdf"
+            },
+            {
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": " sdf"
+            }
+        ],
+        "restaurantName": "abcde",
+        "restaurantRating": 4,
         "isLiked": false,
-        "reviewNumber": 2,
-        "triedFoods": [{
-            "foodRating": 1,
-            "isTried": true,
-            "price": 3,
-            "FoodName": "hjk"
-        }]
+        "reviewNumber": 1,
+        "triedFoods": [
+            {
+                "foodRating": 2,
+                "isTried": true,
+                "price": 1,
+                "FoodName": "fghijk"
+            },
+            {
+                "foodRating": 5,
+                "isTried": true,
+                "price": 1,
+                "FoodName": "we"
+            }
+        ]
     }]
 }
