@@ -195,7 +195,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         if (choice == 0) {
             makeNewReview();
         } else if (choice == 1) {
-            /// TODO
+            listPanel.setListSelection(restaurant);
         }
     }
 

@@ -17,11 +17,13 @@ public class ListPanel extends JPanel implements ListSelectionListener {
     private JList<Restaurant> listDisplay;
     private DefaultListModel listModel;
     private ReviewTrackerGUI app;
+    private List<Restaurant> currReviews;
 
     // MODIFIES: this
     // EFFECTS: constructs and customizes JList
     public ListPanel(ReviewTrackerGUI app, List<Restaurant> reviews) {
         this.app = app;
+        currReviews = reviews;
         listModel = new DefaultListModel();
         for (Restaurant r : reviews) {
             System.out.println(r);
@@ -68,6 +70,7 @@ public class ListPanel extends JPanel implements ListSelectionListener {
 
     public void changeReview(List<Restaurant> reviews) {
         listModel = new DefaultListModel();
+        currReviews = reviews;
         for (Restaurant r : reviews) {
             System.out.println(r);
             listModel.addElement(r);
@@ -77,6 +80,16 @@ public class ListPanel extends JPanel implements ListSelectionListener {
 
     public void addToJList(Restaurant restaurant) {
         listModel.addElement(restaurant);
+    }
+
+    public void setListSelection(Restaurant restaurant) {
+        for (Restaurant r : currReviews) {
+            if (r.equals(restaurant)) {
+                int i = currReviews.indexOf(r);
+                listDisplay.setSelectedIndex(i);
+                break;
+            }
+        }
     }
 
 //    public void updateListDisplay(List<Restaurant> reviews) {
