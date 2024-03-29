@@ -21,10 +21,10 @@ public class FoodTable extends JPanel {
     private JTable foodTable;
     private AbstractTableModel foodModel;
     private DefaultTableModel wishModel;
-    private JPanel parent;
+    private EditandViewPanel parent;
     //private JScrollPane scroller;
 
-    public FoodTable(List<Food> foodList, JPanel parent) {
+    public FoodTable(List<Food> foodList, EditandViewPanel parent) {
         this.parent = parent;
         foodModel = new TriedModel(foodList);
         foodTable = new JTable();
@@ -104,6 +104,7 @@ public class FoodTable extends JPanel {
         editTriedFields.add(foodPrice);
         editTriedFields.add(foodRating);
         editTriedFields.add(btnDone);
+        editTriedFields.add(btnAdd);
         foodName.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,6 +136,7 @@ public class FoodTable extends JPanel {
                     foodList.get(i).setName(foodName.getText());
                     foodList.get(i).setPrice(Double.parseDouble(foodPrice.getText()));
                     foodList.get(i).setRating(Double.parseDouble(foodRating.getText()));
+                    parent.getRestaurant().createRating();
                     foodName.setText(" ");
                     foodPrice.setText(" ");
                     foodRating.setText(" ");
@@ -142,6 +144,21 @@ public class FoodTable extends JPanel {
                     foodModel.fireTableCellUpdated(i, 1);
                     foodModel.fireTableCellUpdated(i, 2);
                 }
+            }
+        });
+
+        btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Food newFood = new Food(foodName.getText(), Double.parseDouble(foodPrice.getText()), true);
+                newFood.setRating(Double.parseDouble(foodRating.getText()));
+                foodName.setText(" ");
+                foodPrice.setText(" ");
+                foodRating.setText(" ");
+                foodList.add(newFood);
+                parent.getRestaurant().createRating();
+                parent.resetEditView();
+                parent.editView();
             }
         });
 

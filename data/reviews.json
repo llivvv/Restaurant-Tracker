@@ -24,14 +24,14 @@
                 }
             ],
             "restaurantName": "ChaTime",
-            "restaurantRating": 5,
+            "restaurantRating": 4,
             "isLiked": true,
             "reviewNumber": 2,
             "triedFoods": [
                 {
                     "foodRating": 5,
                     "isTried": true,
-                    "price": 7,
+                    "price": 6.5,
                     "FoodName": "Peach QQ"
                 },
                 {
@@ -39,6 +39,12 @@
                     "isTried": true,
                     "price": 1,
                     "FoodName": "Milk Tea"
+                },
+                {
+                    "foodRating": 2,
+                    "isTried": true,
+                    "price": 1,
+                    "FoodName": "hjk"
                 }
             ]
         }
@@ -94,14 +100,14 @@
                 }
             ],
             "restaurantName": "ChaTime",
-            "restaurantRating": 5,
+            "restaurantRating": 4,
             "isLiked": true,
             "reviewNumber": 2,
             "triedFoods": [
                 {
                     "foodRating": 5,
                     "isTried": true,
-                    "price": 7,
+                    "price": 6.5,
                     "FoodName": "Peach QQ"
                 },
                 {
@@ -109,6 +115,12 @@
                     "isTried": true,
                     "price": 1,
                     "FoodName": "Milk Tea"
+                },
+                {
+                    "foodRating": 2,
+                    "isTried": true,
+                    "price": 1,
+                    "FoodName": "hjk"
                 }
             ]
         }

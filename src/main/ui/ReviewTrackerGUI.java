@@ -135,9 +135,11 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
             leaveHomePage(e);
         } else if (e.getSource() == tabs.getBtnCreate()) {
             makeNewReview();
-        } else if (e.getSource() == tabs.getBtnHome()) {
-            returnHomePage();
         }
+
+//        } else if (e.getSource() == tabs.getBtnHome()) {
+//            returnHomePage();
+//        }
     }
 
     // MODIFIES: this

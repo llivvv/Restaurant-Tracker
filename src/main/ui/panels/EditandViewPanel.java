@@ -28,6 +28,9 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     private JTextField foodRating;
     private FoodTable triedFoodTable;
     private JButton btnAdd;
+    private JTextField wishEdit;
+    private JButton btnWishMove;
+    private JButton btnWishAdd;
 
     public EditandViewPanel(ReviewTrackerGUI app, Restaurant restaurant) {
 
@@ -41,6 +44,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         deleteButton = new JButton("Delete review");
         deleteButton.addActionListener(this);
         doneButton = new JButton("Done");
+        doneButton.addActionListener(this);
         //add(doneButton);
 
         setRestaurant();
@@ -61,7 +65,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
 
     // TODO
     public void customizeEditable() {
-        editable.setLayout(new BoxLayout(editable, BoxLayout.Y_AXIS));
+        //editable = new JPanel();
+        editable.setLayout(new BoxLayout(editable, BoxLayout.PAGE_AXIS));
         JPanel nameLabelText = new JPanel();
         displayEditName(nameLabelText);
         editable.add(nameLabelText);
@@ -71,21 +76,33 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         editable.add(triedFoodLabel);
         triedFoodTable = new FoodTable(restaurant.getTriedFoods(), this);
         editable.add(triedFoodTable);
-        JPanel editTriedFields = new JPanel();
-        editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
-        addTriedField(editTriedFields);
-        editable.add(editTriedFields);
+        JPanel wish = new JPanel();
+        displayWishList(wish);
+        editable.add(wish);
+        JPanel editWish = new JPanel();
+        editWishItem(editWish);
+        editable.add(editWish);
+        editable.add(doneButton);
+
+       // JPanel editTriedFields = new JPanel();
+       // editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
+       // addTriedField(editTriedFields);
+       // editable.add(editTriedFields);
         // stub
     }
 
-    // EFFECTS: creates a panel with text fields for a tried food's name, price and rating
-    public void addTriedField(JPanel etf) {
-        JTextField foodName = new JTextField(8);
-        JTextField foodPrice = new JTextField(3);
-        JTextField foodRating = new JTextField(3);
-        etf.add(foodName);
-        etf.add(foodPrice);
-        etf.add(foodRating);
+    public void editWishItem(JPanel editWish) {
+        wishEdit = new JTextField(15);
+        wishEdit.addActionListener(this);
+        editWish.setLayout(new BoxLayout(editWish, BoxLayout.Y_AXIS));
+        editWish.add(wishEdit);
+        btnWishMove = new JButton("Move to tried");
+        btnWishMove.addActionListener(this);
+        btnWishAdd = new JButton("Add Food");
+        btnWishAdd.addActionListener(this);
+        editWish.add(btnWishMove);
+        editWish.add(btnWishAdd);
+
     }
 
     public void setFoodNameField(int i) {
@@ -116,10 +133,10 @@ public class EditandViewPanel extends JPanel implements ActionListener {
                 setNewRestaurantName(nameField.getText());
             }
         });
-        JLabel restaurantRating = new JLabel("~" + restaurant.getRating() + " stars");
+        //JLabel restaurantRating = new JLabel("~" + restaurant.getRating() + " stars");
         nameLabelText.add(restaurantName);
         nameLabelText.add(nameField);
-        nameLabelText.add(restaurantRating);
+        //nameLabelText.add(restaurantRating);
     }
 
     public void setNewRestaurantName(String name) {
@@ -219,9 +236,11 @@ public class EditandViewPanel extends JPanel implements ActionListener {
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void displayWishList(JPanel wish) {
         JLabel empty = new JLabel(" ");
+        empty.setSize(10, 5);
         empty.setOpaque(false);
         empty.setFont(new Font("Arial", Font.BOLD, 13));
-        JLabel wishTitle = new JLabel("WishList: ");
+        JLabel wishTitle = new JLabel("WishList:           ");
+        wishTitle.setHorizontalAlignment(SwingConstants.LEFT);
         wishTitle.setFont(new Font("Impact", Font.PLAIN, 20));
         JLabel name1 = new JLabel("Name");
         name1.setFont(new Font("Arial", Font.ITALIC | Font.BOLD, 13));
@@ -245,10 +264,12 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             //foodNames.add(namePanel);
             foodNames.add(foodName);
         }
-        foodNames.setLayout(new GridLayout(0, 2, 10, 10));
+        wish.setLayout(new BoxLayout(wish, BoxLayout.Y_AXIS));
+        //wish.setLayout(new GridLayout(0, 1, 0, 0));
+        foodNames.setLayout(new GridLayout(0, 2, 0, 0));
         wish.add(foodNames);
         //wish.setOpaque(false);
-        wish.setLayout(new GridLayout(0, 1, 0, 0));
+
         wish.setBackground(new Color(164, 236, 245));
         System.out.println("bruh");
     }
@@ -268,6 +289,11 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         viewOnly.setVisible(true);
     }
 
+    public void resetEditView() {
+        editable = new JPanel();
+        customizeEditable();
+    }
+
     // MODIFIES: this
     // EFFECTS: sets viewOnly to invisible and editable to visible
     public void editView() {
@@ -275,17 +301,53 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         editable.setVisible(true);
     }
 
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == editButton) {
-            // nvm just dialog box ? easier
-            // YES NO CANCEL option
-            // 1. edit name 2. edit triedfoods 3. edit reviewed foods
             customizeEditable();
             editView();
         } else if (e.getSource() == deleteButton) {
             app.deleteRestaurant(restaurant);
             viewOnly.setVisible(false);
+        } else if (e.getSource() == wishEdit) {
+            wishEdit.setText(wishEdit.getText());
+        } else if (e.getSource() == btnWishMove) {
+            String nameFind = wishEdit.getText();
+            if (!nameFind.isEmpty() && (restaurant.getFoodFromList(nameFind) != null)) {
+                Food target = restaurant.getFoodFromList(nameFind);
+                restaurant.getWishList().remove(target);
+                target.makeTried();
+                wishEdit.setText(" ");
+                addTriedInfo(target);
+                restaurant.getTriedFoods().add(target);
+                restaurant.createRating();
+                resetEditView();
+                editView();
+            }
+        } else if (e.getSource() == btnWishAdd) {
+            String newWishName = wishEdit.getText();
+            Food newWishFood = new Food(newWishName, 0, false);
+            wishEdit.setText(" ");
+            newWishFood.setRating(0);
+            restaurant.getWishList().add(newWishFood);
+            resetEditView();
+            editView();
+        } else if (e.getSource() == doneButton) {
+            System.out.println("im so done");
+            app.displayResInfo(restaurant);
         }
+    }
+
+    public void addTriedInfo(Food target) {
+        String strPrice = JOptionPane.showInputDialog("Please enter a price ($): ");
+        Double price = Double.parseDouble(strPrice);
+        target.setPrice(price);
+        String strRating = JOptionPane.showInputDialog("Please enter a rating (from 0 to 5");
+        Double rating = Double.parseDouble(strRating);
+        target.setRating(rating);
     }
 }

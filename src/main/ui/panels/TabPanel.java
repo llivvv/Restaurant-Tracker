@@ -20,21 +20,22 @@ public class TabPanel extends Panel {
 
         configureButtons();
         add(btnCreate);
-        add(btnHome);
+        //add(btnHome);
 
         setBackground(new Color(161, 119, 100));
     }
 
     public void configureButtons() {
         btnCreate.addActionListener(app);
-        btnHome.addActionListener(app);
+        btnCreate.setPreferredSize(new Dimension(60, 20));
+        //btnHome.addActionListener(app);
     }
 
     public JButton getBtnCreate() {
         return btnCreate;
     }
 
-    public JButton getBtnHome() {
-        return btnHome;
-    }
+//    public JButton getBtnHome() {
+//        return btnHome;
+//    }
 }
