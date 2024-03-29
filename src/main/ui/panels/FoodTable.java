@@ -4,8 +4,6 @@ import model.Food;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -29,15 +27,14 @@ public class FoodTable extends JPanel implements ActionListener {
     private JButton btnDone;
     private JButton btnAdd;
 
+    // MODIFIES: this
+    // EFFECTS: constructs table populated with tried foods
     public FoodTable(List<Food> foodList, EditandViewPanel parent) {
         this.parent = parent;
         foodModel = new TriedModel(foodList);
         foodTable = new JTable();
         foodTable.setModel(foodModel);
         foodModel.addTableModelListener(foodTable);
-        //scroller = new JScrollPane();
-        //scroller.setViewportView(foodTable);
-        //add(scroller);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(foodTable.getTableHeader());
         add(foodTable);
@@ -45,113 +42,25 @@ public class FoodTable extends JPanel implements ActionListener {
         addEditFields(foodList);
     }
 
-//        JPanel editTriedFields = new JPanel();
-//        editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
-//
-//        JTextField foodName = new JTextField(8);
-//        JTextField foodPrice = new JTextField(3);
-//        JTextField foodRating = new JTextField(3);
-//        editTriedFields.add(foodName);
-//        editTriedFields.add(foodPrice);
-//        editTriedFields.add(foodRating);
-//        add(editTriedFields);
-//
-//        foodTable.addMouseListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                int i = foodTable.getSelectedRow();
-//                foodName.setText(foodList.get(i).getName());
-//                foodPrice.setText(valueOf(foodList.get(i).getPrice()));
-//                foodRating.setText(valueOf(foodList.get(i).getRating()));
-//
-//            }
-//        });
-
-
-
-//        if (foodList.size() != 0) {
-//            if (foodList.get(0).getIsTried() == true) {
-//                AbstractTableModel foodModel = new TriedModel(foodList);
-//                foodTable = new JTable();
-//                foodTable.setModel(foodModel);
-//            } else {
-//                AbstractTableModel foodModel = new WishModel(foodList);
-//            }
-//            //foodTable.setModel(foodModel);
-//            //scroller = new JScrollPane();
-//            //scroller.add(foodTable);
-//            //add(scroller);
-//            add(foodTable);
-//        } else {
-//            JPanel headings = new JPanel();
-//            JLabel name = new JLabel("Name");
-//            JLabel price = new JLabel("Price ($)");
-//            JLabel rating = new JLabel("Rating");
-//            headings.add(name);
-//            headings.add(price);
-//            headings.add(rating);
-//            headings.setLayout(new GridLayout(1, 3, 0, 0));
-//            add(headings);
-//        }
-
-
-
+    // MODIFIES: this
+    // EFFECTS: adds all editable fields to a panel
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void addEditFields(List<Food> foodList) {
         JPanel editTriedFields = new JPanel();
         editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
         configureTextFields();
-//        JTextField foodName = new JTextField(8);
-//        JTextField foodPrice = new JTextField(3);
-//        JTextField foodRating = new JTextField(3);
         configureButtons();
-//        JButton btnDone = new JButton("Update");
-//        JButton btnAdd = new JButton("Add Food");
-        editTriedFields.add(foodName);
-        editTriedFields.add(foodPrice);
-        editTriedFields.add(foodRating);
-        editTriedFields.add(btnDone);
-        editTriedFields.add(btnAdd);
-//        foodName.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                foodName.setText(foodName.getText());
-//            }
-//        });
-//        foodPrice.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                foodPrice.setText(foodPrice.getText());
-//            }
-//        });
-//        foodRating.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                foodRating.setText(foodRating.getText());
-//            }
-//        });
-
+        addToEditTriedFields(editTriedFields);
         btnDone.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (foodTable.getSelectedRow() != -1) {
                     int i = foodTable.getSelectedRow();
                     setValuesForRow(i);
-                    //foodModel.isCellEditable(i, 0);
-//                    foodModel.setValueAt(foodName.getText(), i, 0);
-//                    foodModel.setValueAt(foodPrice.getText(), i, 1);
-//                    foodModel.setValueAt(foodRating.getText(), i, 2);
                     alterFoodInstance(foodList, i);
-//                    foodList.get(i).setName(foodName.getText());
-//                    foodList.get(i).setPrice(Double.parseDouble(foodPrice.getText()));
-//                    foodList.get(i).setRating(Double.parseDouble(foodRating.getText()));
                     parent.getRestaurant().createRating();
                     setTextBlank();
                     ensureTableUpdate(i);
-//                    foodModel.fireTableCellUpdated(i, 0);
-//                    foodModel.fireTableCellUpdated(i, 1);
-//                    foodModel.fireTableCellUpdated(i, 2);
                 }
             }
         });
@@ -159,13 +68,9 @@ public class FoodTable extends JPanel implements ActionListener {
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Food newFood = new Food(foodName.getText(), Double.parseDouble(foodPrice.getText()), true);
-                newFood.setRating(Double.parseDouble(foodRating.getText()));
+                createAddNewFood(foodList);
                 setTextBlank();
-//                foodName.setText(" ");
-//                foodPrice.setText(" ");
-//                foodRating.setText(" ");
-                foodList.add(newFood);
+                //foodList.add(newFood);
                 parent.getRestaurant().createRating();
                 //parent.resetEditView();
                 parent.repaintEditable();
@@ -184,11 +89,26 @@ public class FoodTable extends JPanel implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 int i = foodTable.getSelectedRow();
                 tableIntoTextField(foodList, i);
-//                foodName.setText(foodList.get(i).getName());
-//                foodPrice.setText(valueOf(foodList.get(i).getPrice()));
-//                foodRating.setText(valueOf(foodList.get(i).getRating()));
             }
         });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds text fields to the editTriedFields panel
+    public void addToEditTriedFields(JPanel editTriedFields) {
+        editTriedFields.add(foodName);
+        editTriedFields.add(foodPrice);
+        editTriedFields.add(foodRating);
+        editTriedFields.add(btnDone);
+        editTriedFields.add(btnAdd);
+    }
+
+    // MODIFIES: restaurant
+    // EFFECTS: creates a new food based on text in text fields
+    public void createAddNewFood(List<Food> foodList) {
+        Food newFood = new Food(foodName.getText(), Double.parseDouble(foodPrice.getText()), true);
+        newFood.setRating(Double.parseDouble(foodRating.getText()));
+        foodList.add(newFood);
     }
 
     // MODIFIES: this
