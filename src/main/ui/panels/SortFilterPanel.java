@@ -8,15 +8,18 @@ import java.awt.event.ActionListener;
 
 // References: https://youtu.be/EAxV_eoYrIg?si=6eFVm2ZQ5bR0unmi
 
+// Represents panel on top of screen that allows user to choose to see specific lists of reviews
 public class SortFilterPanel extends JPanel implements ActionListener {
 
-    String[] sortOptions = {"Sort All", "Sort Liked", "Sort Disliked", "Sort By Most Recently Created", "Filter Liked",
-        "Filter Disliked"};
+    String[] sortOptions = {"Sort All By Rating", "Sort Liked By Rating", "Sort Disliked By Rating",
+            "Sort All By Most Recently Created", "Filter Liked", "Filter Disliked"};
 
     private JComboBox sortBox;
     private ReviewTrackerGUI app;
     private ListPanel listPanel;
 
+    // MODIFIES: this
+    // EFFECTS: constructs combo box and label
     public SortFilterPanel(ReviewTrackerGUI app, ListPanel listPanel) {
         this.app = app;
 
@@ -29,27 +32,26 @@ public class SortFilterPanel extends JPanel implements ActionListener {
         sortBox.setSelectedIndex(0);
     }
 
+    // EFFECTS: returns the name of the selected option
     public String getSelectedBox() {
         String str = (String) sortBox.getSelectedItem();
         return str;
     }
 
-    public JComboBox getSortBox() {
-        return sortBox;
-    }
-
+    // MODIFIES: ListPanel
+    // EFFECTS: changes the list view based on the combo box's selected option
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (getSelectedBox() == "Sort All") {
+        if (getSelectedBox() == "Sort All By Rating") {
             app.getReviews().sortRating(app.getReviews().getAllReviews());
             listPanel.changeReview(app.getReviews().getAllReviews());
-        } else if (getSelectedBox() == "Sort Liked") {
+        } else if (getSelectedBox() == "Sort Liked By Rating") {
             app.getReviews().sortRating(app.getReviews().getLikedReviews());
             listPanel.changeReview(app.getReviews().getLikedReviews());
-        } else if (getSelectedBox() == "Sort Disliked") {
+        } else if (getSelectedBox() == "Sort Disliked By Rating") {
             app.getReviews().sortRating(app.getReviews().getDislikedReviews());
             listPanel.changeReview(app.getReviews().getDislikedReviews());
-        } else if (getSelectedBox() == "Sort By Most Recently Created") {
+        } else if (getSelectedBox() == "Sort All By Most Recently Created") {
             app.getReviews().sortReviewNumber(app.getReviews().getAllReviews());
             listPanel.changeReview(app.getReviews().getAllReviews());
         } else if (getSelectedBox() == "Filter Liked") {

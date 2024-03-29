@@ -31,8 +31,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private JsonWriter jsonWriter;
 
     private HomePanel homePage;
-    //private LikedList listLiked;
-    //private DislikedList listDisliked;
     private ListPanel listPanel;
     private EditandViewPanel editAdd;
     private TabPanel tabs;
@@ -43,7 +41,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private static final int HEIGHT = 500;
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: constructs this GUI with a set homePage and image
     public ReviewTrackerGUI() throws FileNotFoundException {
         super("Review Tracker");
         setSize(WIDTH, HEIGHT);
@@ -68,7 +66,8 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    // EFFECTS:
+    // MODIFIES: this
+    // EFFECTS: opening screen; sets image and homepage
     public void loadPanels() {
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/home.png"));
         bgImage = new JLabel(imageIcon);
@@ -101,7 +100,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "Progress not saved.");
         }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
     // EFFECTS: saves entire state of application to JSON
@@ -157,6 +155,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
 //        listPanel.setVisible(true);
     }
 
+    // EFFECTS: prompts user to enter a new name for a new review
     public void makeNewReview() {
         String name = JOptionPane.showInputDialog("Please enter a unique review name: ");
         if (reviews.findRestaurant(name) != null) {
@@ -182,10 +181,10 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
             }
             reviews.addRestaurant(created);
             listPanel.addToJList(created);
-            // TODO
         }
     }
 
+    // EFFECTS: prompts user to choose a new name or pick a review to edit
     public void fixDuplicateName(Restaurant restaurant) {
         Object[] options = { "Choose a different name", "Edit existing review", "cancel" };
         int choice = JOptionPane.showOptionDialog(null, "A review with the same name already exists.",
@@ -199,6 +198,8 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds sort and filter panel to the frame and makes it visible
     public void customizeSortPanel(ReviewTrackerGUI app, ListPanel listPanel) {
         sfPanel = new SortFilterPanel(this, listPanel);
         sfPanel.setSize(new Dimension(400, 75));
@@ -253,20 +254,4 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         editAdd.setVisible(false);
         listPanel.deleteFromJList();
     }
-//    // EFFECTS: returns dimensions of this frame
-//    public Dimension getDimensions() {
-//        return new Dimension(WIDTH, HEIGHT);
-//    }
-
-    //    // EFFECTS: processes the selection of a list element
-//    @Override
-//    public void valueChanged(ListSelectionEvent e) {
-//        if (listPanel.selectedRestaurant() != null) {
-//            Restaurant selected = listPanel.selectedRestaurant();
-//            editAdd = new EditandViewPanel(listPanel.selectedRestaurant());
-//            editAdd.setPreferredSize(new Dimension((int) (0.5 * WIDTH), HEIGHT));
-//            getContentPane().add(editAdd, BorderLayout.EAST);
-//            editAdd.setVisible(true);
-//        }
-//    }
 }

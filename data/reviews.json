@@ -1,140 +1,29 @@
 {
-    "likedRestaurants": [
-        {
-            "wishList": [],
-            "restaurantName": "cafe",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 1,
-            "triedFoods": []
-        },
-        {
-            "wishList": [{
-                "foodRating": 0,
-                "isTried": false,
-                "price": 0,
-                "FoodName": "GUI"
-            }],
-            "restaurantName": "ChaTime",
-            "restaurantRating": 3,
-            "isLiked": true,
-            "reviewNumber": 2,
-            "triedFoods": [
-                {
-                    "foodRating": 5,
-                    "isTried": true,
-                    "price": 6.5,
-                    "FoodName": "Peach QQ"
-                },
-                {
-                    "foodRating": 4.5,
-                    "isTried": true,
-                    "price": 1,
-                    "FoodName": "Milk Tea"
-                },
-                {
-                    "foodRating": 2,
-                    "isTried": true,
-                    "price": 1,
-                    "FoodName": "hjk"
-                },
-                {
-                    "foodRating": 2,
-                    "isTried": true,
-                    "price": 123,
-                    "FoodName": "Fruit Tea"
-                }
-            ]
-        },
-        {
-            "wishList": [],
-            "restaurantName": "asdflkasj fkawjrlkwj",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 4,
-            "triedFoods": []
-        }
-    ],
+    "likedRestaurants": [],
     "dislikedRestaurants": [{
         "wishList": [],
-        "restaurantName": "abc",
+        "restaurantName": "lkjjl",
         "restaurantRating": 1,
         "isLiked": false,
-        "reviewNumber": 3,
+        "reviewNumber": 2,
         "triedFoods": [{
             "foodRating": 1,
             "isTried": true,
-            "price": 19,
-            "FoodName": "bitterMelon"
+            "price": 3,
+            "FoodName": "hjk"
         }]
     }],
-    "allRestaurants": [
-        {
-            "wishList": [],
-            "restaurantName": "cafe",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 1,
-            "triedFoods": []
-        },
-        {
-            "wishList": [],
-            "restaurantName": "asdflkasj fkawjrlkwj",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 4,
-            "triedFoods": []
-        },
-        {
-            "wishList": [],
-            "restaurantName": "abc",
-            "restaurantRating": 1,
-            "isLiked": false,
-            "reviewNumber": 3,
-            "triedFoods": [{
-                "foodRating": 1,
-                "isTried": true,
-                "price": 19,
-                "FoodName": "bitterMelon"
-            }]
-        },
-        {
-            "wishList": [{
-                "foodRating": 0,
-                "isTried": false,
-                "price": 0,
-                "FoodName": "GUI"
-            }],
-            "restaurantName": "ChaTime",
-            "restaurantRating": 3,
-            "isLiked": true,
-            "reviewNumber": 2,
-            "triedFoods": [
-                {
-                    "foodRating": 5,
-                    "isTried": true,
-                    "price": 6.5,
-                    "FoodName": "Peach QQ"
-                },
-                {
-                    "foodRating": 4.5,
-                    "isTried": true,
-                    "price": 1,
-                    "FoodName": "Milk Tea"
-                },
-                {
-                    "foodRating": 2,
-                    "isTried": true,
-                    "price": 1,
-                    "FoodName": "hjk"
-                },
-                {
-                    "foodRating": 2,
-                    "isTried": true,
-                    "price": 123,
-                    "FoodName": "Fruit Tea"
-                }
-            ]
-        }
-    ]
+    "allRestaurants": [{
+        "wishList": [],
+        "restaurantName": "lkjjl",
+        "restaurantRating": 1,
+        "isLiked": false,
+        "reviewNumber": 2,
+        "triedFoods": [{
+            "foodRating": 1,
+            "isTried": true,
+            "price": 3,
+            "FoodName": "hjk"
+        }]
+    }]
 }
