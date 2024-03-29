@@ -24,7 +24,7 @@ public class FoodTable extends JPanel implements ActionListener {
     private JTextField foodName;
     private JTextField foodPrice;
     private JTextField foodRating;
-    private JButton btnDone;
+    private JButton btnEdit;
     private JButton btnAdd;
 
     // MODIFIES: this
@@ -44,47 +44,14 @@ public class FoodTable extends JPanel implements ActionListener {
 
     // MODIFIES: this
     // EFFECTS: adds all editable fields to a panel
-    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void addEditFields(List<Food> foodList) {
         JPanel editTriedFields = new JPanel();
         editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
         configureTextFields();
         configureButtons();
         addToEditTriedFields(editTriedFields);
-        btnDoneAction(foodList);
+        btnEditAction(foodList);
         btnAddAction(foodList);
-//        btnDone.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if (foodTable.getSelectedRow() != -1) {
-//                    int i = foodTable.getSelectedRow();
-//                    setValuesForRow(i);
-//                    alterFoodInstance(foodList, i);
-//                    parent.getRestaurant().createRating();
-//                    setTextBlank();
-//                    ensureTableUpdate(i);
-//                }
-//            }
-//        });
-
-//        btnAdd.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                createAddNewFood(foodList);
-//                setTextBlank();
-                //foodList.add(newFood);
-//                parent.getRestaurant().createRating();
-                //parent.resetEditView();
-//                parent.repaintEditable();
-                //parent.editView();
-                //revalidate(); //gets rid of add button
-                //repaint(); //gets rid of add button
-                //parent.revalidate();
-                //parent.repaint();
-                //parent.repaintEditable();
-//            }
-//        });
-
         add(editTriedFields);
         foodTable.addMouseListener(new MouseAdapter() {
             @Override
@@ -95,8 +62,10 @@ public class FoodTable extends JPanel implements ActionListener {
         });
     }
 
-    public void btnDoneAction(List<Food> foodList) {
-        btnDone.addActionListener(new ActionListener() {
+    // MODIFIES: this
+    // EFFECTS: when edit is clicked, changes cell in table to reflect what the user edited the food to be
+    public void btnEditAction(List<Food> foodList) {
+        btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (foodTable.getSelectedRow() != -1) {
@@ -111,22 +80,16 @@ public class FoodTable extends JPanel implements ActionListener {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds food item to table when the add food button is pressed
     public void btnAddAction(List<Food> foodList) {
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 createAddNewFood(foodList);
                 setTextBlank();
-                //foodList.add(newFood);
                 parent.getRestaurant().createRating();
-                //parent.resetEditView();
                 parent.repaintEditable();
-                //parent.editView();
-                //revalidate(); //gets rid of add button
-                //repaint(); //gets rid of add button
-                //parent.revalidate();
-                //parent.repaint();
-                //parent.repaintEditable();
             }
         });
     }
@@ -137,7 +100,7 @@ public class FoodTable extends JPanel implements ActionListener {
         editTriedFields.add(foodName);
         editTriedFields.add(foodPrice);
         editTriedFields.add(foodRating);
-        editTriedFields.add(btnDone);
+        editTriedFields.add(btnEdit);
         editTriedFields.add(btnAdd);
     }
 
@@ -172,6 +135,9 @@ public class FoodTable extends JPanel implements ActionListener {
         foodName = new JTextField(8);
         foodPrice = new JTextField(3);
         foodRating = new JTextField(3);
+        foodName.setToolTipText("Enter food name");
+        foodPrice.setToolTipText("Enter price ($)");
+        foodRating.setToolTipText("Enter rating from 0 to 5");
         foodName.addActionListener(this);
         foodPrice.addActionListener(this);
         foodRating.addActionListener(this);
@@ -180,7 +146,7 @@ public class FoodTable extends JPanel implements ActionListener {
     // MODIFIES: this
     // EFFECTS: constructs 2 buttons
     public void configureButtons() {
-        btnDone = new JButton("Update");
+        btnEdit = new JButton("Update");
         btnAdd = new JButton("Add Food");
     }
 
