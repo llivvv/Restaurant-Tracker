@@ -2,7 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
 
-// runs the calls and runs the RestaurantTrackerApp
+// runs the calls and runs the RestaurantTrackerGUI
 // references https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 public class Main {
