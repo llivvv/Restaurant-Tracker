@@ -30,13 +30,6 @@ public class ListPanel extends JPanel implements ListSelectionListener {
             listModel.addElement(r);
         }
 
-        // dummy restaurants
-//        listModel.addElement(new Restaurant("yo", false));
-//        listModel.addElement(new Restaurant("hi", true));
-//        listModel.addElement(new Restaurant("hello", true));
-//        listModel.addElement(new Restaurant("asoid v", true));
-//        listModel.addElement(new Restaurant("aslkdfj", true));
-
         listDisplay = new JList(listModel);
         customizeList();
 
@@ -59,15 +52,15 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         add(listScroller);
     }
 
-    public Restaurant selectedRestaurant() {
-        return (Restaurant) listDisplay.getSelectedValue();
-    }
-
+    // MODIFIES: this
+    // EFFECTS: deletes a review from the list view
     public void deleteFromJList() {
         int index = listDisplay.getSelectedIndex();
         listModel.removeElementAt(index);
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the list of reviews to be displayed
     public void changeReview(List<Restaurant> reviews) {
         listModel = new DefaultListModel();
         currReviews = reviews;
@@ -78,10 +71,14 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         listDisplay.setModel(listModel);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a new review to the list display
     public void addToJList(Restaurant restaurant) {
         listModel.addElement(restaurant);
     }
 
+    // MODIFIES: this
+    // EFFECTS: selects the list item that matches the given restaurant
     public void setListSelection(Restaurant restaurant) {
         for (Restaurant r : currReviews) {
             if (r.equals(restaurant)) {
@@ -92,18 +89,12 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         }
     }
 
-//    public void updateListDisplay(List<Restaurant> reviews) {
-//        updateListModel(reviews);
-//        listDisplay.ensureIndexIsVisible(listModel.getSize());
-//    }
-
+    // MODIFIES: ReviewTrackerGUI
+    // EFFECTS: displays the information of a restaurant that has just been selected
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (listDisplay.getSelectedIndex() != -1) {
             app.displayResInfo(listDisplay.getSelectedValue());
         }
-//        Restaurant selected = listDisplay.getSelectedValue();
-//        System.out.println(selected);
-//        Restaurant selected = (Restaurant) listDisplay.getSelectedValue();
     }
 }
