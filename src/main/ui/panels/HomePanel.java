@@ -5,39 +5,31 @@ import ui.ReviewTrackerGUI;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents the homepage the user first sees when opening the application
 public class HomePanel extends JPanel {
 
     private JButton newStart;
     private JButton loadStart;
     private JLabel welcomeText;
-    private JLabel bgImage;
     private ReviewTrackerGUI app;
 
+    // EFFECTS: constructs the homepage with 2 buttons
     public HomePanel(ReviewTrackerGUI app) {
         //setLayout(new GridLayout(2, 1, 0, 10));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.app = app;
         welcomeText = new JLabel("Welcome!");
-        //ImageIcon img = new ImageIcon("home.png");
-        //bgImage = new JLabel(img);
-        //customizeImage();
         newStart = new JButton("New Set of Reviews");
         loadStart = new JButton("Load and add to my existing reviews");
 
         customizeWelcome();
         customizeButtons();
 
-
-
         setOpaque(false);
-        //setBackground(new Color(240, 232, 250));
     }
 
-    public void customizeImage() {
-        bgImage.setPreferredSize(new Dimension(app.getWidth(), app.getHeight()));
-        add(bgImage, BorderLayout.CENTER);
-    }
-
+    // MODIFIES: this
+    // EFFECTS: sets the font, colour and size of the welcome text and adds it to the panel
     public void customizeWelcome() {
         welcomeText.setFont(new Font("Impact", Font.BOLD, 30));
         welcomeText.setForeground(new Color(41, 24, 66));
@@ -45,6 +37,8 @@ public class HomePanel extends JPanel {
         add(welcomeText);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the colour, font and sizes of the 2 buttons and adds them to the panel
     public void customizeButtons() {
         newStart.setFont(new Font("Arial", Font.ITALIC, 20));
         newStart.setBackground(new Color(164, 236, 245, 255));
@@ -58,10 +52,12 @@ public class HomePanel extends JPanel {
         add(loadStart);
     }
 
+    // EFFECTS: returns the newStart button
     public JButton getNewStartButton() {
         return newStart;
     }
 
+    // EFFECTS: returns the loadStart button
     public JButton getLoadStartButton() {
         return loadStart;
     }
