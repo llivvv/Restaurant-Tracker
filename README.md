@@ -35,4 +35,9 @@ behind the two buttons.
 whether you would like to save your progress.
 - You can choose to load existing reviews on the home page when you first open the application. Clicking 
 on the "Load and add to my existing reviews" button. If you would like to write a new set of reviews, you can click the
-"New Set of Reviews" button instead.
+"New Set of Reviews" button instead. 
+
+#### Image Information: 
+
+- https://www.realsimple.com/holidays-entertaining/entertaining/everyday-celebrations/picnic-packing-checklist
+- Image was then altered on ProCreate.

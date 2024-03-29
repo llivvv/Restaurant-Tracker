@@ -25,7 +25,6 @@ import java.util.Scanner;
 public class ReviewTrackerGUI extends JFrame implements ActionListener {
 
     private static final String JSON_STORE = "./data/reviews.json";
-    private static final String JSON_DUMMY = "./data/trashReader.json";
     private Reviews reviews;
     private Scanner input;
     private JsonReader jsonReader;
@@ -41,6 +40,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 500;
 
+    // image reference: https://www.realsimple.com/holidays-entertaining/entertaining/everyday-celebrations/picnic-packing-checklist
     // MODIFIES: this
     // EFFECTS: constructs this GUI with a set homePage and image
     public ReviewTrackerGUI() throws FileNotFoundException {
