@@ -37,7 +37,7 @@ whether you would like to save your progress.
 on the "Load and add to my existing reviews" button. If you would like to write a new set of reviews, you can click the
 "New Set of Reviews" button instead. 
 
-#### Image Information: 
+#### Image Reference: 
 
-- https://www.realsimple.com/holidays-entertaining/entertaining/everyday-celebrations/picnic-packing-checklist
-- Image was then altered on ProCreate.
+- https://www.realsimple.com/holidays-entertaining/entertaining/everyday-celebrations/picnic-packing-checklist 
+_(Edited)_
