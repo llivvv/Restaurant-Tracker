@@ -51,8 +51,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
 
         initView();
 
-        //setOpaque(true);
-        setBackground(new Color(252, 240, 176));
+        setOpaque(false);
+        //setBackground(new Color(252, 240, 176));
     }
 
     // MODIFIES: this
@@ -70,9 +70,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         JPanel nameLabelText = new JPanel();
         displayEditName(nameLabelText);
         editable.add(nameLabelText);
-        editable.setBackground(new Color(80, 107, 134));
+        editable.setBackground(new Color(151, 149, 217));
         JLabel triedFoodLabel = new JLabel("Tried/Reviewed Foods: ");
-        System.out.println("is this method being called");
         editable.add(triedFoodLabel);
         triedFoodTable = new FoodTable(restaurant.getTriedFoods(), this);
         editable.add(triedFoodTable);
@@ -100,6 +99,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         btnWishAdd.addActionListener(this);
         editWish.add(btnWishMove);
         editWish.add(btnWishAdd);
+        editWish.setBackground(new Color(255, 196, 196));
 
     }
 
@@ -118,6 +118,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         });
         nameLabelText.add(restaurantName);
         nameLabelText.add(nameField);
+        nameLabelText.setOpaque(false);
     }
 
     // MODIFIES: restaurant
@@ -151,7 +152,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             displayViewButtons(viewButtons);
             viewButtons.setAlignmentX(CENTER_ALIGNMENT);
             viewOnly.add(viewButtons);
-            viewOnly.setBackground(new Color(179, 215, 250));
+            viewOnly.setBackground(new Color(250, 182, 216));
 
         }
     }
@@ -182,14 +183,15 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         triedFieldTitle.add(price);
         triedFieldTitle.add(rating);
         triedFieldTitle.setLayout(new GridLayout(1, 3, 0, 0));
+        triedFieldTitle.setOpaque(false);
         allTried.add(triedFoodTitle);
         allTried.add(triedFieldTitle);
         for (Food f : restaurant.getTriedFoods()) {
             labelPerTriedFood(f, allTried);
         }
         allTried.setLayout(new GridLayout(0, 1, 30, 0));
-        allTried.setOpaque(false);
-        allTried.setBackground(new Color(151, 245, 253));
+        allTried.setOpaque(true);
+        allTried.setBackground(new Color(143, 241, 219));
     }
 
     // EFFECTS: creates label for food; with name, price, rating, then adds it to a panel
@@ -229,9 +231,9 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         }
         wish.setLayout(new BoxLayout(wish, BoxLayout.Y_AXIS));
         foodNames.setLayout(new GridLayout(0, 2, 0, 0));
+        foodNames.setOpaque(false);
         wish.add(foodNames);
-        wish.setBackground(new Color(164, 236, 245));
-        System.out.println("bruh");
+        wish.setBackground(new Color(117, 178, 183));
     }
 
     // EFFECTS: creates the headers for 2 columns of wishlist food names
@@ -243,6 +245,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         wishFieldTitle.add(name1);
         wishFieldTitle.add(name2);
         wishFieldTitle.setLayout(new GridLayout(1, 2, 0, 0));
+        wishFieldTitle.setOpaque(false);
     }
 
     // EFFECTS: displays buttons which are on the viewOnly panel (edit and delete)

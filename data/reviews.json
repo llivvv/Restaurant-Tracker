@@ -1,71 +1,74 @@
 {
-    "likedRestaurants": [],
-    "dislikedRestaurants": [{
-        "wishList": [
-            {
-                "foodRating": 0,
-                "isTried": false,
-                "price": 0,
-                "FoodName": "asdf"
-            },
-            {
-                "foodRating": 0,
-                "isTried": false,
-                "price": 0,
-                "FoodName": " sdf"
-            }
-        ],
-        "restaurantName": "abcde",
-        "restaurantRating": 4,
-        "isLiked": false,
+    "likedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "chaTime",
+        "restaurantRating": 3,
+        "isLiked": true,
         "reviewNumber": 1,
         "triedFoods": [
             {
-                "foodRating": 2,
+                "foodRating": 4,
                 "isTried": true,
-                "price": 1,
-                "FoodName": "fghijk"
+                "price": 7,
+                "FoodName": "peachQQ"
             },
             {
-                "foodRating": 5,
+                "foodRating": 3,
                 "isTried": true,
-                "price": 1,
-                "FoodName": "we"
+                "price": 7.5,
+                "FoodName": " GrassJelly"
+            },
+            {
+                "foodRating": 2,
+                "isTried": true,
+                "price": 135,
+                "FoodName": "passionfruit"
             }
         ]
     }],
-    "allRestaurants": [{
-        "wishList": [
-            {
-                "foodRating": 0,
-                "isTried": false,
-                "price": 0,
-                "FoodName": "asdf"
-            },
-            {
-                "foodRating": 0,
-                "isTried": false,
-                "price": 0,
-                "FoodName": " sdf"
-            }
-        ],
-        "restaurantName": "abcde",
-        "restaurantRating": 4,
+    "dislikedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "skdgjsldkgjdfslk",
+        "restaurantRating": 0,
         "isLiked": false,
-        "reviewNumber": 1,
-        "triedFoods": [
-            {
-                "foodRating": 2,
-                "isTried": true,
-                "price": 1,
-                "FoodName": "fghijk"
-            },
-            {
-                "foodRating": 5,
-                "isTried": true,
-                "price": 1,
-                "FoodName": "we"
-            }
-        ]
-    }]
+        "reviewNumber": 3,
+        "triedFoods": []
+    }],
+    "allRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "skdgjsldkgjdfslk",
+            "restaurantRating": 0,
+            "isLiked": false,
+            "reviewNumber": 3,
+            "triedFoods": []
+        },
+        {
+            "wishList": [],
+            "restaurantName": "chaTime",
+            "restaurantRating": 3,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [
+                {
+                    "foodRating": 4,
+                    "isTried": true,
+                    "price": 7,
+                    "FoodName": "peachQQ"
+                },
+                {
+                    "foodRating": 3,
+                    "isTried": true,
+                    "price": 7.5,
+                    "FoodName": " GrassJelly"
+                },
+                {
+                    "foodRating": 2,
+                    "isTried": true,
+                    "price": 135,
+                    "FoodName": "passionfruit"
+                }
+            ]
+        }
+    ]
 }

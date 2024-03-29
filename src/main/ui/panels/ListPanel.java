@@ -26,7 +26,6 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         currReviews = reviews;
         listModel = new DefaultListModel();
         for (Restaurant r : reviews) {
-            System.out.println(r);
             listModel.addElement(r);
         }
 
@@ -65,7 +64,6 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         listModel = new DefaultListModel();
         currReviews = reviews;
         for (Restaurant r : reviews) {
-            System.out.println(r);
             listModel.addElement(r);
         }
         listDisplay.setModel(listModel);

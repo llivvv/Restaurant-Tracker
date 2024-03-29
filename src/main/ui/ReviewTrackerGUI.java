@@ -232,7 +232,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         getContentPane().add(editAdd, BorderLayout.CENTER);
         //setLayout(new GridLayout(1, 2));
         editAdd.setVisible(true);
-        System.out.println("why isn't the panel visible");
     }
 
     // EFFECTS: returns width of this frame
