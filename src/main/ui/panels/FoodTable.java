@@ -16,11 +16,18 @@ import static java.lang.String.valueOf;
 
 // References: https://youtu.be/22MBsRYuM4Q?si=1u2f3aA3RuT-jL9O
 
-public class FoodTable extends JPanel {
+// Represents tried foods table with header and food names, prices, ratings,text fields and buttons to edit each food
+
+public class FoodTable extends JPanel implements ActionListener {
 
     private JTable foodTable;
     private AbstractTableModel foodModel;
     private EditandViewPanel parent;
+    private JTextField foodName;
+    private JTextField foodPrice;
+    private JTextField foodRating;
+    private JButton btnDone;
+    private JButton btnAdd;
 
     public FoodTable(List<Food> foodList, EditandViewPanel parent) {
         this.parent = parent;
@@ -89,58 +96,62 @@ public class FoodTable extends JPanel {
 //        }
 
 
+
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void addEditFields(List<Food> foodList) {
         JPanel editTriedFields = new JPanel();
         editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
-        JTextField foodName = new JTextField(8);
-        JTextField foodPrice = new JTextField(3);
-        JTextField foodRating = new JTextField(3);
-        JButton btnDone = new JButton("Update");
-        JButton btnAdd = new JButton("Add Food");
+        configureTextFields();
+//        JTextField foodName = new JTextField(8);
+//        JTextField foodPrice = new JTextField(3);
+//        JTextField foodRating = new JTextField(3);
+        configureButtons();
+//        JButton btnDone = new JButton("Update");
+//        JButton btnAdd = new JButton("Add Food");
         editTriedFields.add(foodName);
         editTriedFields.add(foodPrice);
         editTriedFields.add(foodRating);
         editTriedFields.add(btnDone);
         editTriedFields.add(btnAdd);
-        foodName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                foodName.setText(foodName.getText());
-            }
-        });
-        foodPrice.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                foodPrice.setText(foodPrice.getText());
-            }
-        });
-        foodRating.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                foodRating.setText(foodRating.getText());
-            }
-        });
+//        foodName.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                foodName.setText(foodName.getText());
+//            }
+//        });
+//        foodPrice.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                foodPrice.setText(foodPrice.getText());
+//            }
+//        });
+//        foodRating.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                foodRating.setText(foodRating.getText());
+//            }
+//        });
 
         btnDone.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (foodTable.getSelectedRow() != -1) {
                     int i = foodTable.getSelectedRow();
+                    setValuesForRow(i);
                     //foodModel.isCellEditable(i, 0);
-                    foodModel.setValueAt(foodName.getText(), i, 0);
-                    foodModel.setValueAt(foodPrice.getText(), i, 1);
-                    foodModel.setValueAt(foodRating.getText(), i, 2);
-                    foodList.get(i).setName(foodName.getText());
-                    foodList.get(i).setPrice(Double.parseDouble(foodPrice.getText()));
-                    foodList.get(i).setRating(Double.parseDouble(foodRating.getText()));
+//                    foodModel.setValueAt(foodName.getText(), i, 0);
+//                    foodModel.setValueAt(foodPrice.getText(), i, 1);
+//                    foodModel.setValueAt(foodRating.getText(), i, 2);
+                    alterFoodInstance(foodList, i);
+//                    foodList.get(i).setName(foodName.getText());
+//                    foodList.get(i).setPrice(Double.parseDouble(foodPrice.getText()));
+//                    foodList.get(i).setRating(Double.parseDouble(foodRating.getText()));
                     parent.getRestaurant().createRating();
-                    foodName.setText(" ");
-                    foodPrice.setText(" ");
-                    foodRating.setText(" ");
-                    foodModel.fireTableCellUpdated(i, 0);
-                    foodModel.fireTableCellUpdated(i, 1);
-                    foodModel.fireTableCellUpdated(i, 2);
+                    setTextBlank();
+                    ensureTableUpdate(i);
+//                    foodModel.fireTableCellUpdated(i, 0);
+//                    foodModel.fireTableCellUpdated(i, 1);
+//                    foodModel.fireTableCellUpdated(i, 2);
                 }
             }
         });
@@ -150,9 +161,10 @@ public class FoodTable extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Food newFood = new Food(foodName.getText(), Double.parseDouble(foodPrice.getText()), true);
                 newFood.setRating(Double.parseDouble(foodRating.getText()));
-                foodName.setText(" ");
-                foodPrice.setText(" ");
-                foodRating.setText(" ");
+                setTextBlank();
+//                foodName.setText(" ");
+//                foodPrice.setText(" ");
+//                foodRating.setText(" ");
                 foodList.add(newFood);
                 parent.getRestaurant().createRating();
                 //parent.resetEditView();
@@ -171,11 +183,85 @@ public class FoodTable extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int i = foodTable.getSelectedRow();
-                foodName.setText(foodList.get(i).getName());
-                foodPrice.setText(valueOf(foodList.get(i).getPrice()));
-                foodRating.setText(valueOf(foodList.get(i).getRating()));
+                tableIntoTextField(foodList, i);
+//                foodName.setText(foodList.get(i).getName());
+//                foodPrice.setText(valueOf(foodList.get(i).getPrice()));
+//                foodRating.setText(valueOf(foodList.get(i).getRating()));
             }
         });
     }
+
+    // MODIFIES: this
+    // EFFECTS: places info about food in selected row, into the text fields
+    public void tableIntoTextField(List<Food> foodList, int i) {
+        foodName.setText(foodList.get(i).getName());
+        foodPrice.setText(valueOf(foodList.get(i).getPrice()));
+        foodRating.setText(valueOf(foodList.get(i).getRating()));
+    }
+
+    // REQUIRES: i != -1
+    // MODIFIES: food
+    // EFFECTS: sets the food values to what is in the text field
+    public void alterFoodInstance(List<Food> foodList, int i) {
+        foodList.get(i).setName(foodName.getText());
+        foodList.get(i).setPrice(Double.parseDouble(foodPrice.getText()));
+        foodList.get(i).setRating(Double.parseDouble(foodRating.getText()));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: constructs and adds action listeners to each text field
+    public void configureTextFields() {
+        foodName = new JTextField(8);
+        foodPrice = new JTextField(3);
+        foodRating = new JTextField(3);
+        foodName.addActionListener(this);
+        foodPrice.addActionListener(this);
+        foodRating.addActionListener(this);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: constructs 2 buttons
+    public void configureButtons() {
+        btnDone = new JButton("Update");
+        btnAdd = new JButton("Add Food");
+    }
+
+    // EFFECTS: handles user's input to the text fields
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == foodName) {
+            foodName.setText(foodName.getText());
+        } else if (e.getSource() == foodPrice) {
+            foodPrice.setText(foodPrice.getText());
+        } else if (e.getSource() == foodRating) {
+            foodRating.setText(foodRating.getText());
+        }
+    }
+
+    // REQUIRES: i != -1
+    // MODIFIES: foodModel
+    // EFFECTS: sets the table model values for all cells in row i
+    public void setValuesForRow(int i) {
+        foodModel.setValueAt(foodName.getText(), i, 0);
+        foodModel.setValueAt(foodPrice.getText(), i, 1);
+        foodModel.setValueAt(foodRating.getText(), i, 2);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: makes the text fields empty
+    public void setTextBlank() {
+        foodName.setText(" ");
+        foodPrice.setText(" ");
+        foodRating.setText(" ");
+    }
+
+    // REQUIRES: i != -1
+    // EFFECTS: notifies table that cells in model have been updated
+    public void ensureTableUpdate(int i) {
+        foodModel.fireTableCellUpdated(i, 0);
+        foodModel.fireTableCellUpdated(i, 1);
+        foodModel.fireTableCellUpdated(i, 2);
+    }
+
 
 }
