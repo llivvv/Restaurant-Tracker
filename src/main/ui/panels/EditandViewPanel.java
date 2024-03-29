@@ -85,12 +85,6 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         JPanel forDoneButton = new JPanel();
         forDoneButton.add(doneButton);
         editable.add(forDoneButton);
-
-       // JPanel editTriedFields = new JPanel();
-       // editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
-       // addTriedField(editTriedFields);
-       // editable.add(editTriedFields);
-        // stub
     }
 
     // MODIFIES: this
@@ -118,15 +112,12 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         nameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //restaurant.setRestaurantName(nameField.getText());
                 nameField.setText(nameField.getText());
                 setNewRestaurantName(nameField.getText());
             }
         });
-        //JLabel restaurantRating = new JLabel("~" + restaurant.getRating() + " stars");
         nameLabelText.add(restaurantName);
         nameLabelText.add(nameField);
-        //nameLabelText.add(restaurantRating);
     }
 
     // MODIFIES: restaurant
@@ -160,20 +151,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             displayViewButtons(viewButtons);
             viewButtons.setAlignmentX(CENTER_ALIGNMENT);
             viewOnly.add(viewButtons);
-            //viewOnly.add(editButton);
-            //viewOnly.add(deleteButton);
-            //viewOnly.setLayout(new GridLayout(3, 1, 5, 40));
-            //viewOnly.setSize(new Dimension((int)0.4 * app.getWidth(), (int) 0.9 * app.getHeight()));
             viewOnly.setBackground(new Color(179, 215, 250));
 
-//            viewOnly.add(nameRating);
-//            nameRating.setVisible(true);
-//            viewOnly.add(allTried);
-//            allTried.setVisible(true);
-//            viewOnly.add(wish);
-//            wish.setVisible(true);
-//            viewOnly.setLayout(new GridLayout(3, 1, 5, 40));
-//            viewOnly.setBackground(new Color(200, 100, 157));
         }
     }
 
@@ -189,7 +168,6 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         nameRating.add(resRating);
         nameRating.setLayout(new GridLayout(1, 2, 10, 10));
         nameRating.setOpaque(false);
-        //nameRating.setSize(new Dimension((int)0.4 * app.getWidth(), 35));
     }
 
     // EFFECTS: displays tried foods with heading, "table heading" and each food
@@ -207,18 +185,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         allTried.add(triedFoodTitle);
         allTried.add(triedFieldTitle);
         for (Food f : restaurant.getTriedFoods()) {
-            // System.out.println(f.getName());
             labelPerTriedFood(f, allTried);
-//            JPanel foodInfo = new JPanel();
-//            foodInfo.setOpaque(false);
-//            JLabel foodName = new JLabel(f.getName());
-//            JLabel foodPrice = new JLabel(valueOf(f.getPrice()));
-//            JLabel foodRating = new JLabel(valueOf(f.getRating()));
-//            foodInfo.add(foodName);
-//            foodInfo.add(foodPrice);
-//            foodInfo.add(foodRating);
-//            foodInfo.setLayout(new GridLayout(1, 3, 0, 0));
-//            allTried.add(foodInfo);
         }
         allTried.setLayout(new GridLayout(0, 1, 30, 0));
         allTried.setOpaque(false);
@@ -333,18 +300,6 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         } else if (e.getSource() == btnWishMove) {
             String nameFind = wishEdit.getText();
             changeFoodToTriedDisplay(nameFind);
-//            if (!nameFind.isEmpty() && (restaurant.getFoodFromList(nameFind) != null)) {
-//                Food target = restaurant.getFoodFromList(nameFind);
-//                restaurant.getWishList().remove(target);
-//                target.makeTried();
-//                wishEdit.setText(" ");
-//                editable.revalidate();
-//                addTriedInfo(target);
-//                restaurant.getTriedFoods().add(target);
-//                restaurant.createRating();
-//                //resetEditView();
-//                //editView();
-//            }
         } else if (e.getSource() == btnWishAdd) {
             String newWishName = wishEdit.getText();
             Food newWishFood = new Food(newWishName, 0, false);
@@ -352,7 +307,6 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             newWishFood.setRating(0);
             restaurant.getWishList().add(newWishFood);
         } else if (e.getSource() == doneButton) {
-            System.out.println(".....");
             app.displayResInfo(restaurant);
         }
     }

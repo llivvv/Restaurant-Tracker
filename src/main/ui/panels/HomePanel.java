@@ -15,7 +15,6 @@ public class HomePanel extends JPanel {
 
     // EFFECTS: constructs the homepage with 2 buttons
     public HomePanel(ReviewTrackerGUI app) {
-        //setLayout(new GridLayout(2, 1, 0, 10));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.app = app;
         welcomeText = new JLabel("Welcome!");

@@ -21,6 +21,7 @@ import java.util.Scanner;
 //             https://youtu.be/OI-TFbHQhtA?si=_ZUwX9mAbhoBNQu0 (processing button clicks)
 //             https://stackoverflow.com/questions/13334198/java-custom-buttons-in-showinputdialog
 
+// Represents a personal restaurant tracker application with a GUI
 public class ReviewTrackerGUI extends JFrame implements ActionListener {
 
     private static final String JSON_STORE = "./data/reviews.json";
@@ -77,18 +78,10 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         homePage.setVisible(true);
         getContentPane().add(bgImage);
         getContentPane().add(homePage, BorderLayout.CENTER);
-        //editAdd = new EditandViewPanel(null);
-        //getContentPane().add(editAdd);
-        //editAdd.setVisible(false);
-//        listPanel = new ListPanel(reviews.getAllReviews());
-//        //add(listAll, BorderLayout.WEST);
-//        listPanel.setPreferredSize(new Dimension((int) (0.5 * WIDTH), HEIGHT));
-//        getContentPane().add(listPanel, BorderLayout.WEST);
-//        listPanel.setVisible(false);
     }
 
-    // MODIFIES: Reviews;
-    // EFFECTS: dialog box prompts user to save their work and listens to choice
+    // MODIFIES: Reviews
+    // EFFECTS: dialog box prompts user to save their work and processes their choice
     public void askSave() {
         int choice = JOptionPane.showConfirmDialog(null,
                 "Would you like to save today's progress before quitting the app?",
@@ -148,11 +141,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         customizeListPanel();
         customizeSortPanel(this, listPanel);
         customizeTabPanel();
-//        listPanel = new ListPanel(this, reviews.getAllReviews());
-//        //add(listAll, BorderLayout.WEST);
-//        listPanel.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
-//        getContentPane().add(listPanel, BorderLayout.WEST);
-//        listPanel.setVisible(true);
     }
 
     // EFFECTS: prompts user to enter a new name for a new review
@@ -165,6 +153,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: reviews, listPanel
     // EFFECTS: asks user about like vs dislike and creates a new review
     public void initRestaurant(String name) {
         Object[] options = { "Liked", "Disliked", "cancel review"};
@@ -184,6 +173,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: listPanel
     // EFFECTS: prompts user to choose a new name or pick a review to edit
     public void fixDuplicateName(Restaurant restaurant) {
         Object[] options = { "Choose a different name", "Edit existing review", "cancel" };
@@ -198,7 +188,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, SortFilterPanel
     // EFFECTS: adds sort and filter panel to the frame and makes it visible
     public void customizeSortPanel(ReviewTrackerGUI app, ListPanel listPanel) {
         sfPanel = new SortFilterPanel(this, listPanel);
@@ -207,14 +197,17 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         sfPanel.setVisible(true);
     }
 
+    // MODIFIES: this, listPanel
+    // EFFECTS: creates a new listPanel and adds it to this
     public void customizeListPanel() {
         listPanel = new ListPanel(this, reviews.getAllReviews());
-        //add(listAll, BorderLayout.WEST);
         listPanel.setSize(new Dimension(400, HEIGHT - 75)); // 0.5 * WIDTH
         getContentPane().add(listPanel, BorderLayout.WEST);
         listPanel.setVisible(true);
     }
 
+    // MODIFIES: this, TabPanel
+    // EFFECTS: creates a new tab panel and adds it to this
     public void customizeTabPanel() {
         tabs = new TabPanel(this);
         tabs.setSize(new Dimension(75, HEIGHT));
@@ -222,6 +215,7 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         tabs.setVisible(true);
     }
 
+    // MODIFIES: this, EditandViewPanel
     // EFFECTS: displays the information of the selected restaurant
     public void displayResInfo(Restaurant restaurant) {
         if (editAdd != null) {
@@ -237,18 +231,23 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         System.out.println("why isn't the panel visible");
     }
 
+    // EFFECTS: returns width of this frame
     public int getWidth() {
         return WIDTH;
     }
 
+    // EFFECTS: returns height of this frame
     public int getHeight() {
         return HEIGHT;
     }
 
+    // EFFECTS: returns reviews
     public Reviews getReviews() {
         return reviews;
     }
 
+    // MODIFIES: this, Reviews, EditAddPanel, ListPanel
+    // EFFECTS: deletes a restaurant review the application
     public void deleteRestaurant(Restaurant restaurant) {
         reviews.removeRestaurant(restaurant);
         editAdd.setVisible(false);
