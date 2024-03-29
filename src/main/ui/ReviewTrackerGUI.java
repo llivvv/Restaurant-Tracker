@@ -136,10 +136,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         } else if (e.getSource() == tabs.getBtnCreate()) {
             makeNewReview();
         }
-
-//        } else if (e.getSource() == tabs.getBtnHome()) {
-//            returnHomePage();
-//        }
     }
 
     // MODIFIES: this
@@ -159,13 +155,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
 //        listPanel.setSize(new Dimension(400, HEIGHT)); // 0.5 * WIDTH
 //        getContentPane().add(listPanel, BorderLayout.WEST);
 //        listPanel.setVisible(true);
-    }
-
-    // TODO
-    // MODIFIES: this
-    // EFFECTS: sets all panels to invisible except for homepage
-    public void returnHomePage() {
-        //
     }
 
     public void makeNewReview() {

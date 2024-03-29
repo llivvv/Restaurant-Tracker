@@ -20,9 +20,7 @@ public class FoodTable extends JPanel {
 
     private JTable foodTable;
     private AbstractTableModel foodModel;
-    private DefaultTableModel wishModel;
     private EditandViewPanel parent;
-    //private JScrollPane scroller;
 
     public FoodTable(List<Food> foodList, EditandViewPanel parent) {
         this.parent = parent;

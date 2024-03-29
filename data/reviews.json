@@ -9,22 +9,14 @@
             "triedFoods": []
         },
         {
-            "wishList": [
-                {
-                    "foodRating": 0,
-                    "isTried": false,
-                    "price": 0,
-                    "FoodName": "Fruit Tea"
-                },
-                {
-                    "foodRating": 0,
-                    "isTried": false,
-                    "price": 0,
-                    "FoodName": "GUI"
-                }
-            ],
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "GUI"
+            }],
             "restaurantName": "ChaTime",
-            "restaurantRating": 4,
+            "restaurantRating": 3,
             "isLiked": true,
             "reviewNumber": 2,
             "triedFoods": [
@@ -45,6 +37,12 @@
                     "isTried": true,
                     "price": 1,
                     "FoodName": "hjk"
+                },
+                {
+                    "foodRating": 2,
+                    "isTried": true,
+                    "price": 123,
+                    "FoodName": "Fruit Tea"
                 }
             ]
         },
@@ -81,6 +79,14 @@
         },
         {
             "wishList": [],
+            "restaurantName": "asdflkasj fkawjrlkwj",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 4,
+            "triedFoods": []
+        },
+        {
+            "wishList": [],
             "restaurantName": "abc",
             "restaurantRating": 1,
             "isLiked": false,
@@ -93,22 +99,14 @@
             }]
         },
         {
-            "wishList": [
-                {
-                    "foodRating": 0,
-                    "isTried": false,
-                    "price": 0,
-                    "FoodName": "Fruit Tea"
-                },
-                {
-                    "foodRating": 0,
-                    "isTried": false,
-                    "price": 0,
-                    "FoodName": "GUI"
-                }
-            ],
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "GUI"
+            }],
             "restaurantName": "ChaTime",
-            "restaurantRating": 4,
+            "restaurantRating": 3,
             "isLiked": true,
             "reviewNumber": 2,
             "triedFoods": [
@@ -129,16 +127,14 @@
                     "isTried": true,
                     "price": 1,
                     "FoodName": "hjk"
+                },
+                {
+                    "foodRating": 2,
+                    "isTried": true,
+                    "price": 123,
+                    "FoodName": "Fruit Tea"
                 }
             ]
-        },
-        {
-            "wishList": [],
-            "restaurantName": "asdflkasj fkawjrlkwj",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 4,
-            "triedFoods": []
         }
     ]
 }

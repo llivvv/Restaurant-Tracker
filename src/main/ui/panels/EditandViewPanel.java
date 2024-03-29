@@ -330,6 +330,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
                 restaurant.getWishList().remove(target);
                 target.makeTried();
                 wishEdit.setText(" ");
+                editable.revalidate();
                 addTriedInfo(target);
                 restaurant.getTriedFoods().add(target);
                 restaurant.createRating();

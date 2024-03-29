@@ -48,11 +48,11 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         listDisplay.setSelectionBackground(new Color(234, 219, 255));
         listDisplay.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listDisplay.addListSelectionListener(this);
-        listDisplay.setFont(new Font("Arial", Font.ITALIC, 50));
-        listDisplay.setFixedCellHeight(70);
+        listDisplay.setFont(new Font("Arial", Font.ITALIC, 40));
+        listDisplay.setFixedCellHeight(45);
         listDisplay.setFixedCellWidth(300);
         listDisplay.setPreferredSize(new Dimension(300, 400));
-        listDisplay.setVisibleRowCount(4);
+        listDisplay.setVisibleRowCount(8);
         JScrollPane listScroller = new JScrollPane(listDisplay);
         add(listScroller);
     }
