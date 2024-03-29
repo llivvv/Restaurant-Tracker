@@ -12,6 +12,8 @@ import java.util.List;
 // References: https://youtu.be/c41tND6HJeY?si=TogCOtPYSgk6oMYh
 //             https://youtu.be/w7xiY0fc6cs?si=Z2hfMyfmPku6z17f
 
+// Represents the panel showing the list of reviews, placed on left side of main frame
+
 public class ListPanel extends JPanel implements ListSelectionListener {
 
     private JList<Restaurant> listDisplay;
@@ -42,7 +44,7 @@ public class ListPanel extends JPanel implements ListSelectionListener {
         listDisplay.setSelectionBackground(new Color(234, 219, 255));
         listDisplay.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listDisplay.addListSelectionListener(this);
-        listDisplay.setFont(new Font("Arial", Font.ITALIC, 40));
+        listDisplay.setFont(new Font("Arial", Font.ITALIC, 27));
         listDisplay.setFixedCellHeight(45);
         listDisplay.setFixedCellWidth(300);
         listDisplay.setPreferredSize(new Dimension(300, 400));

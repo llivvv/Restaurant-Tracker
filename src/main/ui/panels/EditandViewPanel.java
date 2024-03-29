@@ -38,39 +38,34 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         this.app = app;
         editable = new JPanel();
         viewOnly = new JPanel();
-        //viewOnly.setLayout(new FlowLayout());
         editButton = new JButton("Edit");
         editButton.addActionListener(this);
         deleteButton = new JButton("Delete review");
         deleteButton.addActionListener(this);
         doneButton = new JButton("Done");
         doneButton.addActionListener(this);
-        //add(doneButton);
 
         setRestaurant();
 
         initView();
 
         setOpaque(false);
-        //setBackground(new Color(252, 240, 176));
     }
 
     // MODIFIES: this
     // EFFECTS: opens the viewOnly view of the restaurant when the restaurant is first selected
     public void setRestaurant() {
-        //customizeEditable();
         customizeViewOnly();
     }
 
     // MODIFIES: this
     // EFFECTS: adds components to the editable view of the restaurant
     public void customizeEditable() {
-        //editable = new JPanel();
         editable.setLayout(new BoxLayout(editable, BoxLayout.PAGE_AXIS));
         JPanel nameLabelText = new JPanel();
         displayEditName(nameLabelText);
         editable.add(nameLabelText);
-        editable.setBackground(new Color(151, 149, 217));
+        editable.setBackground(new Color(143, 241, 219));
         JLabel triedFoodLabel = new JLabel("Tried/Reviewed Foods: ");
         editable.add(triedFoodLabel);
         triedFoodTable = new FoodTable(restaurant.getTriedFoods(), this);
@@ -83,6 +78,7 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         editable.add(editWish);
         JPanel forDoneButton = new JPanel();
         forDoneButton.add(doneButton);
+        forDoneButton.setOpaque(false);
         editable.add(forDoneButton);
     }
 
@@ -262,11 +258,6 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         add(viewOnly, BorderLayout.CENTER);
         editable.setVisible(false);
         viewOnly.setVisible(true);
-    }
-
-    public void resetEditView() {
-        editable = new JPanel();
-        customizeEditable();
     }
 
     // MODIFIES: this

@@ -22,7 +22,7 @@ public class TabPanel extends Panel {
         configureButtons();
         add(btnCreate);
 
-        setBackground(new Color(161, 119, 100));
+        setBackground(new Color(133, 99, 81));
     }
 
     // MODIFIES: this
