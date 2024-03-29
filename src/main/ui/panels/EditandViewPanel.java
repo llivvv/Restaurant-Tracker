@@ -82,7 +82,9 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         JPanel editWish = new JPanel();
         editWishItem(editWish);
         editable.add(editWish);
-        editable.add(doneButton);
+        JPanel forDoneButton = new JPanel();
+        forDoneButton.add(doneButton);
+        editable.add(forDoneButton);
 
        // JPanel editTriedFields = new JPanel();
        // editTriedFields.setLayout(new BoxLayout(editTriedFields, BoxLayout.X_AXIS));
@@ -305,6 +307,12 @@ public class EditandViewPanel extends JPanel implements ActionListener {
         return restaurant;
     }
 
+    public void repaintEditable() {
+        doneButton.revalidate();
+        editable.revalidate();
+        editable.repaint();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == editButton) {
@@ -325,8 +333,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
                 addTriedInfo(target);
                 restaurant.getTriedFoods().add(target);
                 restaurant.createRating();
-                resetEditView();
-                editView();
+                //resetEditView();
+                //editView();
             }
         } else if (e.getSource() == btnWishAdd) {
             String newWishName = wishEdit.getText();
@@ -334,10 +342,8 @@ public class EditandViewPanel extends JPanel implements ActionListener {
             wishEdit.setText(" ");
             newWishFood.setRating(0);
             restaurant.getWishList().add(newWishFood);
-            resetEditView();
-            editView();
         } else if (e.getSource() == doneButton) {
-            System.out.println("im so done");
+            System.out.println(".....");
             app.displayResInfo(restaurant);
         }
     }

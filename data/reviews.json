@@ -47,6 +47,14 @@
                     "FoodName": "hjk"
                 }
             ]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "asdflkasj fkawjrlkwj",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 4,
+            "triedFoods": []
         }
     ],
     "dislikedRestaurants": [{
@@ -123,6 +131,14 @@
                     "FoodName": "hjk"
                 }
             ]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "asdflkasj fkawjrlkwj",
+            "restaurantRating": 0,
+            "isLiked": true,
+            "reviewNumber": 4,
+            "triedFoods": []
         }
     ]
 }

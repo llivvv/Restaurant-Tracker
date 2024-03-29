@@ -98,7 +98,7 @@ public class FoodTable extends JPanel {
         JTextField foodName = new JTextField(8);
         JTextField foodPrice = new JTextField(3);
         JTextField foodRating = new JTextField(3);
-        JButton btnDone = new JButton("Done");
+        JButton btnDone = new JButton("Update");
         JButton btnAdd = new JButton("Add Food");
         editTriedFields.add(foodName);
         editTriedFields.add(foodPrice);
@@ -157,8 +157,14 @@ public class FoodTable extends JPanel {
                 foodRating.setText(" ");
                 foodList.add(newFood);
                 parent.getRestaurant().createRating();
-                parent.resetEditView();
-                parent.editView();
+                //parent.resetEditView();
+                parent.repaintEditable();
+                //parent.editView();
+                //revalidate(); //gets rid of add button
+                //repaint(); //gets rid of add button
+                //parent.revalidate();
+                //parent.repaint();
+                //parent.repaintEditable();
             }
         });
 
