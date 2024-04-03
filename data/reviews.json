@@ -2,6 +2,19 @@
     "likedRestaurants": [
         {
             "wishList": [],
+            "restaurantName": "pretend-Restaurant",
+            "restaurantRating": 1,
+            "isLiked": true,
+            "reviewNumber": 7,
+            "triedFoods": [{
+                "foodRating": 1,
+                "isTried": true,
+                "price": 1000,
+                "FoodName": "pretend-food1"
+            }]
+        },
+        {
+            "wishList": [],
             "restaurantName": "kbbq ",
             "restaurantRating": 4,
             "isLiked": true,
@@ -53,32 +66,41 @@
             }]
         }
     ],
-    "dislikedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "heyTeaaa",
-        "restaurantRating": 5,
-        "isLiked": false,
-        "reviewNumber": 6,
-        "triedFoods": [{
-            "foodRating": 5,
-            "isTried": true,
-            "price": 128,
-            "FoodName": "madeupdrink"
-        }]
-    }],
+    "dislikedRestaurants": [],
     "allRestaurants": [
         {
             "wishList": [],
-            "restaurantName": "heyTeaaa",
-            "restaurantRating": 5,
-            "isLiked": false,
-            "reviewNumber": 6,
+            "restaurantName": "pretend-Restaurant",
+            "restaurantRating": 1,
+            "isLiked": true,
+            "reviewNumber": 7,
             "triedFoods": [{
-                "foodRating": 5,
+                "foodRating": 1,
                 "isTried": true,
-                "price": 128,
-                "FoodName": "madeupdrink"
+                "price": 1000,
+                "FoodName": "pretend-food1"
             }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "kbbq ",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [
+                {
+                    "foodRating": 5,
+                    "isTried": true,
+                    "price": 12,
+                    "FoodName": "seafood pancake"
+                },
+                {
+                    "foodRating": 3,
+                    "isTried": true,
+                    "price": 2,
+                    "FoodName": "second item"
+                }
+            ]
         },
         {
             "wishList": [],
@@ -110,27 +132,6 @@
                 "price": 7,
                 "FoodName": "peachQQQ"
             }]
-        },
-        {
-            "wishList": [],
-            "restaurantName": "kbbq ",
-            "restaurantRating": 4,
-            "isLiked": true,
-            "reviewNumber": 1,
-            "triedFoods": [
-                {
-                    "foodRating": 5,
-                    "isTried": true,
-                    "price": 12,
-                    "FoodName": "seafood pancake"
-                },
-                {
-                    "foodRating": 3,
-                    "isTried": true,
-                    "price": 2,
-                    "FoodName": "second item"
-                }
-            ]
         }
     ]
 }

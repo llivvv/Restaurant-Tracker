@@ -40,4 +40,37 @@ on the "Load and add to my existing reviews" button. If you would like to write 
 #### Image Reference: 
 
 - https://www.realsimple.com/holidays-entertaining/entertaining/everyday-celebrations/picnic-packing-checklist 
-_(Edited)_
+_(Edited)_ 
+
+## Phase 4: Task 2
+
+- Wed Apr 03 16:11:41 PDT 2024
+heyTeaaa review loaded to reviews
+- Wed Apr 03 16:11:41 PDT 2024
+benGonggg's Tea review loaded to reviews
+- Wed Apr 03 16:11:41 PDT 2024
+chatTtime review loaded to reviews
+- Wed Apr 03 16:11:41 PDT 2024
+kbbq  review loaded to reviews
+- Wed Apr 03 16:11:41 PDT 2024
+(R)-carvone review loaded to reviews
+- Wed Apr 03 16:11:49 PDT 2024
+Disliked Reviews was sorted by rating.
+- Wed Apr 03 16:11:57 PDT 2024
+(R)-carvone review deleted from reviews.
+- Wed Apr 03 16:12:06 PDT 2024
+All Reviews was sorted by review number.
+- Wed Apr 03 16:12:36 PDT 2024
+new review: pretend-Restaurant added to reviews
+- Wed Apr 03 16:13:26 PDT 2024
+Liked Reviews was sorted by rating.
+- Wed Apr 03 16:13:46 PDT 2024
+All Reviews was sorted by rating.
+- Wed Apr 03 16:13:58 PDT 2024
+heyTeaaa review deleted from reviews.
+- Wed Apr 03 16:14:06 PDT 2024
+all reviews saved to the list of all reviews
+- Wed Apr 03 16:14:06 PDT 2024
+liked reviews saved to the list of liked reviews.
+- Wed Apr 03 16:14:06 PDT 2024
+disliked reviews saved to the list of disliked reviews
