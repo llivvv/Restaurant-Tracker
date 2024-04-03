@@ -1,36 +1,136 @@
 {
-    "likedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "asklfjaskdf",
-        "restaurantRating": 0,
-        "isLiked": true,
-        "reviewNumber": 1,
-        "triedFoods": []
-    }],
+    "likedRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "kbbq ",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [
+                {
+                    "foodRating": 5,
+                    "isTried": true,
+                    "price": 12,
+                    "FoodName": "seafood pancake"
+                },
+                {
+                    "foodRating": 3,
+                    "isTried": true,
+                    "price": 2,
+                    "FoodName": "second item"
+                }
+            ]
+        },
+        {
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "coconutJelly drink"
+            }],
+            "restaurantName": "chatTtime",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 4,
+            "triedFoods": [{
+                "foodRating": 5,
+                "isTried": true,
+                "price": 7,
+                "FoodName": "peachQQQ"
+            }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "benGonggg's Tea",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 5,
+            "triedFoods": [{
+                "foodRating": 4.5,
+                "isTried": true,
+                "price": 8,
+                "FoodName": "cheesefoam"
+            }]
+        }
+    ],
     "dislikedRestaurants": [{
         "wishList": [],
-        "restaurantName": "alkjflaksjflkas",
-        "restaurantRating": 0,
+        "restaurantName": "heyTeaaa",
+        "restaurantRating": 5,
         "isLiked": false,
-        "reviewNumber": 2,
-        "triedFoods": []
+        "reviewNumber": 6,
+        "triedFoods": [{
+            "foodRating": 5,
+            "isTried": true,
+            "price": 128,
+            "FoodName": "madeupdrink"
+        }]
     }],
     "allRestaurants": [
         {
             "wishList": [],
-            "restaurantName": "asklfjaskdf",
-            "restaurantRating": 0,
-            "isLiked": true,
-            "reviewNumber": 1,
-            "triedFoods": []
+            "restaurantName": "heyTeaaa",
+            "restaurantRating": 5,
+            "isLiked": false,
+            "reviewNumber": 6,
+            "triedFoods": [{
+                "foodRating": 5,
+                "isTried": true,
+                "price": 128,
+                "FoodName": "madeupdrink"
+            }]
         },
         {
             "wishList": [],
-            "restaurantName": "alkjflaksjflkas",
-            "restaurantRating": 0,
-            "isLiked": false,
-            "reviewNumber": 2,
-            "triedFoods": []
+            "restaurantName": "benGonggg's Tea",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 5,
+            "triedFoods": [{
+                "foodRating": 4.5,
+                "isTried": true,
+                "price": 8,
+                "FoodName": "cheesefoam"
+            }]
+        },
+        {
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "coconutJelly drink"
+            }],
+            "restaurantName": "chatTtime",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 4,
+            "triedFoods": [{
+                "foodRating": 5,
+                "isTried": true,
+                "price": 7,
+                "FoodName": "peachQQQ"
+            }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "kbbq ",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [
+                {
+                    "foodRating": 5,
+                    "isTried": true,
+                    "price": 12,
+                    "FoodName": "seafood pancake"
+                },
+                {
+                    "foodRating": 3,
+                    "isTried": true,
+                    "price": 2,
+                    "FoodName": "second item"
+                }
+            ]
         }
     ]
 }
