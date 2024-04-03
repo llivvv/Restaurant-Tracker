@@ -1,75 +1,36 @@
 {
-    "likedRestaurants": [],
-    "dislikedRestaurants": [
-        {
-            "wishList": [],
-            "restaurantName": "review 1",
-            "restaurantRating": 0,
-            "isLiked": false,
-            "reviewNumber": 1,
-            "triedFoods": []
-        },
-        {
-            "wishList": [],
-            "restaurantName": "review 2",
-            "restaurantRating": 2,
-            "isLiked": false,
-            "reviewNumber": 2,
-            "triedFoods": [{
-                "foodRating": 2,
-                "isTried": true,
-                "price": 2,
-                "FoodName": "foodfor2"
-            }]
-        },
-        {
-            "wishList": [],
-            "restaurantName": "review 3",
-            "restaurantRating": 3,
-            "isLiked": false,
-            "reviewNumber": 3,
-            "triedFoods": [{
-                "foodRating": 3,
-                "isTried": true,
-                "price": 3,
-                "FoodName": "foodfor3"
-            }]
-        }
-    ],
+    "likedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "asklfjaskdf",
+        "restaurantRating": 0,
+        "isLiked": true,
+        "reviewNumber": 1,
+        "triedFoods": []
+    }],
+    "dislikedRestaurants": [{
+        "wishList": [],
+        "restaurantName": "alkjflaksjflkas",
+        "restaurantRating": 0,
+        "isLiked": false,
+        "reviewNumber": 2,
+        "triedFoods": []
+    }],
     "allRestaurants": [
         {
             "wishList": [],
-            "restaurantName": "review 1",
+            "restaurantName": "asklfjaskdf",
             "restaurantRating": 0,
-            "isLiked": false,
+            "isLiked": true,
             "reviewNumber": 1,
             "triedFoods": []
         },
         {
             "wishList": [],
-            "restaurantName": "review 2",
-            "restaurantRating": 2,
+            "restaurantName": "alkjflaksjflkas",
+            "restaurantRating": 0,
             "isLiked": false,
             "reviewNumber": 2,
-            "triedFoods": [{
-                "foodRating": 2,
-                "isTried": true,
-                "price": 2,
-                "FoodName": "foodfor2"
-            }]
-        },
-        {
-            "wishList": [],
-            "restaurantName": "review 3",
-            "restaurantRating": 3,
-            "isLiked": false,
-            "reviewNumber": 3,
-            "triedFoods": [{
-                "foodRating": 3,
-                "isTried": true,
-                "price": 3,
-                "FoodName": "foodfor3"
-            }]
+            "triedFoods": []
         }
     ]
 }

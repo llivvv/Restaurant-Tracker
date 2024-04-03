@@ -29,7 +29,7 @@ public class SortFilterPanel extends JPanel implements ActionListener {
         sortBox = new JComboBox(sortOptions);
         sortBox.addActionListener(this);
         add(sortBox);
-        sortBox.setSelectedIndex(0);
+        //sortBox.setSelectedIndex(0);
     }
 
     // EFFECTS: returns the name of the selected option

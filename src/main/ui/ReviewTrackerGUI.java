@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Restaurant;
 import model.Reviews;
 import persistence.JsonReader;
@@ -92,6 +94,9 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(null, "Progress not saved.");
         }
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString());
+        }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -112,7 +117,6 @@ public class ReviewTrackerGUI extends JFrame implements ActionListener {
     private void loadReviews() {
         try {
             reviews = jsonReader.read();
-            System.out.println("Loaded reviews from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
