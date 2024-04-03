@@ -35,6 +35,8 @@ public class Reviews implements Writable {
         if (!allReviews.contains(restaurant)) {
             allReviews.add(restaurant);
             addToLikedDisliked(restaurant);
+            EventLog.getInstance().logEvent(new Event("new review: " + restaurant.getRestaurantName()
+                    + " added to reviews"));
         }
     }
 
@@ -48,6 +50,8 @@ public class Reviews implements Writable {
             } else {
                 dislikedReviews.remove(restaurant);
             }
+            EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                    + " review deleted from reviews."));
             return allReviews.remove(allReviews.indexOf(restaurant));
         } else {
             return null;
@@ -59,6 +63,14 @@ public class Reviews implements Writable {
     // EFFECTS sorts allReviews, likedReviews or dislikedReviews based on rating (ascending order)
     public void sortRating(List<Restaurant> rs) {
         Collections.sort(rs, new RestaurantRatingComparator());
+
+        if (rs == allReviews) {
+            EventLog.getInstance().logEvent(new Event("All Reviews was sorted by rating."));
+        } else if (rs == likedReviews) {
+            EventLog.getInstance().logEvent(new Event("Liked Reviews was sorted by rating."));
+        } else {
+            EventLog.getInstance().logEvent(new Event("Disliked Reviews was sorted by rating."));
+        }
     }
 
     // REQUIRES: rs is one of Review's fields
@@ -67,6 +79,7 @@ public class Reviews implements Writable {
     public void sortReviewNumber(List<Restaurant> rs) {
         Collections.sort(rs, new RestaurantNumberComparator());
         Collections.reverse(rs);
+        EventLog.getInstance().logEvent(new Event("All Reviews was sorted by review number."));
     }
 
     // EFFECTS: finds and returns a restaurant review with the corresponding name, otherwise returns null
@@ -130,14 +143,20 @@ public class Reviews implements Writable {
     // EFFECTS: add restaurant to allReviews (for JsonReader)
     public void addToAll(Restaurant restaurant) {
         allReviews.add(restaurant);
+        EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                + " loaded to list of all reviews"));
     }
 
     // MODIFIES: this
     // EFFECTS: adds restaurant to liked or disliked list (for JsonReader)
     public boolean addToLikedDisliked(Restaurant restaurant) {
         if (restaurant.getIsLiked()) {
+            EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                    + " loaded to list of liked reviews."));
             return likedReviews.add(restaurant);
         } else {
+            EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                    + " loaded to list of liked reviews."));
             return dislikedReviews.add(restaurant);
         }
     }
@@ -162,6 +181,7 @@ public class Reviews implements Writable {
         for (Restaurant r : allReviews) {
             jsonArray.put(r.toJson());
         }
+        EventLog.getInstance().logEvent(new Event("all reviews saved to the list of all reviews"));
         return jsonArray;
     }
 
@@ -173,6 +193,7 @@ public class Reviews implements Writable {
         for (Restaurant r : likedReviews) {
             jsonArray.put(r.toJson());
         }
+        EventLog.getInstance().logEvent(new Event("liked reviews saved to the list of liked reviews."));
         return jsonArray;
     }
 
@@ -184,6 +205,7 @@ public class Reviews implements Writable {
         for (Restaurant r : dislikedReviews) {
             jsonArray.put(r.toJson());
         }
+        EventLog.getInstance().logEvent(new Event("disliked reviews saved to the list of disliked reviews"));
         return jsonArray;
     }
 }
