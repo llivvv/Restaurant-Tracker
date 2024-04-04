@@ -35,8 +35,8 @@ public class Reviews implements Writable {
         if (!allReviews.contains(restaurant)) {
             allReviews.add(restaurant);
             addToLikedDisliked(restaurant);
-            EventLog.getInstance().logEvent(new Event("new review: " + restaurant.getRestaurantName()
-                    + " added to reviews"));
+            EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                    + " review added to reviews"));
         }
     }
 
@@ -151,8 +151,12 @@ public class Reviews implements Writable {
     // EFFECTS: adds restaurant to liked or disliked list (for JsonReader)
     public boolean addToLikedDisliked(Restaurant restaurant) {
         if (restaurant.getIsLiked()) {
+            EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                    + " review added to list of liked reviews"));
             return likedReviews.add(restaurant);
         } else {
+            EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                    + " review added to list of disliked reviews"));
             return dislikedReviews.add(restaurant);
         }
     }
