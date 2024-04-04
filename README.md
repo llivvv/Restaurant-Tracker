@@ -82,3 +82,13 @@ all reviews saved to the list of all reviews
 liked reviews saved to the list of liked reviews.
 - Thu Apr 04 11:57:25 PDT 2024
 disliked reviews saved to the list of disliked reviews
+
+## Phase 4: Task 3
+
+- If I had more time to work on the project, I might redesign some classes in my model package, such as the Food and 
+Reviews classes. Currently, both the wishlist foods and tried-foods have a set price and rating, however, it does not 
+make a lot of sense for a wishlist item to have those fields set to something other than null. While the user is unable 
+to see the wishlist item's price nor rating, I think that making the Food class abstract would solve the problem........ 
+
+smth like this: I would make the Food class abstract with only 1 field of type String, and have a TriedFoods class 
+extend it. 
