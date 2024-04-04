@@ -1,36 +1,122 @@
 {
-    "likedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "yooooooooo",
-        "restaurantRating": 0,
-        "isLiked": true,
-        "reviewNumber": 4,
-        "triedFoods": []
-    }],
-    "dislikedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "aslkfaslkdfj",
-        "restaurantRating": 0,
-        "isLiked": false,
-        "reviewNumber": 2,
-        "triedFoods": []
-    }],
-    "allRestaurants": [
+    "likedRestaurants": [
         {
             "wishList": [],
-            "restaurantName": "aslkfaslkdfj",
+            "restaurantName": "heyTeaaa",
+            "restaurantRating": 3,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [{
+                "foodRating": 3,
+                "isTried": true,
+                "price": 9,
+                "FoodName": "heytea1"
+            }]
+        },
+        {
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "coconutJelLlLy"
+            }],
+            "restaurantName": "ChatTtime",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 3,
+            "triedFoods": [{
+                "foodRating": 4,
+                "isTried": true,
+                "price": 7,
+                "FoodName": "peachqQqQ"
+            }]
+        }
+    ],
+    "dislikedRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "ShinytTteaaa",
             "restaurantRating": 0,
             "isLiked": false,
             "reviewNumber": 2,
-            "triedFoods": []
+            "triedFoods": [{
+                "foodRating": 0.2,
+                "isTried": true,
+                "price": 19,
+                "FoodName": "teaaa"
+            }]
         },
         {
             "wishList": [],
-            "restaurantName": "yooooooooo",
-            "restaurantRating": 0,
-            "isLiked": true,
+            "restaurantName": "(R)-carvone",
+            "restaurantRating": 2,
+            "isLiked": false,
             "reviewNumber": 4,
-            "triedFoods": []
+            "triedFoods": [{
+                "foodRating": 2,
+                "isTried": true,
+                "price": 123,
+                "FoodName": "spearmint"
+            }]
+        }
+    ],
+    "allRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "(R)-carvone",
+            "restaurantRating": 2,
+            "isLiked": false,
+            "reviewNumber": 4,
+            "triedFoods": [{
+                "foodRating": 2,
+                "isTried": true,
+                "price": 123,
+                "FoodName": "spearmint"
+            }]
+        },
+        {
+            "wishList": [{
+                "foodRating": 0,
+                "isTried": false,
+                "price": 0,
+                "FoodName": "coconutJelLlLy"
+            }],
+            "restaurantName": "ChatTtime",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 3,
+            "triedFoods": [{
+                "foodRating": 4,
+                "isTried": true,
+                "price": 7,
+                "FoodName": "peachqQqQ"
+            }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "ShinytTteaaa",
+            "restaurantRating": 0,
+            "isLiked": false,
+            "reviewNumber": 2,
+            "triedFoods": [{
+                "foodRating": 0.2,
+                "isTried": true,
+                "price": 19,
+                "FoodName": "teaaa"
+            }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "heyTeaaa",
+            "restaurantRating": 3,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [{
+                "foodRating": 3,
+                "isTried": true,
+                "price": 9,
+                "FoodName": "heytea1"
+            }]
         }
     ]
 }

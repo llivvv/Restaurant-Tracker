@@ -46,12 +46,16 @@ public class Reviews implements Writable {
     public Restaurant removeRestaurant(Restaurant restaurant) {
         if (allReviews.contains(restaurant)) {
             if (likedReviews.contains(restaurant)) {
+                EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                        + " review deleted from list of liked reviews."));
                 likedReviews.remove(restaurant);
             } else {
+                EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
+                        + " review deleted from list of disliked reviews."));
                 dislikedReviews.remove(restaurant);
             }
             EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
-                    + " review deleted from reviews."));
+                    + " review deleted from list of all reviews."));
             return allReviews.remove(allReviews.indexOf(restaurant));
         } else {
             return null;

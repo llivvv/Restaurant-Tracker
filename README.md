@@ -44,33 +44,41 @@ _(Edited)_
 
 ## Phase 4: Task 2
 
-- Wed Apr 03 16:11:41 PDT 2024
+- Thu Apr 04 11:56:17 PDT 2024
+ShinytTteaaa review loaded to reviews
+- Thu Apr 04 11:56:17 PDT 2024
+(L)-carvone review loaded to reviews
+- Thu Apr 04 11:56:17 PDT 2024
 heyTeaaa review loaded to reviews
-- Wed Apr 03 16:11:41 PDT 2024
-benGonggg's Tea review loaded to reviews
-- Wed Apr 03 16:11:41 PDT 2024
-chatTtime review loaded to reviews
-- Wed Apr 03 16:11:41 PDT 2024
-kbbq  review loaded to reviews
-- Wed Apr 03 16:11:41 PDT 2024
-(R)-carvone review loaded to reviews
-- Wed Apr 03 16:11:49 PDT 2024
+- Thu Apr 04 11:56:17 PDT 2024
+ChatTtime review loaded to reviews
+- Thu Apr 04 11:56:17 PDT 2024
+heyTeaaa review added to list of liked reviews
+- Thu Apr 04 11:56:17 PDT 2024
+ChatTtime review added to list of liked reviews
+- Thu Apr 04 11:56:17 PDT 2024
+ShinytTteaaa review added to list of disliked reviews
+- Thu Apr 04 11:56:17 PDT 2024
+(L)-carvone review added to list of disliked reviews
+- Thu Apr 04 11:56:28 PDT 2024
 Disliked Reviews was sorted by rating.
-- Wed Apr 03 16:11:57 PDT 2024
-(R)-carvone review deleted from reviews.
-- Wed Apr 03 16:12:06 PDT 2024
-All Reviews was sorted by review number.
-- Wed Apr 03 16:12:36 PDT 2024
-new review: pretend-Restaurant added to reviews
-- Wed Apr 03 16:13:26 PDT 2024
-Liked Reviews was sorted by rating.
-- Wed Apr 03 16:13:46 PDT 2024
+- Thu Apr 04 11:56:32 PDT 2024
+(L)-carvone review deleted from list of disliked reviews.
+- Thu Apr 04 11:56:32 PDT 2024
+(L)-carvone review deleted from list of all reviews.
+- Thu Apr 04 11:56:39 PDT 2024
 All Reviews was sorted by rating.
-- Wed Apr 03 16:13:58 PDT 2024
-heyTeaaa review deleted from reviews.
-- Wed Apr 03 16:14:06 PDT 2024
+- Thu Apr 04 11:56:46 PDT 2024
+(R)-carvone review added to list of disliked reviews
+- Thu Apr 04 11:56:46 PDT 2024
+(R)-carvone review added to reviews
+- Thu Apr 04 11:57:06 PDT 2024
+All Reviews was sorted by review number.
+- Thu Apr 04 11:57:19 PDT 2024
+Liked Reviews was sorted by rating.
+- Thu Apr 04 11:57:25 PDT 2024
 all reviews saved to the list of all reviews
-- Wed Apr 03 16:14:06 PDT 2024
+- Thu Apr 04 11:57:25 PDT 2024
 liked reviews saved to the list of liked reviews.
-- Wed Apr 03 16:14:06 PDT 2024
+- Thu Apr 04 11:57:25 PDT 2024
 disliked reviews saved to the list of disliked reviews
