@@ -36,7 +36,7 @@ public class Reviews implements Writable {
             allReviews.add(restaurant);
             addToLikedDisliked(restaurant);
             EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
-                    + " review added to reviews"));
+                    + " review added to reviews."));
         }
     }
 
@@ -148,7 +148,7 @@ public class Reviews implements Writable {
     public void addToAll(Restaurant restaurant) {
         allReviews.add(restaurant);
         EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
-                + " review loaded to reviews"));
+                + " review loaded to reviews."));
     }
 
     // MODIFIES: this
@@ -156,11 +156,11 @@ public class Reviews implements Writable {
     public boolean addToLikedDisliked(Restaurant restaurant) {
         if (restaurant.getIsLiked()) {
             EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
-                    + " review added to list of liked reviews"));
+                    + " review added to list of liked reviews."));
             return likedReviews.add(restaurant);
         } else {
             EventLog.getInstance().logEvent(new Event(restaurant.getRestaurantName()
-                    + " review added to list of disliked reviews"));
+                    + " review added to list of disliked reviews."));
             return dislikedReviews.add(restaurant);
         }
     }
@@ -185,7 +185,7 @@ public class Reviews implements Writable {
         for (Restaurant r : allReviews) {
             jsonArray.put(r.toJson());
         }
-        EventLog.getInstance().logEvent(new Event("all reviews saved to the list of all reviews"));
+        EventLog.getInstance().logEvent(new Event("All reviews saved to the list of all reviews."));
         return jsonArray;
     }
 
@@ -197,7 +197,7 @@ public class Reviews implements Writable {
         for (Restaurant r : likedReviews) {
             jsonArray.put(r.toJson());
         }
-        EventLog.getInstance().logEvent(new Event("liked reviews saved to the list of liked reviews."));
+        EventLog.getInstance().logEvent(new Event("Liked reviews saved to the list of liked reviews."));
         return jsonArray;
     }
 
@@ -209,7 +209,7 @@ public class Reviews implements Writable {
         for (Restaurant r : dislikedReviews) {
             jsonArray.put(r.toJson());
         }
-        EventLog.getInstance().logEvent(new Event("disliked reviews saved to the list of disliked reviews"));
+        EventLog.getInstance().logEvent(new Event("Disliked reviews saved to the list of disliked reviews."));
         return jsonArray;
     }
 }

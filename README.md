@@ -43,52 +43,55 @@ on the "Load and add to my existing reviews" button. If you would like to write 
 _(Edited)_ 
 
 ## Phase 4: Task 2
-
-- Thu Apr 04 11:56:17 PDT 2024
-<br> ShinytTteaaa review loaded to reviews
-- Thu Apr 04 11:56:17 PDT 2024
-  <br> (L)-carvone review loaded to reviews
-- Thu Apr 04 11:56:17 PDT 2024
-  <br> heyTeaaa review loaded to reviews
-- Thu Apr 04 11:56:17 PDT 2024
-  <br> ChatTtime review loaded to reviews
-- Thu Apr 04 11:56:17 PDT 2024
-  <br> heyTeaaa review added to list of liked reviews
-- Thu Apr 04 11:56:17 PDT 2024
-  <br> ChatTtime review added to list of liked reviews
-- Thu Apr 04 11:56:17 PDT 2024
-  <br> ShinytTteaaa review added to list of disliked reviews
-- Thu Apr 04 11:56:17 PDT 2024
-  <br> (L)-carvone review added to list of disliked reviews
-- Thu Apr 04 11:56:28 PDT 2024
+<br>Thu Apr 04 11:56:17 PDT 2024
+<br> ShinytTteaaa review loaded to reviews.
+<br>Thu Apr 04 11:56:17 PDT 2024
+  <br> (L)-carvone review loaded to reviews.
+<br>Thu Apr 04 11:56:17 PDT 2024
+  <br> heyTeaaa review loaded to reviews.
+<br>Thu Apr 04 11:56:17 PDT 2024
+  <br> ChatTtime review loaded to reviews.
+<br>Thu Apr 04 11:56:17 PDT 2024
+  <br> heyTeaaa review added to list of liked reviews.
+<br>Thu Apr 04 11:56:17 PDT 2024
+  <br> ChatTtime review added to list of liked reviews.
+<br>Thu Apr 04 11:56:17 PDT 2024
+  <br> ShinytTteaaa review added to list of disliked reviews.
+<br>Thu Apr 04 11:56:17 PDT 2024
+  <br> (L)-carvone review added to list of disliked reviews.
+<br>Thu Apr 04 11:56:28 PDT 2024
   <br> Disliked Reviews was sorted by rating.
-- Thu Apr 04 11:56:32 PDT 2024
+<br>Thu Apr 04 11:56:32 PDT 2024
   <br> (L)-carvone review deleted from list of disliked reviews.
-- Thu Apr 04 11:56:32 PDT 2024
+<br>Thu Apr 04 11:56:32 PDT 2024
   <br> (L)-carvone review deleted from list of all reviews.
-- Thu Apr 04 11:56:39 PDT 2024
+<br>Thu Apr 04 11:56:39 PDT 2024
   <br> All Reviews was sorted by rating.
-- Thu Apr 04 11:56:46 PDT 2024
-  <br> (R)-carvone review added to list of disliked reviews
-- Thu Apr 04 11:56:46 PDT 2024
-  <br> (R)-carvone review added to reviews
-- Thu Apr 04 11:57:06 PDT 2024
+<br>Thu Apr 04 11:56:46 PDT 2024
+  <br> (R)-carvone review added to list of disliked reviews.
+<br>Thu Apr 04 11:56:46 PDT 2024
+  <br> (R)-carvone review added to reviews.
+<br>Thu Apr 04 11:57:06 PDT 2024
   <br> All Reviews was sorted by review number.
-- Thu Apr 04 11:57:19 PDT 2024
+<br>Thu Apr 04 11:57:19 PDT 2024
   <br> Liked Reviews was sorted by rating.
-- Thu Apr 04 11:57:25 PDT 2024
-  <br> all reviews saved to the list of all reviews
-- Thu Apr 04 11:57:25 PDT 2024
-  <br> liked reviews saved to the list of liked reviews.
-- Thu Apr 04 11:57:25 PDT 2024
-  <br> disliked reviews saved to the list of disliked reviews
+<br>Thu Apr 04 11:57:25 PDT 2024
+  <br> All reviews saved to the list of all reviews.
+<br>Thu Apr 04 11:57:25 PDT 2024
+  <br> Liked reviews saved to the list of liked reviews.
+<br>Thu Apr 04 11:57:25 PDT 2024
+  <br> Disliked reviews saved to the list of disliked reviews.
 
 ## Phase 4: Task 3
 
-- If I had more time to work on the project, I might redesign some classes in my model package, such as the Food and 
+If I had more time to work on the project, I might redesign some classes in my model package, such as the Food and 
 Reviews classes. Currently, both the wishlist foods and tried-foods have a set price and rating, however, it does not 
 make a lot of sense for a wishlist item to have those fields set to something other than null. While the user is unable 
-to see the wishlist item's price nor rating, I think that making the Food class abstract would solve the problem........ 
+to see the wishlist item's price nor rating, I think that making the Food class abstract would solve the problem of 
+wishlist items having unnecessary fields, as the tried-foods classes and wishlist food classes could extend the Food
+class.
 
-smth like this: I would make the Food class abstract with only 1 field of type String, and have a TriedFoods class 
-extend it. 
+Another class to refactor may be the Reviews class. It currently contains 3 lists of reviews, where 2 of 3 lists are
+'filtered' lists. I think that if I were to redesign this class, I would make it have 1 field of a collection of 
+Restaurant reviews as it might be more efficient to add/delete restaurants to/from 1 list instead of 3. 
+When filtering is needed, a method can be called that returns a filtered list of certain criteria.
