@@ -23,7 +23,7 @@ that may be useful.
 - As a user, I want to be able to save my reviews to my file (if I so choose).
 - As a user, I want to be able to load my reviews from my file (if I so choose). 
 
-## Instructions For Grader
+## Usage Instructions
 
 - You can generate the first required action related to the user story "adding multiply reviews to a list of reviews" 
 by clicking on the " + " button in the top right corner of the screen after leaving the home page.
@@ -42,7 +42,7 @@ on the "Load and add to my existing reviews" button. If you would like to write 
 - https://www.realsimple.com/holidays-entertaining/entertaining/everyday-celebrations/picnic-packing-checklist 
 _(Edited)_ 
 
-## Phase 4: Task 2
+## Sample Activity Log
 <br>Thu Apr 04 11:56:17 PDT 2024
 <br> ShinytTteaaa review loaded to reviews.
 <br>Thu Apr 04 11:56:17 PDT 2024
@@ -82,7 +82,7 @@ _(Edited)_
 <br>Thu Apr 04 11:57:25 PDT 2024
   <br> Disliked reviews saved to the list of disliked reviews.
 
-## Phase 4: Task 3
+## Reflection
 
 If I had more time to work on the project, I might redesign some classes in my model package, such as the Food and 
 Reviews classes. Currently, both the wishlist foods and tried-foods have a set price and rating, however, it does not 
