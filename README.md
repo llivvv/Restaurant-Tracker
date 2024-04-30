@@ -25,7 +25,7 @@ that may be useful.
 
 ## Usage Instructions
 
-- You can generate the first required action related to the user story "adding multiply reviews to a list of reviews" 
+- You can generate the first required action related to the user story "adding multiple reviews to a list of reviews" 
 by clicking on the " + " button in the top right corner of the screen after leaving the home page.
 - You can generate the second required action related to the user story of viewing a filtered list of reviews, by 
 leaving the home page and selecting an item from the combo box located in the centre top of the screen.
