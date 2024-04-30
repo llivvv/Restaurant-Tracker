@@ -1,19 +1,87 @@
 {
-    "likedRestaurants": [],
-    "dislikedRestaurants": [{
-        "wishList": [],
-        "restaurantName": "asdfads",
-        "restaurantRating": 0,
-        "isLiked": false,
-        "reviewNumber": 1,
-        "triedFoods": []
-    }],
-    "allRestaurants": [{
-        "wishList": [],
-        "restaurantName": "asdfads",
-        "restaurantRating": 0,
-        "isLiked": false,
-        "reviewNumber": 1,
-        "triedFoods": []
-    }]
+    "likedRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "chattTime",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [
+                {
+                    "foodRating": 5,
+                    "isTried": true,
+                    "price": 7,
+                    "FoodName": "strawberryQQ"
+                },
+                {
+                    "foodRating": 3,
+                    "isTried": true,
+                    "price": 10,
+                    "FoodName": " peachQQ"
+                },
+                {
+                    "foodRating": 4.5,
+                    "isTried": true,
+                    "price": 6,
+                    "FoodName": "passionfruitQQ"
+                }
+            ]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "goodcafe",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 3,
+            "triedFoods": [{
+                "foodRating": 5,
+                "isTried": true,
+                "price": 0,
+                "FoodName": "amazing"
+            }]
+        }
+    ],
+    "dislikedRestaurants": [],
+    "allRestaurants": [
+        {
+            "wishList": [],
+            "restaurantName": "goodcafe",
+            "restaurantRating": 5,
+            "isLiked": true,
+            "reviewNumber": 3,
+            "triedFoods": [{
+                "foodRating": 5,
+                "isTried": true,
+                "price": 0,
+                "FoodName": "amazing"
+            }]
+        },
+        {
+            "wishList": [],
+            "restaurantName": "chattTime",
+            "restaurantRating": 4,
+            "isLiked": true,
+            "reviewNumber": 1,
+            "triedFoods": [
+                {
+                    "foodRating": 5,
+                    "isTried": true,
+                    "price": 7,
+                    "FoodName": "strawberryQQ"
+                },
+                {
+                    "foodRating": 3,
+                    "isTried": true,
+                    "price": 10,
+                    "FoodName": " peachQQ"
+                },
+                {
+                    "foodRating": 4.5,
+                    "isTried": true,
+                    "price": 6,
+                    "FoodName": "passionfruitQQ"
+                }
+            ]
+        }
+    ]
 }

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 // Represents panel on top of screen that allows user to choose to see specific lists of reviews
 public class SortFilterPanel extends JPanel implements ActionListener {
 
-    String[] sortOptions = {"Sort All By Rating", "Sort Liked By Rating", "Sort Disliked By Rating",
+    String[] sortOptions = {"Sort All By Increasing Rating", "Sort Liked By Increasing Rating", "Sort Disliked By Increasing Rating",
             "Sort All By Most Recently Created", "Filter Liked", "Filter Disliked"};
 
     private JComboBox sortBox;
@@ -47,13 +47,13 @@ public class SortFilterPanel extends JPanel implements ActionListener {
     // EFFECTS: changes the list view based on the combo box's selected option
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (getSelectedBox() == "Sort All By Rating") {
+        if (getSelectedBox() == "Sort All By Increasing Rating") {
             app.getReviews().sortRating(app.getReviews().getAllReviews());
             listPanel.changeReview(app.getReviews().getAllReviews());
-        } else if (getSelectedBox() == "Sort Liked By Rating") {
+        } else if (getSelectedBox() == "Sort Liked By Increasing Rating") {
             app.getReviews().sortRating(app.getReviews().getLikedReviews());
             listPanel.changeReview(app.getReviews().getLikedReviews());
-        } else if (getSelectedBox() == "Sort Disliked By Rating") {
+        } else if (getSelectedBox() == "Sort Disliked By Increasing Rating") {
             app.getReviews().sortRating(app.getReviews().getDislikedReviews());
             listPanel.changeReview(app.getReviews().getDislikedReviews());
         } else if (getSelectedBox() == "Sort All By Most Recently Created") {
